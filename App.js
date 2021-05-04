@@ -33,57 +33,53 @@ import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 
 
 //Importing AppLoading component if something doesn't load correctly
-import AppLoading from "expo-app-loading";
+//import AppLoading from "expo-app-loading";
 
 
 
 const switchNavigator = createSwitchNavigator({
 
-  ResolveAuth: ResolveAuthScreen,
+  //ResolveAuth: ResolveAuthScreen,
 
   loginFlow: createStackNavigator({
     Welcome: WelcomeScreen,
     Signin: SigninScreen,
     Signup: SignupScreen
-  }),
-
-  menuFlow: createStackNavigator({
-
-    Menu: MenuScreen,
-    bottomTabFlow: createBottomTabNavigator({
-
-      HomeFlow: createStackNavigator({
-        Home: HomeScreen,
-        TaskList: TaskListScreen,
-        TaskDetail: TaskDetailScreen
-      }),
-
-
-      ExploreFlow: createStackNavigator({
-        Explore: ExploreScreen,
-        Purchase: PurchaseScreen
-      }),
-
-      AccountFlow: createStackNavigator({
-        Account: AccountScreen,
-        Expert: ExpertScreen,
-        Review: ReviewScreen,
-        ChangePassword: ChangePasswordScreen
-      })
-
-    }),
-
   })
+
+  // menuFlow: createStackNavigator({
+
+  //   Menu: MenuScreen,
+  //   bottomTabFlow: createBottomTabNavigator({
+
+  //     HomeFlow: createStackNavigator({
+  //       Home: HomeScreen,
+  //       TaskList: TaskListScreen,
+  //       TaskDetail: TaskDetailScreen
+  //     }),
+
+
+  //     ExploreFlow: createStackNavigator({
+  //       Explore: ExploreScreen,
+  //       Purchase: PurchaseScreen
+  //     }),
+
+  //     AccountFlow: createStackNavigator({
+  //       Account: AccountScreen,
+  //       Expert: ExpertScreen,
+  //       Review: ReviewScreen,
+  //       ChangePassword: ChangePasswordScreen
+  //     })
+
+  //   }),
+
+  // })
 
 });
 
 
 
 
-
-
-//Listing all custom fonts that app is using
-const customFonts = {};
 
 
 
