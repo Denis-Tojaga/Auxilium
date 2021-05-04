@@ -39,6 +39,8 @@ import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 
 const switchNavigator = createSwitchNavigator({
 
+  //this is commented just for debugging
+
   //ResolveAuth: ResolveAuthScreen,
 
   loginFlow: createStackNavigator({
