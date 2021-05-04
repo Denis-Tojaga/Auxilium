@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 
-const PurchaseScreen = () => {
+const ExpertScreen = () => {
 
     return (
-        <Text>This is PurchaseScreen screen</Text>
+        <Text>This is ExpertScreen screen</Text>
     );
 
 };
