@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 
-const SignupScreen = ({ navigation }) => {
+const SignupScreen = () => {
 
     return (
         <View>
