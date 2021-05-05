@@ -1,12 +1,5 @@
 import React from "react";
-//createAppContainer function takes navigator funtion and creates component out of it
-//createStackNavigator function creates StackNavigator
-//createSwitchNavigator function creates SwitchNavigator
-//createBottomTabNavigator function creates BottomTabNavigator
-import {
-  createAppContainer,
-  createSwitchNavigator
-} from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
@@ -29,16 +22,21 @@ import ChangePasswordScreen from "./src/screens/ChangePasswordScreen";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 
 
+//Importing fonts hook
+import { useFonts } from "@use-expo/font";
+import AppLoading from "expo-app-loading";
+
+
 
 
 
 //Importing AppLoading component if something doesn't load correctly
-//import AppLoading from "expo-app-loading";
+import AppLoading from "expo-app-loading";
 
 
 
 
-
+//navigator component which will have all navigators nested
 const navigator = createSwitchNavigator({
 
   loginFlow: createStackNavigator({
@@ -63,7 +61,37 @@ const navigator = createSwitchNavigator({
 
 
 
-export default createAppContainer(navigator);
+
+
+
+const App = createAppContainer(navigator);
+
+
+
+const customFonts = {
+  TrendaExtraLight: require("./assets/fonts/TrendaFonts/Trenda-ExtraLight.otf"),
+  TrendaLightIt: require("./assets/fonts/TrendaFonts/Trenda-LightIt.otf"),
+  TrendaLight: require("./assets/fonts/TrendaFonts/Trenda-Light.otf"),
+  TrendaRegular: require("./assets/fonts/TrendaFonts/Trenda-Regular.otf"),
+  TrendaSemiboldIt: require("./assets/fonts/TrendaFonts/Trenda-SemiboldIt.otf"),
+  TrendaSemibold: require("./assets/fonts/TrendaFonts/Trenda-Semibold.otf"),
+  MoonBold: require("./assets/fonts/MoonFonts/Moon-Bold.otf"),
+  MoonLight: require("./assets/fonts/MoonFonts/Moon-Light.otf")
+}
+
+
+
+export default () => {
+
+  const [isLoaded] = useFonts(customFonts);
+
+  if (!isLoaded)
+    return <AppLoading />
+
+  return (
+    <App />
+  );
+}
 
 
 

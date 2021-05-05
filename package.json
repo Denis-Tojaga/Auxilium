@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
+    "@use-expo/font": "^2.0.0",
     "expo": "~41.0.1",
+    "expo-app-loading": "^1.0.3",
     "expo-status-bar": "~1.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
