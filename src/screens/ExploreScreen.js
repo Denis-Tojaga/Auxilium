@@ -1,11 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 
 
-const ExploreScreen = () => {
+const ExploreScreen = ({ navigation }) => {
 
     return (
-        <Text>This is ExploreScreen screen</Text>
+        <View>
+            <Text>This is ExploreScreen screen</Text>
+            <Button title="Go to purchase screen!" onPress={() => navigation.navigate("Purchase")} />
+        </View>
+
     );
 
 };

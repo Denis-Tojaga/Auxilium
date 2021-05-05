@@ -8,7 +8,7 @@ const MenuScreen = () => {
     return (
         <View>
             <Text>This is MenuScreen screen</Text>
-            <Button title="Go to bottom tab nav" onPress={() => { navigate("tablFlow") }} />
+            <Button title="Go to bottom tab nav" onPress={() => { navigate("bottomTabFlow") }} />
         </View>
     );
 

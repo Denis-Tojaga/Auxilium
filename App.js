@@ -36,25 +36,62 @@ import { useFonts } from "@use-expo/font";
 import AppLoading from "expo-app-loading";
 
 
+const loginFlow = createStackNavigator({
+  Welome: WelcomeScreen,
+  Signin: SigninScreen,
+  Signup: SignupScreen
+});
+
+
+const homeFlow = createStackNavigator({
+  Home: HomeScreen,
+  TaskList: TaskListScreen,
+  TaskDetail: TaskDetailScreen
+});
+
+const exploreFlow = createStackNavigator({
+  Explore: ExploreScreen,
+  Purchase: PurchaseScreen
+});
+
+
+const accountFlow = createStackNavigator({
+  Account: AccountScreen,
+  Review: ReviewScreen,
+  Expert: ExpertScreen,
+  ChangePassword: ChangePasswordScreen
+});
+
+
+const menuFlow = createStackNavigator({
+  Menu: MenuScreen
+});
+
+
 
 
 //navigator component which will have all navigators nested
 const navigator = createSwitchNavigator({
 
-  loginFlow: createStackNavigator({
-    Welcome: WelcomeScreen,
-    Signin: SigninScreen,
-    Signup: SignupScreen,
-  }),
+  //------------
+  loginFlow: loginFlow,
+  //------------
 
-  menuFlow: createStackNavigator({
-    menu: MenuScreen,
-    tablFlow: createBottomTabNavigator({
-      homeFlow: HomeScreen,
-      exploreFlow: ExploreScreen,
-      accountFlow: AccountScreen
-    })
+
+
+  Menu: MenuScreen,
+
+  //------------
+  bottomTabFlow: createBottomTabNavigator({
+    exploreFlow: exploreFlow,
+    homeFlow: homeFlow,
+    accountFlow: accountFlow
+  }, {
+    initialRouteName: "homeFlow"
   })
+  //------------
+
+
 
 });
 

@@ -1,11 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 
 
-const TaskListScreen = () => {
+const TaskListScreen = ({ navigation }) => {
 
     return (
-        <Text>This is TaskListScreen screen</Text>
+        <View>
+            <Text>This is TaskListScreen screen</Text>
+            <Button title="Go to task detail screen" onPress={() => navigation.navigate("TaskDetail")} />
+        </View>
     );
 
 };

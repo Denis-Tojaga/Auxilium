@@ -8,7 +8,7 @@ const SignupScreen = () => {
     return (
         <View>
             <Text>This is SignupScreen screen</Text>
-            <Button title="Go to menu flow" onPress={() => navigate("menuFlow")} />
+            <Button title="Go to menu flow" onPress={() => navigate("Menu")} />
         </View>
     );
 
