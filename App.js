@@ -36,6 +36,10 @@ import { useFonts } from "@use-expo/font";
 import AppLoading from "expo-app-loading";
 
 
+
+
+
+//flow that is controling the login screens
 const loginFlow = createStackNavigator({
   Welome: WelcomeScreen,
   Signin: SigninScreen,
@@ -43,18 +47,25 @@ const loginFlow = createStackNavigator({
 });
 
 
+
+//flow that is controling the home screens
 const homeFlow = createStackNavigator({
   Home: HomeScreen,
   TaskList: TaskListScreen,
   TaskDetail: TaskDetailScreen
 });
 
+
+
+//flow that is controling the explore screens
 const exploreFlow = createStackNavigator({
   Explore: ExploreScreen,
   Purchase: PurchaseScreen
 });
 
 
+
+//flow that is controling the account screens
 const accountFlow = createStackNavigator({
   Account: AccountScreen,
   Review: ReviewScreen,
@@ -63,25 +74,14 @@ const accountFlow = createStackNavigator({
 });
 
 
-const menuFlow = createStackNavigator({
-  Menu: MenuScreen
-});
-
-
-
 
 //navigator component which will have all navigators nested
 const navigator = createSwitchNavigator({
 
-  //------------
   loginFlow: loginFlow,
-  //------------
-
-
 
   Menu: MenuScreen,
 
-  //------------
   bottomTabFlow: createBottomTabNavigator({
     exploreFlow: exploreFlow,
     homeFlow: homeFlow,
@@ -89,9 +89,6 @@ const navigator = createSwitchNavigator({
   }, {
     initialRouteName: "homeFlow"
   })
-  //------------
-
-
 
 });
 
