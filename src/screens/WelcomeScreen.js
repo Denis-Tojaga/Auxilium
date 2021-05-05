@@ -18,6 +18,7 @@ const WelcomeScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 
+
 });
 
 

@@ -22,10 +22,12 @@ import ChangePasswordScreen from "./src/screens/ChangePasswordScreen";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 
 
+//Importing navigator helper which will allow us to navigate between different flows
+import { navigate, setNavigator } from "./src/helpers/navigation";
+
+
 //Importing fonts hook
 import { useFonts } from "@use-expo/font";
-import AppLoading from "expo-app-loading";
-
 
 
 
@@ -45,19 +47,17 @@ const navigator = createSwitchNavigator({
     Signup: SignupScreen,
   }),
 
-  // menuFlow: createStackNavigator({
-
-  //   menu: MenuScreen,
-
-  //   tablFlow: createBottomTabNavigator({
-  //     homeFlow: createStackNavigator(/*screenovi za home*/),
-  //     exploreFlow: createStackNavigator(/*screenovi za explore*/),
-  //     accountFlow: createStackNavigator(/*screenovi za account*/)
-  //   })
-
-  // })
+  menuFlow: createStackNavigator({
+    menu: MenuScreen,
+    tablFlow: createBottomTabNavigator({
+      homeFlow: HomeScreen,
+      exploreFlow: ExploreScreen,
+      accountFlow: AccountScreen
+    })
+  })
 
 });
+
 
 
 
@@ -68,6 +68,8 @@ const App = createAppContainer(navigator);
 
 
 
+
+//object containing all fonts 
 const customFonts = {
   TrendaExtraLight: require("./assets/fonts/TrendaFonts/Trenda-ExtraLight.otf"),
   TrendaLightIt: require("./assets/fonts/TrendaFonts/Trenda-LightIt.otf"),
@@ -81,6 +83,11 @@ const customFonts = {
 
 
 
+
+
+
+
+
 export default () => {
 
   const [isLoaded] = useFonts(customFonts);
@@ -89,7 +96,8 @@ export default () => {
     return <AppLoading />
 
   return (
-    <App />
+    //this sets the navigator variable to the global navigator from where we have access to all screens
+    <App ref={(navigator) => { setNavigator(navigator) }} />
   );
 }
 
