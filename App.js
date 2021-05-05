@@ -15,7 +15,7 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 //Importing all screens
 import WelcomeScreen from "./src/screens/WelcomeScreen";
 import SigninScreen from "./src/screens/SigninScreen";
-import SignupScreen from "./src/screens/WelcomeScreen";
+import SignupScreen from "./src/screens/SignupScreen";
 import MenuScreen from "./src/screens/MenuScreen";
 import HomeScreen from "./src/screens/HomeScreen";
 import TaskListScreen from "./src/screens/TaskListScreen";
@@ -37,65 +37,39 @@ import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 
 
 
-const switchNavigator = createSwitchNavigator({
 
-  //this is commented just for debugging
-
-  //ResolveAuth: ResolveAuthScreen,
-
-  loginFlow: createStackNavigator({
+const loginFlow = createStackNavigator(
+  {
     Welcome: WelcomeScreen,
     Signin: SigninScreen,
-    Signup: SignupScreen
+    Signup: SignupScreen,
+  }
+);
+
+
+const navigator = createSwitchNavigator({
+
+  loginFlow: loginFlow,
+
+  menuFlow: createStackNavigator({
+
+    menu: MenuScreen,
+
+    tablFlow: createBottomTabNavigator({
+      homeFlow: createStackNavigator(/*screenovi za home*/),
+      exploreFlow: createStackNavigator(/*screenovi za explore*/),
+      accountFlow: createStackNavigator(/*screenovi za account*/)
+    })
+
   })
-
-  // menuFlow: createStackNavigator({
-
-  //   Menu: MenuScreen,
-  //   bottomTabFlow: createBottomTabNavigator({
-
-  //     HomeFlow: createStackNavigator({
-  //       Home: HomeScreen,
-  //       TaskList: TaskListScreen,
-  //       TaskDetail: TaskDetailScreen
-  //     }),
-
-
-  //     ExploreFlow: createStackNavigator({
-  //       Explore: ExploreScreen,
-  //       Purchase: PurchaseScreen
-  //     }),
-
-  //     AccountFlow: createStackNavigator({
-  //       Account: AccountScreen,
-  //       Expert: ExpertScreen,
-  //       Review: ReviewScreen,
-  //       ChangePassword: ChangePasswordScreen
-  //     })
-
-  //   }),
-
-  // })
 
 });
 
 
 
+export default createAppContainer(navigator);
 
 
 
 
-//creating an app container with switchNavigator
-const App = createAppContainer(switchNavigator);
-
-
-
-
-
-
-export default () => {
-
-  return <App />
-
-};
 
