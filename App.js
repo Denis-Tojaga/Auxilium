@@ -38,30 +38,26 @@ import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 
 
 
-const loginFlow = createStackNavigator(
-  {
-    Welcome: WelcomeScreen,
-    Signin: SigninScreen,
-    Signup: SignupScreen,
-  }
-);
-
 
 const navigator = createSwitchNavigator({
 
-  loginFlow: loginFlow,
+  loginFlow: createStackNavigator({
+    Welcome: WelcomeScreen,
+    Signin: SigninScreen,
+    Signup: SignupScreen,
+  }),
 
-  menuFlow: createStackNavigator({
+  // menuFlow: createStackNavigator({
 
-    menu: MenuScreen,
+  //   menu: MenuScreen,
 
-    tablFlow: createBottomTabNavigator({
-      homeFlow: createStackNavigator(/*screenovi za home*/),
-      exploreFlow: createStackNavigator(/*screenovi za explore*/),
-      accountFlow: createStackNavigator(/*screenovi za account*/)
-    })
+  //   tablFlow: createBottomTabNavigator({
+  //     homeFlow: createStackNavigator(/*screenovi za home*/),
+  //     exploreFlow: createStackNavigator(/*screenovi za explore*/),
+  //     accountFlow: createStackNavigator(/*screenovi za account*/)
+  //   })
 
-  })
+  // })
 
 });
 
