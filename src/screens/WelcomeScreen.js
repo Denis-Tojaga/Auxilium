@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, Image } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 
 //components import
 import GradientButton from "react-native-gradient-buttons";
@@ -15,10 +15,16 @@ const WelcomeScreen = ({ navigation }) => {
             </View>
 
             <View style={styles.form}>
-                <Text style={styles.header}>WELCOME</Text>
-                <Text style={styles.header}>to the Auxilium App</Text>
-                <Button title="Sign in" onPress={() => navigation.navigate("Signin")} />
-                <Button title="Sign up" onPress={() => navigation.navigate("Signup")} />
+                <Text style={styles.header1}>WELCOME</Text>
+                <Text style={styles.header2}>to the Auxilium App</Text>
+
+                <TouchableOpacity style={styles.authButton1} onPress={() => navigation.navigate("Signin")}>
+                    <Text style={styles.buttonText}>Sign in</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.authButton2} onPress={() => navigation.navigate("Signup")}>
+                    <Text style={styles.buttonText}>Sign up</Text>
+                </TouchableOpacity>
             </View>
 
         </View>
@@ -43,15 +49,52 @@ const styles = StyleSheet.create({
     },
 
     image: {
-        width: "88%",
-        height: "95%",
-        marginTop: 45,
+        width: "80%",
+        height: "86%",
+        marginTop: 25,
     },
 
 
     form: {
         borderColor: "black",
-        borderWidth: 1
+        borderWidth: 1,
+        width: "88%",
+        height: "40%",
+        alignItems: "center"
+    },
+
+    header1: {
+        fontFamily: "TrendaLight",
+        fontSize: 55
+    },
+
+    header2: {
+        fontFamily: "TrendaLight",
+        fontSize: 25,
+    },
+
+    authButton1: {
+        width: 330,
+        height: 64,
+        backgroundColor: "#FFFFFF",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 18,
+        borderWidth: 0.3,
+        borderColor: "black",
+        marginTop: 12
+    },
+
+    authButton2: {
+        width: 330,
+        height: 64,
+        backgroundColor: "#1B79D7",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 18,
+        borderWidth: 0.3,
+        borderColor: "black",
+        marginTop: 12
     }
 
 
