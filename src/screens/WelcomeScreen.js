@@ -1,10 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 
-//components import
-import GradientButton from "react-native-gradient-buttons";
-import Spacer from "../components/Spacer";
-
 
 const WelcomeScreen = ({ navigation }) => {
 
@@ -15,6 +11,7 @@ const WelcomeScreen = ({ navigation }) => {
             </View>
 
             <View style={styles.form}>
+
                 <Text style={styles.header1}>WELCOME</Text>
                 <Text style={styles.header2}>to the Auxilium App</Text>
 
@@ -26,7 +23,6 @@ const WelcomeScreen = ({ navigation }) => {
                     <Text style={styles.buttonText}>Sign up</Text>
                 </TouchableOpacity>
             </View>
-
         </View>
     );
 
@@ -56,8 +52,6 @@ const styles = StyleSheet.create({
 
 
     form: {
-        borderColor: "black",
-        borderWidth: 1,
         width: "88%",
         height: "40%",
         alignItems: "center"
@@ -65,12 +59,12 @@ const styles = StyleSheet.create({
 
     header1: {
         fontFamily: "TrendaLight",
-        fontSize: 55
+        fontSize: 60
     },
 
     header2: {
         fontFamily: "TrendaLight",
-        fontSize: 25,
+        fontSize: 28,
     },
 
     authButton1: {
@@ -80,9 +74,11 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 18,
-        borderWidth: 0.3,
-        borderColor: "black",
-        marginTop: 12
+        marginTop: 12,
+        shadowColor: 'black',
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        shadowOffset: { width: 0, height: 5 },
     },
 
     authButton2: {
@@ -92,12 +88,17 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 18,
-        borderWidth: 0.3,
-        borderColor: "black",
-        marginTop: 12
+        marginTop: 12,
+        shadowColor: 'black',
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        shadowOffset: { width: 0, height: 5 },
+    },
+
+    buttonText: {
+        fontFamily: "MoonLight",
+        fontSize: 20
     }
-
-
 
 
 });
@@ -107,9 +108,6 @@ WelcomeScreen.navigationOptions = {
     headerShown: false,
     cardStyle: { backgroundColor: "white" }
 }
-
-
-
 
 
 
