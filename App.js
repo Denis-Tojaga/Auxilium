@@ -126,6 +126,7 @@ export default () => {
 
   const [isLoaded] = useFonts(customFonts);
 
+  //if fonts are not loaded it will show loading icon
   if (!isLoaded)
     return <AppLoading />
 

@@ -104,6 +104,12 @@ const styles = StyleSheet.create({
 });
 
 
+
+
+
+/* screen navigation options
+ -not showing a header at the top
+ -making a background color for the default screen white*/
 WelcomeScreen.navigationOptions = {
     headerShown: false,
     cardStyle: { backgroundColor: "white" }
