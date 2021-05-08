@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
-        height: "55%",
+        height: "60%",
     },
 
     image: {
@@ -53,23 +53,23 @@ const styles = StyleSheet.create({
 
     form: {
         width: "88%",
-        height: "40%",
-        alignItems: "center"
+        height: "35%",
+        alignItems: "center",
     },
 
     header1: {
         fontFamily: "TrendaLight",
-        fontSize: 60
+        fontSize: 50
     },
 
     header2: {
         fontFamily: "TrendaLight",
-        fontSize: 28,
+        fontSize: 25,
     },
 
     authButton1: {
         width: 330,
-        height: 64,
+        height: 60,
         backgroundColor: "#FFFFFF",
         justifyContent: "center",
         alignItems: "center",
@@ -79,11 +79,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 8,
         shadowOffset: { width: 0, height: 5 },
+        elevation: 7,
     },
 
     authButton2: {
         width: 330,
-        height: 64,
+        height: 60,
         backgroundColor: "#1B79D7",
         justifyContent: "center",
         alignItems: "center",
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 8,
         shadowOffset: { width: 0, height: 5 },
+        elevation: 7,
     },
 
     buttonText: {
