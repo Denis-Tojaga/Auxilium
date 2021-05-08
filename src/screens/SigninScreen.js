@@ -12,8 +12,8 @@ const SigninScreen = () => {
             <Text style={styles.header}>Sign in to Auxilium</Text>
 
             <View style={styles.form}>
-                <TextInput style={styles.inputField} />
-                <TextInput style={styles.inputField} />
+                <TextInput placeholder="Email" style={styles.inputField} />
+                <TextInput placeholder="Password" style={styles.inputField} />
             </View>
             <Text style={styles.password}>Forgot password?</Text>
 
@@ -31,8 +31,6 @@ const SigninScreen = () => {
 const styles = StyleSheet.create({
 
     container: {
-        borderWidth: 5,
-        borderColor: "black",
         flex: 1,
         flexDirection: "column",
         alignItems: "center",
@@ -56,21 +54,22 @@ const styles = StyleSheet.create({
     },
 
     form: {
-        borderColor: "black",
-        borderWidth: 1,
         width: "100%",
         height: "28%",
         flexDirection: "column",
         alignItems: "center",
-        marginTop: 20
+        marginTop: 25
     },
 
     inputField: {
         backgroundColor: "blue",
-        width: "100%",
+        width: 364,
         height: 65,
         marginBottom: 41,
-        borderRadius: 18
+        borderRadius: 18,
+        fontSize: 20,
+        fontFamily: "TrendaLight",
+        paddingLeft: 30
     },
 
     password: {
@@ -82,18 +81,19 @@ const styles = StyleSheet.create({
     buttonText: {
         alignSelf: "center",
         fontSize: 23,
-        fontFamily: "MoonLight"
+        fontFamily: "MoonLight",
+        color: "white"
     },
 
     button: {
-        width: 330,
+        width: 364,
         height: 60,
-        backgroundColor: "#1B79D7",
+        backgroundColor: "#1F88F1",
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 18,
         marginTop: 20
-    }
+    },
 
 
 
