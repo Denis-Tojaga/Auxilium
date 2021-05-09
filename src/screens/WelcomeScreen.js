@@ -42,11 +42,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: "100%",
         height: "60%",
+        padding: 40
     },
 
     image: {
-        width: "80%",
-        height: "86%",
+        width: 340,
+        height: 360,
         marginTop: 25,
     },
 
@@ -76,10 +77,10 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         marginTop: 12,
         shadowColor: 'black',
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.5,
         shadowRadius: 8,
-        shadowOffset: { width: 0, height: 5 },
-        elevation: 7,
+        shadowOffset: { width: 0, height: 6 },
+        elevation: 8,
     },
 
     authButton2: {
@@ -91,10 +92,10 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         marginTop: 12,
         shadowColor: 'black',
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.5,
         shadowRadius: 8,
-        shadowOffset: { width: 0, height: 5 },
-        elevation: 7,
+        shadowOffset: { width: 0, height: 6 },
+        elevation: 8,
     },
 
     buttonText: {
