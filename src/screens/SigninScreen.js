@@ -1,30 +1,64 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from "expo-linear-gradient";
 
 
-const SigninScreen = () => {
+
+const SigninScreen = ({ navigation }) => {
+
 
     return (
-        <View style={styles.container}>
-            <Ionicons name="arrow-back-sharp" style={styles.icon} />
+        <LinearGradient start={[0.25, 0.35]} end={[0.8, 1.15]} colors={["#4D5C75", "#0E0E0E"]} style={styles.container}>
 
-            <Text style={styles.header}>Sign in to Auxilium</Text>
 
-            <View style={styles.form}>
-                <TextInput placeholder="Email" style={styles.inputField} />
-                <TextInput placeholder="Password" style={styles.inputField} />
+            {/*header container */}
+            <View style={styles.headerContainer}>
+                <TouchableOpacity style={styles.touchableIcon} onPress={() => navigation.goBack()} >
+                    <Ionicons name="arrow-back-sharp" style={styles.icon} />
+                </TouchableOpacity>
+                <Text style={styles.headerText}>Sign in to Auxilium</Text>
             </View>
-            <Text style={styles.password}>Forgot password?</Text>
 
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>SIGN IN</Text>
-            </TouchableOpacity>
 
-        </View>
+
+            {/*form container */}
+            <View style={styles.formContainer}>
+                <LinearGradient style={styles.gradientInput} colors={["#E3E9F2", "#8A94A5"]} start={{ x: 0.6, y: 0.5 }} end={{ x: 1.0, y: 0.5 }} >
+                    <TextInput placeholderTextColor="#091121" placeholder="Email" style={styles.inputField} />
+                </LinearGradient>
+
+                <LinearGradient style={styles.gradientInput} colors={["#E3E9F2", "#8A94A5"]} start={{ x: 0.6, y: 0.5 }} end={{ x: 1.0, y: 0.5 }}>
+                    <TextInput secureTextEntry={true} placeholderTextColor="#091121" placeholder="Password" style={styles.inputField} />
+                </LinearGradient>
+            </View>
+
+
+
+            {/*footer container */}
+            <View style={styles.footerContainer}>
+                <Text style={styles.passwordText}>Forgot password?</Text>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.buttonText}>SIGN IN</Text>
+                </TouchableOpacity>
+            </View>
+
+
+        </LinearGradient>
     );
 
 };
+
+
+//background gradient
+//start #4D5C75
+//end #0E0E0E
+
+
+
+//input gradient
+// start #E3E9F2 0.4 - 0.5
+//end #A8B3C5 1.10 - 0.5
 
 
 
@@ -34,48 +68,87 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "column",
         alignItems: "center",
-        marginHorizontal: 20,
-        marginVertical: 20
+        paddingHorizontal: 20,
+        paddingVertical: 20,
+
+    },
+
+    headerContainer: {
+        width: "100%",
+        height: "18%",
+        alignItems: "center",
+        marginBottom: 30
+    },
+
+    formContainer: {
+        width: "100%",
+        height: "25%",
+        alignItems: "center",
+        marginBottom: 10
     },
 
 
-    icon: {
-        color: "black",
-        fontFamily: "MoonLight",
-        fontSize: 38,
+    footerContainer: {
+        width: "100%",
+        height: "22%",
+        alignItems: "center",
+        marginBottom: 5
+    },
+
+
+
+
+
+    //header section
+
+    touchableIcon: {
         alignSelf: "flex-start",
         marginTop: 15,
     },
 
-    header: {
+    icon: {
+        color: "#FAFAFA",
         fontFamily: "MoonLight",
-        fontSize: 30,
-        marginTop: 25,
+        fontSize: 38,
     },
 
-    form: {
-        width: "100%",
-        height: "28%",
-        flexDirection: "column",
-        alignItems: "center",
-        marginTop: 25
+    headerText: {
+        fontFamily: "MoonLight",
+        fontSize: 28,
+        marginTop: 20,
+        color: "#FAFAFA",
     },
 
+
+
+
+    //form section
     inputField: {
-        backgroundColor: "blue",
-        width: 364,
+        width: 340,
         height: 65,
-        marginBottom: 41,
         borderRadius: 18,
         fontSize: 20,
         fontFamily: "TrendaLight",
         paddingLeft: 30
     },
 
-    password: {
+
+    gradientInput: {
+        width: 340,
+        height: 65,
+        borderRadius: 18,
+        marginBottom: 21,
+    },
+
+
+
+    //footer section
+
+    passwordText: {
         alignSelf: "flex-end",
-        fontFamily: "TrendaLight",
-        fontSize: 15
+        fontFamily: "TrendaRegular",
+        fontSize: 15,
+        color: "#FAFAFA"
     },
 
     buttonText: {
@@ -86,13 +159,13 @@ const styles = StyleSheet.create({
     },
 
     button: {
-        width: 364,
+        width: 340,
         height: 60,
         backgroundColor: "#1F88F1",
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 18,
-        marginTop: 20
+        marginTop: 10
     },
 
 
