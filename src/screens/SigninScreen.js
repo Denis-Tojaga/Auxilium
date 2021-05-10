@@ -24,15 +24,22 @@ const SigninScreen = ({ navigation }) => {
 
 
             {/*form container */}
-
             <LinearGradient style={styles.gradientInput} colors={["#E3E9F2", "#8A94A5"]} start={{ x: 0.6, y: 0.5 }} end={{ x: 1.0, y: 0.5 }}>
-                <TextInput secureTextEntry={true} placeholderTextColor="#091121" placeholder="Email" style={styles.inputField} />
+                <TextInput
+                    placeholderTextColor="#091121"
+                    placeholder="Email"
+                    style={styles.inputField}
+                />
             </LinearGradient>
 
             <LinearGradient style={styles.gradientInput} colors={["#E3E9F2", "#8A94A5"]} start={{ x: 0.6, y: 0.5 }} end={{ x: 1.0, y: 0.5 }}>
-                <TextInput secureTextEntry={true} placeholderTextColor="#091121" placeholder="Password" style={styles.inputField} />
+                <TextInput
+                    secureTextEntry={true}
+                    placeholderTextColor="#091121"
+                    placeholder="Password"
+                    style={styles.inputField}
+                />
             </LinearGradient>
-
 
 
 
