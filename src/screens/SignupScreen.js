@@ -1,12 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from "react-native";
 import { navigate } from "../helpers/navigation";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from '@expo/vector-icons';
+import { registration } from "../api/firebaseMethods";
 
 
 
 const SignupScreen = ({ navigation }) => {
+
+
+    //state for managing input fields
+    const [fullName, setFullName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+
+    //function that will clear all input fields
+    const clearAllFields = () => {
+        setFullName("");
+        setEmail("");
+        setPassword("");
+    }
+
+
+    const handlePress = () => {
+
+        //checking if any of required values are null
+        //*FINISH VALIDATION FOR ADDITIONAL MESSAGES
+        if (!fullName) {
+            alert("Full name is required!");
+            return;
+        }
+
+        if (!email) {
+            alert("Email is required!");
+            return;
+        }
+        if (!password) {
+            alert("Password is required!");
+            return;
+        }
+
+
+
+
+
+        // if everything is fine we make new user registration to our database and navigate to menu screen
+        try {
+            registration(email.trim(), password, fullName);
+        } catch (error) {
+            alert(error);
+        }
+
+        // navigate("Menu");
+        // clearAllFields();
+    };
+
+
 
     return (
         < LinearGradient start={[0.25, 0.35]} end={[0.8, 1.15]} colors={["#4D5C75", "#0E0E0E"]} style={styles.container} >
@@ -24,26 +75,34 @@ const SignupScreen = ({ navigation }) => {
             {/*form container */}
             <LinearGradient style={styles.gradientInput} colors={["#E3E9F2", "#8A94A5"]} start={{ x: 0.6, y: 0.5 }} end={{ x: 1.0, y: 0.5 }} >
                 <TextInput
+                    style={styles.inputField}
                     placeholderTextColor="#091121"
                     placeholder="Full name"
-                    style={styles.inputField}
+                    value={fullName}
+                    onChangeText={(newFullName) => setFullName(newFullName)}
                 />
             </LinearGradient>
 
             <LinearGradient style={styles.gradientInput} colors={["#E3E9F2", "#8A94A5"]} start={{ x: 0.6, y: 0.5 }} end={{ x: 1.0, y: 0.5 }}>
                 <TextInput
+                    style={styles.inputField}
                     placeholderTextColor="#091121"
                     placeholder="Email"
-                    style={styles.inputField}
+                    keyboardType={"email-address"}
+                    autoCapitalize="none"
+                    value={email}
+                    onChangeText={(newEmail) => setEmail(newEmail)}
                 />
             </LinearGradient>
 
             <LinearGradient style={styles.gradientInput} colors={["#E3E9F2", "#8A94A5"]} start={{ x: 0.6, y: 0.5 }} end={{ x: 1.0, y: 0.5 }}>
                 <TextInput
+                    style={styles.inputField}
                     secureTextEntry={true}
                     placeholderTextColor="#091121"
                     placeholder="Password"
-                    style={styles.inputField}
+                    value={password}
+                    onChangeText={(newPassword) => setPassword(newPassword)}
                 />
             </LinearGradient>
 
@@ -51,7 +110,7 @@ const SignupScreen = ({ navigation }) => {
 
 
             {/*footer container */}
-            <TouchableOpacity style={styles.button} onPress={() => navigate("Menu")}>
+            <TouchableOpacity style={styles.button} onPress={handlePress}>
                 <Text style={styles.buttonText}>SIGN UP</Text>
             </TouchableOpacity>
 

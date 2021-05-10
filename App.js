@@ -24,16 +24,14 @@ import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 
 //Importing navigator helper which will allow us to navigate between different flows
 import { navigate, setNavigator } from "./src/helpers/navigation";
-
-
 //Importing fonts hook
 import { useFonts } from "@use-expo/font";
-
-
-
-
 //Importing AppLoading component if something doesn't load correctly
 import AppLoading from "expo-app-loading";
+//importing API keys which we are going to use to initialize out firebase 
+import apiKeys from "./src/config/keys";
+//importing firebase
+import * as firebase from "firebase";
 
 
 
@@ -129,6 +127,16 @@ export default () => {
   //if fonts are not loaded it will show loading icon
   if (!isLoaded)
     return <AppLoading />
+
+
+  /*checking if the firebase app was not called anywhere else before the initialization and
+  initializing the new firebase with keys we exported in keys.js*/
+  if (!firebase.apps.length) {
+    console.log("Connected with firebase!");
+    firebase.initializeApp(apiKeys.firebaseConfig);
+  }
+
+
 
   return (
     //this sets the navigator variable to the global navigator from where we have access to all screens
