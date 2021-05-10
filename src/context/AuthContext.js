@@ -31,6 +31,8 @@ const authReducer = (state, action) => {
 //automatical signin from local storage
 const tryLocalSignin = (dispatch) => async () => {
 
+    console.log("Pokusao sam local signin!");
+
 
 };
 
@@ -40,7 +42,7 @@ const tryLocalSignin = (dispatch) => async () => {
 
 
 const signup = (dispatch) => {
-
+    console.log("Pokusao sam sign up metodu!");
 };
 
 
@@ -48,7 +50,7 @@ const signup = (dispatch) => {
 
 
 const signin = (dispatch) => {
-
+    console.log("Pokusao sam sign in metodu!");
 };
 
 
@@ -59,7 +61,7 @@ const signin = (dispatch) => {
 
 //if we want to sign out we just need to delete that verification token from async storage
 const signout = (dispatch) => {
-
+    console.log("Pokusao sam logout metodu!");
 };
 
 
