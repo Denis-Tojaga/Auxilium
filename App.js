@@ -129,8 +129,8 @@ export default () => {
     return <AppLoading />
 
 
-  /*checking if the firebase app was not called anywhere else before the initialization and
-  initializing the new firebase with keys we exported in keys.js*/
+  /*checking if there are any apps running before initializing a new one, if not
+  we initialize the new firebase with keys we exported in keys.js*/
   if (!firebase.apps.length) {
     console.log("Connected with firebase!");
     firebase.initializeApp(apiKeys.firebaseConfig);

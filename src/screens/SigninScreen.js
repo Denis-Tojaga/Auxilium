@@ -1,13 +1,56 @@
-import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView, Alert } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from "expo-linear-gradient";
 import { navigate } from "../helpers/navigation";
+import { signIn } from "../api/firebaseMethods";
 
 
 
 
 const SigninScreen = ({ navigation }) => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+
+
+    const clearAllFields = () => {
+        setEmail("");
+        setPassword("");
+    };
+
+
+    //sign in with credentials
+    const handlePress = () => {
+        console.log(email, password);
+
+        signIn(email, password).catch(function (error) {
+
+            var errorCode = error.code;
+
+            if (errorCode == "auth/invalid-email") {
+                Alert.alert("Email invalid!", "This email doesn't exist.");
+                return;
+            } else if (errorCode = "auth/user-not-found") {
+                Alert.alert("Something went wrong!", "User not found.");
+                return;
+            } else if (errorCode = "auth/wrong-password") {
+                Alert.alert("Password invalid!", "Incorrect password.");
+                return;
+            }
+        });
+
+
+
+        console.log("You are signed in!");
+        clearAllFields();
+        navigate("Menu");
+    };
+
+
+
+
 
 
     return (
@@ -26,18 +69,22 @@ const SigninScreen = ({ navigation }) => {
             {/*form container */}
             <LinearGradient style={styles.gradientInput} colors={["#E3E9F2", "#8A94A5"]} start={{ x: 0.6, y: 0.5 }} end={{ x: 1.0, y: 0.5 }}>
                 <TextInput
+                    style={styles.inputField}
                     placeholderTextColor="#091121"
                     placeholder="Email"
-                    style={styles.inputField}
+                    value={email}
+                    onChangeText={(newInput) => setEmail(newInput)}
                 />
             </LinearGradient>
 
             <LinearGradient style={styles.gradientInput} colors={["#E3E9F2", "#8A94A5"]} start={{ x: 0.6, y: 0.5 }} end={{ x: 1.0, y: 0.5 }}>
                 <TextInput
+                    style={styles.inputField}
                     secureTextEntry={true}
                     placeholderTextColor="#091121"
                     placeholder="Password"
-                    style={styles.inputField}
+                    value={password}
+                    onChangeText={(newInput) => setPassword(newInput)}
                 />
             </LinearGradient>
 
@@ -47,7 +94,7 @@ const SigninScreen = ({ navigation }) => {
 
             {/*footer container */}
             <Text style={styles.passwordText}>Forgot password?</Text>
-            <TouchableOpacity style={styles.button} onPress={() => navigate("Menu")}>
+            <TouchableOpacity style={styles.button} onPress={handlePress}>
                 <Text style={styles.buttonText}>SIGN IN</Text>
             </TouchableOpacity>
 

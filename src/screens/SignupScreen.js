@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView, Alert } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, TextInput, Alert } from "react-native";
 import { navigate } from "../helpers/navigation";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from '@expo/vector-icons';
@@ -77,15 +77,12 @@ const SignupScreen = ({ navigation }) => {
             var errorCode = error.code;
 
             if (errorCode == "auth/invalid-email") {
-
                 alert('Invalid email adress! Please try again.');
                 return;
-
             } else if (errorCode == "auth/email-already-in-use") {
                 alert('Email is already in use!');
                 return;
             }
-
         });
 
         console.log("Registration is successful!");
@@ -116,7 +113,7 @@ const SignupScreen = ({ navigation }) => {
                     placeholderTextColor="#091121"
                     placeholder="Full name"
                     value={fullName}
-                    onChangeText={(newFullName) => setFullName(newFullName)}
+                    onChangeText={(newInput) => setFullName(newInput)}
                 />
             </LinearGradient>
 
@@ -128,7 +125,7 @@ const SignupScreen = ({ navigation }) => {
                     keyboardType={"email-address"}
                     autoCapitalize="none"
                     value={email}
-                    onChangeText={(newEmail) => setEmail(newEmail)}
+                    onChangeText={(newInput) => setEmail(newInput)}
                 />
             </LinearGradient>
 
@@ -139,7 +136,7 @@ const SignupScreen = ({ navigation }) => {
                     placeholderTextColor="#091121"
                     placeholder="Password"
                     value={password}
-                    onChangeText={(newPassword) => setPassword(newPassword)}
+                    onChangeText={(newInput) => setPassword(newInput)}
                 />
             </LinearGradient>
 
