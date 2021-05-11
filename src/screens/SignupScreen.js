@@ -69,24 +69,9 @@ const SignupScreen = ({ navigation }) => {
             return;
 
         // if everything is fine we make new user registration to our database and navigate to menu screen
-
-
-        //catch must be provided with callback function which is caled if promise is rejected
-        registration(email, password, fullName).catch(function (error) {
-
-            var errorCode = error.code;
-
-            if (errorCode == "auth/invalid-email") {
-                alert('Invalid email adress! Please try again.');
-                return;
-            } else if (errorCode == "auth/email-already-in-use") {
-                alert('Email is already in use!');
-                return;
-            }
-        });
+        registration(email, password, fullName);
 
         console.log("Registration is successful!");
-
         clearAllFields();
         navigate("Menu");
     };

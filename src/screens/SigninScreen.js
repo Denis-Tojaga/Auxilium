@@ -32,30 +32,12 @@ const SigninScreen = ({ navigation }) => {
             return;
 
 
-
-        signIn(email, password).catch(function (error) {
-
-            var errorCode = error.code;
-
-            if (errorCode == "auth/invalid-email") {
-                Alert.alert("Email invalid!", "This email doesn't exist.");
-                return;
-            } else if (errorCode == "auth/user-not-found") {
-                Alert.alert("Something went wrong!", "User not found.");
-                return;
-            } else if (errorCode == "auth/wrong-password") {
-                Alert.alert("Password invalid!", "Incorrect password.");
-                return;
-            } else if (errorCode != "") {
-                Alert.alert("Something went wrong!", errorCode);
-                return;
-            }
-        });
+        //if fields are successful we signIn with input credentials
+        signIn(email, password);
 
 
-
-        console.log("You are signed in!");
-        clearAllFields();
+        //success ? console.log("You are signed in!") : console.log(errorMessage)
+        //clearAllFields();
         //navigate("Menu");
     };
 
