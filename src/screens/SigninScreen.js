@@ -23,7 +23,15 @@ const SigninScreen = ({ navigation }) => {
 
     //sign in with credentials
     const handlePress = () => {
+
+        //fix this validation process
+
         console.log(email, password);
+
+        if (!email || !password)
+            return;
+
+
 
         signIn(email, password).catch(function (error) {
 
@@ -32,11 +40,14 @@ const SigninScreen = ({ navigation }) => {
             if (errorCode == "auth/invalid-email") {
                 Alert.alert("Email invalid!", "This email doesn't exist.");
                 return;
-            } else if (errorCode = "auth/user-not-found") {
+            } else if (errorCode == "auth/user-not-found") {
                 Alert.alert("Something went wrong!", "User not found.");
                 return;
-            } else if (errorCode = "auth/wrong-password") {
+            } else if (errorCode == "auth/wrong-password") {
                 Alert.alert("Password invalid!", "Incorrect password.");
+                return;
+            } else if (errorCode != "") {
+                Alert.alert("Something went wrong!", errorCode);
                 return;
             }
         });
@@ -45,7 +56,7 @@ const SigninScreen = ({ navigation }) => {
 
         console.log("You are signed in!");
         clearAllFields();
-        navigate("Menu");
+        //navigate("Menu");
     };
 
 
@@ -72,6 +83,7 @@ const SigninScreen = ({ navigation }) => {
                     style={styles.inputField}
                     placeholderTextColor="#091121"
                     placeholder="Email"
+                    keyboardType={"email-address"}
                     value={email}
                     onChangeText={(newInput) => setEmail(newInput)}
                 />
@@ -83,6 +95,7 @@ const SigninScreen = ({ navigation }) => {
                     secureTextEntry={true}
                     placeholderTextColor="#091121"
                     placeholder="Password"
+                    keyboardAppearance={"dark"}
                     value={password}
                     onChangeText={(newInput) => setPassword(newInput)}
                 />
