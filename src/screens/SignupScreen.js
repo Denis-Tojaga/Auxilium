@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, KeyboardAvoidingView, Alert } from "react-native";
 import { navigate } from "../helpers/navigation";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from '@expo/vector-icons';
@@ -16,7 +16,7 @@ const SignupScreen = ({ navigation }) => {
     const [password, setPassword] = useState("");
 
 
-    //function that will clear all input fields
+    //clearing all input fields
     const clearAllFields = () => {
         setFullName("");
         setEmail("");
@@ -24,37 +24,74 @@ const SignupScreen = ({ navigation }) => {
     }
 
 
-    const handlePress = () => {
+    //full name validation
+    const checkFullName = () => {
 
-        //checking if any of required values are null
-        //*FINISH VALIDATION FOR ADDITIONAL MESSAGES
         if (!fullName) {
-            alert("Full name is required!");
-            return;
+            Alert.alert("Full name invalid", "Full name is required!");
+            return false;
+        } else if (fullName.length < 3) {
+            Alert.alert("Full name invalid", "Full name must be at least 3 characters!");
+            return false;
         }
+        return true;
+    };
+
+    //email validation
+    const checkEmail = () => {
 
         if (!email) {
-            alert("Email is required!");
-            return;
+            Alert.alert("Email invalid", "Email is required!");
+            return false;
         }
+        return true;
+    };
+
+    //password validation
+    const checkPassword = () => {
+
         if (!password) {
-            alert("Password is required!");
-            return;
+            Alert.alert("Password invalid", "Password is required!");
+            return false;
+        } else if (password.length < 6) {
+            Alert.alert("Password invalid", "Password must be at least 6 characters!");
+            return false;
         }
+        return true;
+    };
 
 
+    //new registration
+    const handlePress = () => {
 
-
+        //if any of rules aren't true we can't sign up
+        if (!checkFullName() || !checkEmail() || !checkPassword())
+            return;
 
         // if everything is fine we make new user registration to our database and navigate to menu screen
-        try {
-            registration(email.trim(), password, fullName);
-        } catch (error) {
-            alert(error);
-        }
 
-        // navigate("Menu");
-        // clearAllFields();
+
+        //catch must be provided with callback function which is caled if promise is rejected
+        registration(email, password, fullName).catch(function (error) {
+
+            var errorCode = error.code;
+
+            if (errorCode == "auth/invalid-email") {
+
+                alert('Invalid email adress! Please try again.');
+                return;
+
+            } else if (errorCode == "auth/email-already-in-use") {
+                alert('Email is already in use!');
+                return;
+            }
+
+        });
+
+        console.log("Registration is successful!");
+
+        clearAllFields();
+        navigate("Menu");
     };
 
 

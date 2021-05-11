@@ -18,7 +18,7 @@ export async function registration(email, password, fullName) {
         database.collection("users").doc(currentUser.uid).set({ email: currentUser.email, fullName: fullName });
 
     } catch (err) {
-        Alert.alert("There is something wrong!!!!", err.message);
+        Alert.alert("There is something wrong!", err.message);
     }
 }
 
