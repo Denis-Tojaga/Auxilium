@@ -1,9 +1,13 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 
 const ResolveAuthScreen = () => {
 
-    if (false)
-        console.log("Probao sam se lokalno logirati!")
+    // const tryLocalSignIn = 
+
+    // useEffect(() => {
+    //     tryLocalSignin();
+    // }, []);
+
     return null;
 };
 
