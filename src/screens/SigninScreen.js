@@ -33,7 +33,7 @@ const SigninScreen = ({ navigation }) => {
                 clearAllFields();
                 navigate("Menu");
             } else {
-                clearAllFields();
+                console.log("Sign in failed!");
             }
         });
 

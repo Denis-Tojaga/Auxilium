@@ -9,7 +9,6 @@ import { registration } from "../api/firebaseMethods";
 
 const SignupScreen = ({ navigation }) => {
 
-
     //state for managing input fields
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
@@ -58,7 +57,7 @@ const SignupScreen = ({ navigation }) => {
     };
 
 
-    //new registration
+    //new registration on press
     const handlePress = () => {
 
         //if any of rules aren't true we can't sign up
@@ -73,7 +72,6 @@ const SignupScreen = ({ navigation }) => {
                 navigate("Menu");
             } else {
                 console.log("Registration is not successful!");
-                clearAllFields();
             }
         });
     };
