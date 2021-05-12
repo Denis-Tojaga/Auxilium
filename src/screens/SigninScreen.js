@@ -21,25 +21,27 @@ const SigninScreen = ({ navigation }) => {
     };
 
 
-    //sign in with credentials
+    //sign in on press
     const handlePress = () => {
-
-        //fix this validation process
-
-        console.log(email, password);
 
         if (!email || !password)
             return;
 
-
         //if fields are successful we signIn with input credentials
-        signIn(email, password);
+        signIn(email, password).then((result) => {
+            if (result) {
+                clearAllFields();
+                navigate("Menu");
+            } else {
+                clearAllFields();
+            }
+        });
 
-
-        //success ? console.log("You are signed in!") : console.log(errorMessage)
-        //clearAllFields();
-        //navigate("Menu");
     };
+
+
+
+
 
 
 
@@ -66,6 +68,8 @@ const SigninScreen = ({ navigation }) => {
                     placeholderTextColor="#091121"
                     placeholder="Email"
                     keyboardType={"email-address"}
+                    autoCorrect={false}
+                    autoCapitalize={"none"}
                     value={email}
                     onChangeText={(newInput) => setEmail(newInput)}
                 />
@@ -77,10 +81,15 @@ const SigninScreen = ({ navigation }) => {
                     secureTextEntry={true}
                     placeholderTextColor="#091121"
                     placeholder="Password"
-                    keyboardAppearance={"dark"}
+                    autoCorrect={false}
+                    textContentType={"none"}
                     value={password}
-                    onChangeText={(newInput) => setPassword(newInput)}
+                    onChangeText={(newInput) => {
+                        setPassword(newInput);
+                    }}
                 />
+
+
             </LinearGradient>
 
 
@@ -132,8 +141,8 @@ const styles = StyleSheet.create({
     headerText: {
         fontFamily: "MoonLight",
         fontSize: 28,
-        marginTop: 30,
-        marginBottom: 50,
+        marginTop: 25,
+        marginBottom: 35,
         color: "#FAFAFA",
     },
 

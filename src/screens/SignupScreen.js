@@ -97,6 +97,7 @@ const SignupScreen = ({ navigation }) => {
                     style={styles.inputField}
                     placeholderTextColor="#091121"
                     placeholder="Full name"
+                    autoCapitalize="words"
                     value={fullName}
                     onChangeText={(newInput) => setFullName(newInput)}
                 />
