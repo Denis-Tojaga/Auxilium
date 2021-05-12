@@ -1,7 +1,6 @@
 import * as firebase from "firebase";
 import "firebase/firestore";
 import { Alert } from "react-native";
-import { endEvent } from "react-native/Libraries/Performance/Systrace";
 
 
 
@@ -28,9 +27,9 @@ export async function registration(email, password, fullName) {
     } catch (err) {
 
         if (err.code == "auth/invalid-email")
-            Alert.alert('Invalid email adress!", "Please try again.');
+            Alert.alert("Invalid email adress!", "Please try again.");
         else if (err.code == "auth/email-already-in-use")
-            Alert.alert('Invalid email adress!", "Email is already in use.');
+            Alert.alert("Invalid email adress!", "Email is already in use.");
         else if (err.code = "auth/weak-password")
             Alert.alert("Invalid password!", "Password must be at least 6 characters.")
         else if (err.code == "auth/invalid-email")
@@ -57,7 +56,7 @@ export async function signIn(email, password) {
         console.log(err.code);
 
         if (err.code == "auth/too-many-requests")
-            Alert.alert('Try again later!", "You failed to sign in multiple times.');
+            Alert.alert("Try again later!", "You failed to sign in multiple times.");
         else if (err.code == "auth/email-already-in-use")
             Alert.alert("Invalid email adress!", "Email already in use.");
         else if (err.code == "auth/user-not-found")

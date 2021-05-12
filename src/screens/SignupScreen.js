@@ -53,9 +53,6 @@ const SignupScreen = ({ navigation }) => {
         if (!password) {
             Alert.alert("Password invalid", "Password is required!");
             return false;
-        } else if (password.length < 6) {
-            Alert.alert("Password invalid", "Password must be at least 6 characters!");
-            return false;
         }
         return true;
     };
@@ -69,11 +66,16 @@ const SignupScreen = ({ navigation }) => {
             return;
 
         // if everything is fine we make new user registration to our database and navigate to menu screen
-        registration(email, password, fullName);
-
-        console.log("Registration is successful!");
-        clearAllFields();
-        navigate("Menu");
+        registration(email, password, fullName).then((result) => {
+            if (result) {
+                console.log("Registration is successful!");
+                clearAllFields();
+                navigate("Menu");
+            } else {
+                console.log("Registration is not successful!");
+                clearAllFields();
+            }
+        });
     };
 
 
