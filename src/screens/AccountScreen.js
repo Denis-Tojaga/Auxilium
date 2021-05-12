@@ -9,7 +9,6 @@ const AccountScreen = ({ navigation }) => {
 
     const handlePress = () => {
         var result = loggingOut();
-        console.log(result);
         if (result) {
             console.log("User successfully signed out!");
             navigation.navigate("Welcome");
