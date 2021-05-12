@@ -80,7 +80,9 @@ export async function signIn(email, password) {
 export async function loggingOut() {
     try {
         await firebase.auth().signOut();
+        return true;
     } catch (err) {
         Alert.alert('There is something wrong!', err.message);
+        return false;
     }
 }

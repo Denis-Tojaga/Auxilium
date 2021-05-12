@@ -76,6 +76,8 @@ const accountFlow = createStackNavigator({
 //navigator component which will have all navigators nested
 const navigator = createSwitchNavigator({
 
+  ResolveAuth: ResolveAuthScreen,
+
   loginFlow: loginFlow,
 
   Menu: MenuScreen,
