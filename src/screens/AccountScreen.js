@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import * as firebase from "firebase";
 import { loggingOut } from "../api/firebaseMethods";
+import { navigate } from "../helpers/navigation";
 
 
 const AccountScreen = ({ navigation }) => {
@@ -9,13 +10,9 @@ const AccountScreen = ({ navigation }) => {
 
     const handlePress = () => {
         var result = loggingOut();
-        if (result) {
-            console.log("User successfully signed out!");
-            navigation.navigate("Welcome");
-        } else {
-            console.log("There was a trouble with signout!");
-        }
-    };
+        if (result)
+            navigate("loginFlow");
+    }
 
 
     return (
@@ -29,9 +26,11 @@ const AccountScreen = ({ navigation }) => {
         </View>
     );
 
+
+
+
+
 };
-
-
 
 const styles = StyleSheet.create({
 

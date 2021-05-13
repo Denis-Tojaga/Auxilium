@@ -1,37 +1,50 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, ActivityIndicator } from "react-native";
+import { View } from "react-native";
 import { navigate } from "../helpers/navigation";
 import * as firebase from "firebase";
 import "firebase/firestore";
-import { signIn } from "../api/firebaseMethods";
+import { ActivityIndicator } from "react-native";
 
 
 const ResolveAuthScreen = () => {
 
     // Set an initializing state whilst Firebase connects
     const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(null);
+
 
     // Handle user state changes
     function onAuthStateChanged(user) {
         setUser(user);
-        if (initializing) setInitializing(false);
+        if (initializing)
+            setInitializing(false);
     }
+
+
+
+
+
 
     useEffect(() => {
         const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
+
+        //console.log(subscriber);
         return subscriber; // unsubscribe on unmount
-    }, []);
+    });
 
 
-    if (initializing) return null;
+    if (initializing)
+        return <ActivityIndicator size="large"></ActivityIndicator>;
+
+    //fix two errors on local sign in, and from menu to home screen
+
 
     return (
-        <>
-            {!user ? navigate("loginFlow") : navigate("Menu")}
-        </>
-
+        <View>
+            { !user ? navigate("loginFlow") : navigate("Menu")}
+        </View>
     );
+
 };
 
 

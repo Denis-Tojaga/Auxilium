@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet, Text, View, Button, Alert } from "react-native";
 import { navigate } from "../helpers/navigation";
-import * as firebase from "firebase";
-import "firebase/firestore";
 
 
 const MenuScreen = () => {
