@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { navigate } from "../helpers/navigation";
 import { Dimensions } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
-
+import MenuCard from "../components/MenuCard";
 
 
 var WIDTH = Dimensions.get('window').width;
