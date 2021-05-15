@@ -68,6 +68,8 @@ const bottomTabFlow = createBottomTabNavigator({
   exploreFlow: exploreFlow,
   homeFlow: homeFlow,
   accountFlow: accountFlow
+}, {
+  initialRouteName: "homeFlow"
 });
 
 
