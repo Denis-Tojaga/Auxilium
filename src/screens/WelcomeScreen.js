@@ -41,58 +41,61 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
-        height: "55%",
+        height: "60%",
+        padding: 40
     },
 
     image: {
-        width: "80%",
-        height: "86%",
+        width: 340,
+        height: 360,
         marginTop: 25,
     },
 
 
     form: {
         width: "88%",
-        height: "40%",
-        alignItems: "center"
+        height: "35%",
+        alignItems: "center",
     },
 
     header1: {
         fontFamily: "TrendaLight",
-        fontSize: 60
+        fontSize: 50
     },
 
     header2: {
         fontFamily: "TrendaLight",
-        fontSize: 28,
+        fontSize: 25,
     },
 
     authButton1: {
         width: 330,
-        height: 64,
+        height: 60,
         backgroundColor: "#FFFFFF",
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 18,
         marginTop: 12,
         shadowColor: 'black',
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.5,
         shadowRadius: 8,
-        shadowOffset: { width: 0, height: 5 },
+        shadowOffset: { width: 0, height: 6 },
+        elevation: 8,
     },
 
     authButton2: {
         width: 330,
-        height: 64,
+        height: 60,
         backgroundColor: "#1B79D7",
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 18,
         marginTop: 12,
         shadowColor: 'black',
-        shadowOpacity: 0.3,
+        shadowOpacity: 0.5,
         shadowRadius: 8,
-        shadowOffset: { width: 0, height: 5 },
+        shadowOffset: { width: 0, height: 6 },
+        elevation: 8,
     },
 
     buttonText: {
@@ -104,6 +107,12 @@ const styles = StyleSheet.create({
 });
 
 
+
+
+
+/* screen navigation options
+ -not showing a header at the top
+ -making a background color for the default screen white*/
 WelcomeScreen.navigationOptions = {
     headerShown: false,
     cardStyle: { backgroundColor: "white" }
