@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { View } from "react-native";
-import { navigate } from "../helpers/navigation";
-import * as firebase from "firebase";
-import "firebase/firestore";
 import { ActivityIndicator } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
+import { navigate } from "../helpers/navigation";
+import "firebase/firestore";
+import * as firebase from "firebase";
 
 
 const ResolveAuthScreen = () => {
@@ -27,24 +25,16 @@ const ResolveAuthScreen = () => {
 
     useEffect(() => {
         const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
-
-        //console.log(subscriber);
+        console.log(subscriber);
         return subscriber; // unsubscribe on unmount
-    });
+    }, []);
 
 
     if (initializing)
         return <ActivityIndicator size="large"></ActivityIndicator>;
 
-    //fix two errors on local sign in, and from menu to home screen
 
-
-    return (
-        <NavigationContainer>
-            { !user ? navigate("loginFlow") : navigate("Menu")}
-        </NavigationContainer>
-    );
-
+    return null;
 };
 
 
