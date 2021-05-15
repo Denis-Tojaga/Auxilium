@@ -15,6 +15,8 @@ const SignupScreen = ({ navigation }) => {
     const [password, setPassword] = useState("");
 
 
+
+
     //clearing all input fields
     const clearAllFields = () => {
         setFullName("");

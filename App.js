@@ -2,6 +2,9 @@ import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
+import { TouchableOpacity } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
+
 
 
 
@@ -43,26 +46,17 @@ const loginFlow = createStackNavigator({
   Signin: SigninScreen,
   Signup: SignupScreen
 });
-
-
-
 //flow that is controling the home screens
 const homeFlow = createStackNavigator({
   Home: HomeScreen,
   TaskList: TaskListScreen,
   TaskDetail: TaskDetailScreen
 });
-
-
-
 //flow that is controling the explore screens
 const exploreFlow = createStackNavigator({
   Explore: ExploreScreen,
   Purchase: PurchaseScreen
 });
-
-
-
 //flow that is controling the account screens
 const accountFlow = createStackNavigator({
   Account: AccountScreen,
@@ -70,37 +64,27 @@ const accountFlow = createStackNavigator({
   Expert: ExpertScreen,
   ChangePassword: ChangePasswordScreen
 });
-
-
-
-//navigator component which will have all navigators nested
-const navigator = createSwitchNavigator({
-
-  ResolveAuth: ResolveAuthScreen,
-
-  loginFlow: loginFlow,
-
-  Menu: MenuScreen,
-
-  bottomTabFlow: createBottomTabNavigator({
-    exploreFlow: exploreFlow,
-    homeFlow: homeFlow,
-    accountFlow: accountFlow
-  }, {
-    initialRouteName: "homeFlow"
-  })
-
+const bottomTabFlow = createBottomTabNavigator({
+  exploreFlow: exploreFlow,
+  homeFlow: homeFlow,
+  accountFlow: accountFlow
 });
 
 
 
 
+//navigator component which will have all navigators nested
+const navigator = createSwitchNavigator({
+  //ResolveAuth: ResolveAuthScreen,
+
+  loginFlow: loginFlow,
+  Menu: MenuScreen,
+  bottomTabFlow: bottomTabFlow
+});
 
 
 
 const App = createAppContainer(navigator);
-
-
 
 
 //object containing all fonts 
@@ -114,9 +98,6 @@ const customFonts = {
   MoonBold: require("./assets/fonts/MoonFonts/Moon-Bold.otf"),
   MoonLight: require("./assets/fonts/MoonFonts/Moon-Light.otf")
 }
-
-
-
 
 
 
@@ -137,7 +118,6 @@ export default () => {
     console.log("Connected with firebase!");
     firebase.initializeApp(apiKeys.firebaseConfig);
   }
-
 
 
   return (

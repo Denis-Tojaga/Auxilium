@@ -23,5 +23,11 @@ const styles = StyleSheet.create({
 });
 
 
+MenuScreen.navigationOptions = {
+    headerShown: false,
+    cardStyle: { backgroundColor: "white" }
+}
+
+
 
 export default MenuScreen;

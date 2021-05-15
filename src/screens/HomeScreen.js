@@ -12,26 +12,30 @@ const HomeScreen = ({ navigation }) => {
     const [fullName, setFullName] = useState("");
 
     var currentUserUID = firebase.auth().currentUser.uid;
-    //async function to retrieve data of currently signed in user
-    async function getUserInfo() {
 
-        //first we take the document from correct collection with currentUserUID string
-        var document = await firebase
-            .firestore()
-            .collection("users")
-            .doc(currentUserUID)
-            .get();
+    useEffect(() => {
+        //async function to retrieve data of currently signed in user
+        async function getUserInfo() {
 
-        if (!document.exists) {
-            Alert.alert("No user data found!");
-        } else {
-            //then we extract data out of that document so we can access its attributes
-            var dataObject = document.data();
-            setFullName(dataObject.fullName);
-        }
-    };
+            //first we take the document from correct collection with currentUserUID string
+            var document = await firebase
+                .firestore()
+                .collection("users")
+                .doc(currentUserUID)
+                .get();
 
-    getUserInfo();
+            if (!document.exists) {
+                Alert.alert("No user data found!");
+            } else {
+                //then we extract data out of that document so we can access its attributes
+                var dataObject = document.data();
+                setFullName(dataObject.fullName);
+            }
+        };
+
+        getUserInfo();
+    }, [currentUserUID]);
+
 
 
 
@@ -51,6 +55,17 @@ const styles = StyleSheet.create({
 
 });
 
+
+
+HomeScreen.navigationOptions = {
+    title: "Home",
+    headerTitleStyle: {
+        flex: 1,
+        textAlign: "center",
+        fontSize: 18,
+        fontFamily: "MoonBold"
+    }
+}
 
 
 export default HomeScreen;

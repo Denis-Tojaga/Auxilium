@@ -21,18 +21,15 @@ const ResolveAuthScreen = () => {
 
 
 
-
-
     useEffect(() => {
         const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
-        navigate("loginFlow");
+        user ? navigate("Menu") : navigate("loginFlow");
         return subscriber; // unsubscribe on unmount
     }, []);
 
 
     if (initializing)
         return <ActivityIndicator size="large"></ActivityIndicator>;
-
 
     return null;
 };
