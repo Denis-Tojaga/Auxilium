@@ -25,7 +25,7 @@ const ResolveAuthScreen = () => {
 
     useEffect(() => {
         const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
-        console.log(subscriber);
+        navigate("loginFlow");
         return subscriber; // unsubscribe on unmount
     }, []);
 

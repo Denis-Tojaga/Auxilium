@@ -12,30 +12,26 @@ const HomeScreen = ({ navigation }) => {
     const [fullName, setFullName] = useState("");
 
     var currentUserUID = firebase.auth().currentUser.uid;
+    //async function to retrieve data of currently signed in user
+    async function getUserInfo() {
 
-    useEffect(() => {
+        //first we take the document from correct collection with currentUserUID string
+        var document = await firebase
+            .firestore()
+            .collection("users")
+            .doc(currentUserUID)
+            .get();
 
-        //async function to retrieve data of currently signed in user
-        async function getUserInfo() {
+        if (!document.exists) {
+            Alert.alert("No user data found!");
+        } else {
+            //then we extract data out of that document so we can access its attributes
+            var dataObject = document.data();
+            setFullName(dataObject.fullName);
+        }
+    };
 
-            //first we take the document from correct collection with currentUserUID string
-            var document = await firebase
-                .firestore()
-                .collection("users")
-                .doc(currentUserUID)
-                .get();
-
-            if (!document.exists) {
-                Alert.alert("No user data found!");
-            } else {
-                //then we extract data out of that document so we can access its attributes
-                var dataObject = document.data();
-                setFullName(dataObject.fullName);
-            }
-        };
-
-        getUserInfo();
-    });
+    getUserInfo();
 
 
 
