@@ -4,13 +4,14 @@ import { navigate } from "../helpers/navigation";
 import * as firebase from "firebase";
 import "firebase/firestore";
 import { ActivityIndicator } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
 
 
 const ResolveAuthScreen = () => {
 
     // Set an initializing state whilst Firebase connects
-    const [initializing, setInitializing] = useState(true);
     const [user, setUser] = useState(null);
+    const [initializing, setInitializing] = useState(true);
 
 
     // Handle user state changes
@@ -19,7 +20,6 @@ const ResolveAuthScreen = () => {
         if (initializing)
             setInitializing(false);
     }
-
 
 
 
@@ -40,9 +40,9 @@ const ResolveAuthScreen = () => {
 
 
     return (
-        <View>
+        <NavigationContainer>
             { !user ? navigate("loginFlow") : navigate("Menu")}
-        </View>
+        </NavigationContainer>
     );
 
 };
