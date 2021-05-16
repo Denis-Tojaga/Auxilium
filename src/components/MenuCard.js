@@ -57,8 +57,8 @@ const MenuCard = ({ phobiaID }) => {
     return (
         <LinearGradient start={[0.5, 0.2]} end={[0.5, 1.1]} colors={["#408BC0", "#FAFAFA"]} style={styles.card} >
 
-            {/* <Text style={styles.title}>{phobia.name}</Text>
-            <Text style={styles.description}>{phobia.description}</Text> */}
+            <Text style={styles.title}>{phobia.name}</Text>
+            <Text style={styles.description}>{phobia.description}</Text>
 
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText}>Enroll</Text>
