@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, Dimensions } from "react-native";
+import { View, StyleSheet, Text, Dimensions, TouchableOpacity } from "react-native";
 
 
 var WIDTH = Dimensions.get('window').width;
@@ -12,6 +12,9 @@ const MenuCard = ({ cardTitle, cardDesc }) => {
         <View style={styles.card}>
             <Text style={styles.title}>{cardTitle}</Text>
             <Text style={styles.description}>{cardDesc}</Text>
+            <TouchableOpacity style={styles.button}>
+                <Text style={styles.buttonText}>Enroll</Text>
+            </TouchableOpacity>
         </View>
     );
 
@@ -37,10 +40,27 @@ const styles = StyleSheet.create({
         color: "#0E0E0E"
     },
 
+
+
     description: {
         fontSize: 22,
         fontFamily: "TrendaLight",
         color: "#0E0E0E"
+    },
+
+    button: {
+        width: 80,
+        height: 35,
+        borderRadius: 45,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+
+    buttonText: {
+        fontFamily: "MoonBold",
+        fontSize: 12,
+        color: "#FFFF"
     }
 
 });
