@@ -19,6 +19,8 @@ const MenuScreen = () => {
 
     const [phobias, setPhobias] = useState([]);
 
+    //this is called when screen loads for the first time
+    //seting the state to an array of all document inside "phobias" collection
     useEffect(() => {
         var newArray = [];
         var db = firebase.firestore();
@@ -29,13 +31,14 @@ const MenuScreen = () => {
             });
             setPhobias(newArray);
         });
-
     }, []);
+
+
 
 
     return (
         <LinearGradient start={[-0.6, -0.3]} end={[0.8, 0.5]} colors={["#0E0E0E", "#0F2F6A"]} style={styles.container1} >
-            {/*HEADER*/}
+            {/*HEADER CONTAINER*/}
             <View style={styles.headerContainer}>
                 <Text style={styles.header}>Choose your phobia</Text>
                 <Text style={styles.subHeader}>
@@ -48,13 +51,12 @@ const MenuScreen = () => {
             </View>
 
 
-            {/*LIST*/}
+            {/*LIST CONTAINER*/}
             <View style={styles.container2}>
                 <FlatList data={phobias}
                     showsVerticalScrollIndicator={false}
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => {
-                        console.log(item);
                         return (
                             <MenuCard cardTitle={item.data.name}
                                 cardDesc={item.data.description}
@@ -62,8 +64,6 @@ const MenuScreen = () => {
                         );
                     }}
                 />
-
-
             </View>
 
 
@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
         height: HEIGHT,
         alignItems: "flex-end"
     },
+
     headerContainer: {
         width: WIDTH,
         height: HEIGHT * 0.35,
@@ -101,7 +102,12 @@ const styles = StyleSheet.create({
         width: WIDTH,
         height: HEIGHT * 0.65,
         borderTopRightRadius: 45,
-        borderTopLeftRadius: 45
+        borderTopLeftRadius: 45,
+        borderColor: "black",
+        borderWidth: 3,
+        paddingHorizontal: 20,
+        justifyContent: "center",
+        alignItems: "center"
     },
 
 
