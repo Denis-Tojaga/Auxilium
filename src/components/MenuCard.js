@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text, Dimensions, TouchableOpacity, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from '@expo/vector-icons';
-import "firebase/firestore";
 import * as firebase from "firebase";
+import "firebase/firestore";
+import { useEffect } from "react/cjs/react.development";
+import { set } from "react-native-reanimated";
 
 
 var WIDTH = Dimensions.get('window').width;
@@ -19,20 +21,44 @@ const colors3 = ["#EC216A", "#FAFAFA"];
 
 
 
+
+
+
 const MenuCard = ({ phobiaID }) => {
 
 
-    //finish getting phobia with recieved ID and displaying its info in menuCard
+    //collor code must be added to phobia
 
-    //var currentPhobia = firebase.firestore().collection("phobias").get()
+    const database = firebase.firestore();
+    const [phobia, setPhobia] = useState(null);
+
+
+    useEffect(() => {
+        database.collection("phobias").doc(phobiaID).get().then((document) => {
+            console.log(document.data());
+            setPhobia(document.data());
+        }).catch((err) => {
+            console.log(err);
+        });
+    }, []);
+
+
+    // const displayImage = (imageName) => {
+    //     if (imageName == "FearHeights.png")
+    //         return <Image source={require("../images/FearHeights.png")} style={styles.image} />
+    //     else if (imageName == "FearFlying.png")
+    //         return <Image source={require("../images/FearFlying.png")} style={styles.image} />
+    //     else if (imageName == "FearSpiders.png")
+    //         return <Image source={require("../images/FearSpiders.png")} style={styles.image} />
+    // };
+
+
 
     return (
         <LinearGradient start={[0.5, 0.2]} end={[0.5, 1.1]} colors={["#408BC0", "#FAFAFA"]} style={styles.card} >
 
-            <Text style={styles.title}>{phobiaID}</Text>
-            <Text style={styles.description}>{phobiaID}</Text>
-
-            <Image style={styles.image} source={require("../images/FearHeights.png")} />
+            {/* <Text style={styles.title}>{phobia.name}</Text>
+            <Text style={styles.description}>{phobia.description}</Text> */}
 
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText}>Enroll</Text>
@@ -74,10 +100,10 @@ const styles = StyleSheet.create({
 
 
     image: {
-        width: 65,
-        height: 125,
+        width: 60,
+        height: 110,
         position: "absolute",
-        right: 20,
+        right: 15,
         bottom: 25
     },
 

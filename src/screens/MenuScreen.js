@@ -19,6 +19,10 @@ const MenuScreen = () => {
 
     const [phobias, setPhobias] = useState([]);
 
+
+
+
+
     //this is called when screen loads for the first time
     //seting the state to an array of all document inside "phobias" collection
     useEffect(() => {
@@ -90,6 +94,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+
     },
 
     container2: {
