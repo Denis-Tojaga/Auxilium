@@ -43,6 +43,10 @@ const MenuCard = ({ phobiaID }) => {
     }, []);
 
 
+
+
+    //figure out how to display image and color gradient for different phobias
+
     // const displayImage = (imageName) => {
     //     if (imageName == "FearHeights.png")
     //         return <Image source={require("../images/FearHeights.png")} style={styles.image} />
