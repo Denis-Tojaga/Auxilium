@@ -1,25 +1,41 @@
-import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import React, { useRef, useState, useEffect } from "react";
+import { StyleSheet, Text, View, Dimensions, Animated, FlatList } from "react-native";
+import { PanGestureHandler } from "react-native-gesture-handler";
 import { navigate } from "../helpers/navigation";
-import { Dimensions } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import MenuCard from "../components/MenuCard";
+import * as firebase from "firebase";
+import "firebase/firestore";
 
 
 var WIDTH = Dimensions.get('window').width;
 var HEIGHT = Dimensions.get('window').height;
 
-console.log(WIDTH, HEIGHT);
+
+
+
 
 const MenuScreen = () => {
 
-    console.log({
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height
-    })
+    const [phobias, setPhobias] = useState([]);
+
+    useEffect(() => {
+        var newArray = [];
+        var db = firebase.firestore();
+        db.collection("phobias").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                newArray.push({ id: doc.id, data: doc.data() });
+            });
+            setPhobias(newArray);
+        });
+
+    }, []);
+
 
     return (
         <LinearGradient start={[-0.6, -0.3]} end={[0.8, 0.5]} colors={["#0E0E0E", "#0F2F6A"]} style={styles.container1} >
+            {/*HEADER*/}
             <View style={styles.headerContainer}>
                 <Text style={styles.header}>Choose your phobia</Text>
                 <Text style={styles.subHeader}>
@@ -30,11 +46,28 @@ const MenuScreen = () => {
                 </Text>
                 {/* {<Button title="Go to bottom tab nav" onPress={() => { navigate("bottomTabFlow") }} />} */}
             </View>
+
+
+            {/*LIST*/}
             <View style={styles.container2}>
+                <FlatList data={phobias}
+                    showsVerticalScrollIndicator={false}
+                    keyExtractor={(item) => item.id}
+                    renderItem={({ item }) => {
+                        console.log(item);
+                        return (
+                            <MenuCard cardTitle={item.data.name}
+                                cardDesc={item.data.description}
+                            />
+                        );
+                    }}
+                />
+
 
             </View>
-        </LinearGradient>
 
+
+        </LinearGradient>
     );
 
 };

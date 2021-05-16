@@ -2,11 +2,14 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
 
-const MenuCard = () => {
+const MenuCard = ({ cardTitle, cardDesc }) => {
 
     return (
-        <View>
-            <Text>This is menu card!</Text>
+        <View style={styles.card}>
+            <Text>
+                {cardTitle}
+            </Text>
+            <Text>{cardDesc}</Text>
         </View>
     );
 
@@ -15,6 +18,11 @@ const MenuCard = () => {
 
 
 const styles = StyleSheet.create({
+    card: {
+        width: 200,
+        height: 180,
+        backgroundColor: "blue"
+    }
 
 });
 
