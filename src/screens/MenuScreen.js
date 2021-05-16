@@ -47,7 +47,6 @@ const MenuScreen = () => {
                     during this process,
                     will be addressing that topic.
                 </Text>
-                {/* {<Button title="Go to bottom tab nav" onPress={() => { navigate("bottomTabFlow") }} />} */}
             </View>
 
 
@@ -58,9 +57,7 @@ const MenuScreen = () => {
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => {
                         return (
-                            <MenuCard cardTitle={item.data.name}
-                                cardDesc={item.data.description}
-                            />
+                            <MenuCard phobiaID={item.id} />
                         );
                     }}
                 />
