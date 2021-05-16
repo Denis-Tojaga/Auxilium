@@ -73,8 +73,6 @@ const MenuScreen = () => {
 };
 
 
-//start prvaBoja #0E0E0E druga boja #0E0E0E (x -0.10 y 1.0)
-//kraj druga #0E0E0E druga boja #0F2F6A (x 0.85 y -1.0)
 
 
 
@@ -107,7 +105,8 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         paddingHorizontal: 20,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        paddingTop: 5
     },
 
 
@@ -129,6 +128,8 @@ const styles = StyleSheet.create({
 });
 
 
+
+//navigationOptions of screen used to modify header style
 MenuScreen.navigationOptions = {
     headerShown: false,
     cardStyle: { backgroundColor: "white" }
