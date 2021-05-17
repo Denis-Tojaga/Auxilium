@@ -20,9 +20,6 @@ const MenuScreen = () => {
     const [phobias, setPhobias] = useState([]);
 
 
-
-
-
     //this is called when screen loads for the first time
     //seting the state to an array of all document inside "phobias" collection
     useEffect(() => {
@@ -36,6 +33,24 @@ const MenuScreen = () => {
             setPhobias(newArray);
         });
     }, []);
+
+
+
+    const info = (phobiaID) => {
+        try {
+            const database = firebase.firestore();
+            database.collection("phobias").doc(phobiaID).get().then((document) => {
+                const allInfo = document.data();
+                firebase.storage().ref('/' + document.data().imgName).getDownloadURL().then((url) => {
+                    //from url you can fetched the uploaded image easily
+                    console.log("Ovo je sa menija ! " + { phobia: allInfo, imgURL: url });
+                    return { phobia: allInfo, imgURL: url };
+                });
+            });
+        } catch (err) {
+            Alert.alert("There is something wrong!", err.code);
+        };
+    };
 
 
 
@@ -61,7 +76,7 @@ const MenuScreen = () => {
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => {
                         return (
-                            <MenuCard phobiaID={item.id} />
+                            <MenuCard info={info(item.id)} />
                         );
                     }}
                 />

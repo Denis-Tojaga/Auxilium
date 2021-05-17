@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Dimensions, TouchableOpacity, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from '@expo/vector-icons';
 import * as firebase from "firebase";
 import "firebase/firestore";
-import { useEffect } from "react/cjs/react.development";
-import { set } from "react-native-reanimated";
+
 
 
 var WIDTH = Dimensions.get('window').width;
@@ -20,49 +19,43 @@ const colors3 = ["#EC216A", "#FAFAFA"];
 
 
 
+const MenuCard = ({ info }) => {
 
 
+    console.log(info);
 
 
-const MenuCard = ({ phobiaID }) => {
+    // const [state, setState] = useState(null);
 
 
-    //collor code must be added to phobia
-
-    const database = firebase.firestore();
-    const [phobia, setPhobia] = useState(null);
-
-
-    useEffect(() => {
-        database.collection("phobias").doc(phobiaID).get().then((document) => {
-            console.log(document.data());
-            setPhobia(document.data());
-        }).catch((err) => {
-            console.log(err);
-        });
-    }, []);
-
-
-
-
-    //figure out how to display image and color gradient for different phobias
-
-    // const displayImage = (imageName) => {
-    //     if (imageName == "FearHeights.png")
-    //         return <Image source={require("../images/FearHeights.png")} style={styles.image} />
-    //     else if (imageName == "FearFlying.png")
-    //         return <Image source={require("../images/FearFlying.png")} style={styles.image} />
-    //     else if (imageName == "FearSpiders.png")
-    //         return <Image source={require("../images/FearSpiders.png")} style={styles.image} />
+    // try {
+    //     const database = firebase.firestore();
+    //     database.collection("phobias").doc(phobiaID).get().then((document) => {
+    //         const allInfo = document.data();
+    //         firebase.storage().ref('/' + document.data().imgName).getDownloadURL().then((url) => {
+    //             //from url you can fetched the uploaded image easily
+    //             setState({ phobia: allInfo, imgURL: url });
+    //         });
+    //     });
+    // } catch (err) {
+    //     Alert.alert("There is something wrong!", err.code);
     // };
 
+
+
+
+    // console.log("Ovo je kako se zavrsi use effect!");
+    // console.log(phobia);
+    // console.log(image.profileImageUrl);
 
 
     return (
         <LinearGradient start={[0.5, 0.2]} end={[0.5, 1.1]} colors={["#408BC0", "#FAFAFA"]} style={styles.card} >
 
-            <Text style={styles.title}>{phobia.name}</Text>
-            <Text style={styles.description}>{phobia.description}</Text>
+            {/* <Text style={styles.title}>{state.phobia.name}</Text>
+            <Text style={styles.description}>{state.phobia.description}</Text> */}
+
+            <Image style={{ height: 50, width: 50 }} source={{ uri: state.imgURL }} />
 
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText}>Enroll</Text>
