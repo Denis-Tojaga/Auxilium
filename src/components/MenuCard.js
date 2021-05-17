@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { View, StyleSheet, Text, Dimensions, TouchableOpacity, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from '@expo/vector-icons';
@@ -32,6 +32,9 @@ const MenuCard = ({ phobiaID }) => {
                 firebase.storage().ref('/' + document.data().imgName).getDownloadURL().then((url) => {
                     //from url you can fetched the uploaded image easily
                     setState({ phobia: allInfo, imgURL: url });
+                    console.log("Poslije infa!");
+                    console.log(state);
+
                 });
             });
         } catch (err) {
@@ -40,12 +43,19 @@ const MenuCard = ({ phobiaID }) => {
     };
 
 
+    const callback = useCallback(() => {
+        info();
+        console.log(state);
+    }, [state]);
+
 
     useEffect(() => {
-        info();
+        callback();
     }, []);
 
-    console.log(state);
+
+
+
 
     return (
         <LinearGradient start={[0.5, 0.2]} end={[0.5, 1.1]} colors={["#408BC0", "#FAFAFA"]} style={styles.card} >
@@ -95,7 +105,7 @@ const styles = StyleSheet.create({
 
 
     image: {
-        width: 70,
+        width: 65,
         height: 130,
         position: "absolute",
         right: 15,

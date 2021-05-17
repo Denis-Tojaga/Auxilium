@@ -1,11 +1,13 @@
 import React, { useRef, useState, useEffect } from "react";
-import { StyleSheet, Text, View, Dimensions, Animated, FlatList } from "react-native";
+import { StyleSheet, Text, View, Dimensions, Animated, FlatList, TouchableOpacity } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import { navigate } from "../helpers/navigation";
 import { LinearGradient } from "expo-linear-gradient";
 import MenuCard from "../components/MenuCard";
 import * as firebase from "firebase";
 import "firebase/firestore";
+import { Ionicons } from '@expo/vector-icons';
+
 
 
 var WIDTH = Dimensions.get('window').width;
@@ -56,7 +58,20 @@ const MenuScreen = () => {
                     keyExtractor={(item) => item.id}
                     renderItem={({ item }) => {
                         return (
-                            <MenuCard phobiaID={item.id} />
+                            // <MenuCard phobiaID={item.id} />
+                            <LinearGradient start={[0.5, 0.2]} end={[0.5, 1.1]} colors={["#408BC0", "#FAFAFA"]} style={styles.card} >
+
+                                <Text style={styles.title}>{item.data.name}</Text>
+                                <Text style={styles.description}>{item.data.description}</Text>
+
+                                {/* <Image style={styles.image} source={{ uri: state.imgURL }} /> */}
+
+                                <TouchableOpacity style={styles.button}>
+                                    <Text style={styles.buttonText}>Enroll</Text>
+                                    <Ionicons name="ios-play" style={styles.icon} />
+                                </TouchableOpacity>
+
+                            </LinearGradient>
                         );
                     }}
                 />
@@ -120,7 +135,78 @@ const styles = StyleSheet.create({
         color: "white",
         textAlign: "center",
         marginTop: 20
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+    /*MENU CARD */
+    card: {
+        width: WIDTH * 0.85,
+        height: HEIGHT * 0.25,
+        backgroundColor: "blue",
+        marginTop: 25,
+        borderRadius: 25,
+        paddingLeft: 15
+    },
+
+    title: {
+        alignSelf: "flex-start",
+        marginTop: 40,
+        fontSize: 30,
+        fontFamily: "TrendaSemibold",
+        color: "#0E0E0E"
+    },
+
+
+
+    description: {
+        fontSize: 20,
+        fontFamily: "TrendaLight",
+        color: "#0E0E0E"
+    },
+
+
+    image: {
+        width: 65,
+        height: 130,
+        position: "absolute",
+        right: 15,
+        bottom: 25
+    },
+
+    button: {
+        width: 90,
+        height: 35,
+        backgroundColor: "#14284D",
+        borderRadius: 45,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 5,
+    },
+
+    buttonText: {
+        fontFamily: "MoonBold",
+        fontSize: 11,
+        color: "#FFFF"
+    },
+
+    icon: {
+        fontSize: 17,
+        color: "#FFFF",
+        marginLeft: 3
     }
+
+
 
 });
 
