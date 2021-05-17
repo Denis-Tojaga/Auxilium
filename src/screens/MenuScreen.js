@@ -5,12 +5,8 @@ import {
     View,
     Dimensions,
     Animated,
-    FlatList,
     TouchableOpacity,
     Image,
-    Easing,
-    SafeAreaViewBase,
-    SafeAreaView
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { navigate } from "../helpers/navigation";
@@ -53,6 +49,9 @@ const MenuScreen = () => {
 
 
 
+    const handlePress = () => {
+        navigate("bottomTabFlow");
+    }
 
 
 
@@ -118,7 +117,7 @@ const MenuScreen = () => {
 
                                     <Image style={styles.image} source={{ uri: item.data.url }} />
 
-                                    <TouchableOpacity style={styles.button}>
+                                    <TouchableOpacity style={styles.button} onPress={handlePress}>
                                         <Text style={styles.buttonText}>Enroll</Text>
                                         <Ionicons name="ios-play" style={styles.icon} />
                                     </TouchableOpacity>
