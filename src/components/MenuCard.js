@@ -19,43 +19,41 @@ const colors3 = ["#EC216A", "#FAFAFA"];
 
 
 
-const MenuCard = ({ info }) => {
+const MenuCard = ({ phobiaID }) => {
+
+    const [state, setState] = useState(null);
 
 
-    console.log(info);
-
-
-    // const [state, setState] = useState(null);
-
-
-    // try {
-    //     const database = firebase.firestore();
-    //     database.collection("phobias").doc(phobiaID).get().then((document) => {
-    //         const allInfo = document.data();
-    //         firebase.storage().ref('/' + document.data().imgName).getDownloadURL().then((url) => {
-    //             //from url you can fetched the uploaded image easily
-    //             setState({ phobia: allInfo, imgURL: url });
-    //         });
-    //     });
-    // } catch (err) {
-    //     Alert.alert("There is something wrong!", err.code);
-    // };
-
+    const info = () => {
+        try {
+            const database = firebase.firestore();
+            database.collection("phobias").doc(phobiaID).get().then((document) => {
+                const allInfo = document.data();
+                firebase.storage().ref('/' + document.data().imgName).getDownloadURL().then((url) => {
+                    //from url you can fetched the uploaded image easily
+                    setState({ phobia: allInfo, imgURL: url });
+                });
+            });
+        } catch (err) {
+            Alert.alert("There is something wrong!", err.code);
+        };
+    };
 
 
 
-    // console.log("Ovo je kako se zavrsi use effect!");
-    // console.log(phobia);
-    // console.log(image.profileImageUrl);
+    useEffect(() => {
+        info();
+    }, []);
 
+    console.log(state);
 
     return (
         <LinearGradient start={[0.5, 0.2]} end={[0.5, 1.1]} colors={["#408BC0", "#FAFAFA"]} style={styles.card} >
 
-            {/* <Text style={styles.title}>{state.phobia.name}</Text>
-            <Text style={styles.description}>{state.phobia.description}</Text> */}
+            <Text style={styles.title}>{state.phobia.name}</Text>
+            <Text style={styles.description}>{state.phobia.description}</Text>
 
-            <Image style={{ height: 50, width: 50 }} source={{ uri: state.imgURL }} />
+            <Image style={styles.image} source={{ uri: state.imgURL }} />
 
             <TouchableOpacity style={styles.button}>
                 <Text style={styles.buttonText}>Enroll</Text>
@@ -97,8 +95,8 @@ const styles = StyleSheet.create({
 
 
     image: {
-        width: 60,
-        height: 110,
+        width: 70,
+        height: 130,
         position: "absolute",
         right: 15,
         bottom: 25
