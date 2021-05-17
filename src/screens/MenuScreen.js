@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { StyleSheet, Text, View, Dimensions, Animated, FlatList, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Dimensions, Animated, FlatList, TouchableOpacity, Image } from "react-native";
 import { PanGestureHandler } from "react-native-gesture-handler";
 import { navigate } from "../helpers/navigation";
 import { LinearGradient } from "expo-linear-gradient";
@@ -21,15 +21,17 @@ const MenuScreen = () => {
 
     const [phobias, setPhobias] = useState([]);
 
+
+
     //this is called when screen loads for the first time
     //seting the state to an array of all document inside "phobias" collection
     useEffect(() => {
+
         var newArray = [];
         var db = firebase.firestore();
         db.collection("phobias").get().then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
-                newArray.push({ id: doc.id, data: doc.data() });
+            querySnapshot.forEach((document) => {
+                newArray.push({ id: document.id, data: document.data() });
             });
             setPhobias(newArray);
         });
@@ -64,7 +66,7 @@ const MenuScreen = () => {
                                 <Text style={styles.title}>{item.data.name}</Text>
                                 <Text style={styles.description}>{item.data.description}</Text>
 
-                                {/* <Image style={styles.image} source={{ uri: state.imgURL }} /> */}
+                                <Image style={styles.image} source={{ uri: item.data.url }} />
 
                                 <TouchableOpacity style={styles.button}>
                                     <Text style={styles.buttonText}>Enroll</Text>
