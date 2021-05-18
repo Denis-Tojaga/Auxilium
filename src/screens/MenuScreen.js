@@ -46,13 +46,11 @@ const MenuScreen = () => {
     //animation managing
     const scrollY = useRef(new Animated.Value(0)).current;
 
-
-
-
+    //all data from phobias collection is stored here on first component render
     const [phobias, setPhobias] = useState([]);
+
+    //calls once on first component render
     useEffect(() => {
-        //this is called when screen loads for the first time
-        //seting the state to an array of all document inside "phobias" collection
         var newArray = [];
         var db = firebase.firestore();
 
@@ -76,7 +74,11 @@ const MenuScreen = () => {
 
 
 
+
+
+
     const handlePress = () => {
+        //Navigating to home screen, so user can start with an appliation
         navigate("bottomTabFlow");
     }
 
