@@ -24,11 +24,27 @@ const ITEM_SIZE = height * 0.25 + 50;
 
 
 
+
+
+
+
+
+
+//Fear of heights - startGradient "#408BC0", endGradient "#FAFAFA"
+//Fear of spiders - startGradient "#EC216A", endGradient "#FAFAFA"
+//Fear of confiend spaces - startGradient "#F25D04", endGradient "#FAFAFA"
+//Fear of flying - startGradient "#F8B320", endGradient "#FAFAFA"
+//Fear of snakes (Ophidiophobia) - startGradient "#40C044", endGradient "#FAFAFA"
+
+
+
+
+
+
 const MenuScreen = () => {
 
     //animation managing
     const scrollY = useRef(new Animated.Value(0)).current;
-
 
 
 
@@ -57,7 +73,7 @@ const MenuScreen = () => {
 
 
     return (
-        <LinearGradient start={[-0.6, -0.3]} end={[0.8, 0.5]} colors={["#0E0E0E", "#0F2F6A"]} style={styles.container1} >
+        <LinearGradient start={[-0.6, -0.3]} end={[0.8, 0.5]} colors={["#408BC0", "#0F2F6A"]} style={styles.container1} >
 
             {/*HEADER CONTAINER*/}
             <View style={styles.headerContainer}>
@@ -84,7 +100,7 @@ const MenuScreen = () => {
                     keyExtractor={(item) => item.id}
                     renderItem={({ item, index }) => {
 
-                        // FlatList Animation Reference code
+                        /*  FlatList Animation Reference code */
                         const inputRange = [
                             -1,
                             0,
@@ -105,13 +121,14 @@ const MenuScreen = () => {
                             inputRange: opacityInputRange,
                             outputRange: [1, 1, 1, 0]
                         })
-                        // FlatList Animation Reference code
+                        /*  FlatList Animation Reference code */
 
 
+                        /* Phobia card */
                         return (
                             <Animated.View style={{ width: width * 0.85, height: height * 0.25, marginTop: 25, borderRadius: 25, transform: [{ scale }], opacity }}>
 
-                                <LinearGradient start={[0.5, 0.2]} end={[0.5, 1.1]} colors={["#408BC0", "#FAFAFA"]} style={styles.gradient} >
+                                <LinearGradient start={[0.5, 0.2]} end={[0.5, 1.1]} colors={[String(item.data.startGradient), "#FAFAFA"]} style={styles.gradient} >
                                     <Text style={styles.title}>{item.data.name}</Text>
                                     <Text style={styles.description}>{item.data.description}</Text>
 
@@ -161,12 +178,10 @@ const styles = StyleSheet.create({
         height: height * 0.65,
         borderTopRightRadius: 45,
         borderTopLeftRadius: 45,
-        borderColor: "black",
-        borderWidth: 3,
         paddingHorizontal: 20,
         justifyContent: "center",
         alignItems: "center",
-        paddingTop: 5
+        paddingBottom: 60
     },
 
 
@@ -204,14 +219,14 @@ const styles = StyleSheet.create({
     },
     title: {
         alignSelf: "flex-start",
-        marginTop: 40,
-        fontSize: 30,
+        marginTop: 35,
+        fontSize: 32,
         fontFamily: "TrendaSemibold",
         color: "#0E0E0E"
     },
     description: {
         fontSize: 20,
-        fontFamily: "TrendaLight",
+        fontFamily: "TrendaRegular",
         color: "#0E0E0E"
     },
     image: {
@@ -229,7 +244,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 5,
+        marginTop: 10,
     },
     buttonText: {
         fontFamily: "MoonBold",
