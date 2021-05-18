@@ -55,8 +55,19 @@ const MenuScreen = () => {
         //seting the state to an array of all document inside "phobias" collection
         var newArray = [];
         var db = firebase.firestore();
+
+        //helper
+        //var storage = firebase.storage();
+
         db.collection("phobias").get().then((querySnapshot) => {
             querySnapshot.forEach((document) => {
+
+                //helper
+                // storage.ref('FearSpiders.png').getDownloadURL()
+                //     .then((url) => {
+                //         console.log(url);
+                //     })
+
                 newArray.push({ id: document.id, data: document.data() });
             });
             setPhobias(newArray);
@@ -181,7 +192,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         justifyContent: "center",
         alignItems: "center",
-        paddingBottom: 60
+        paddingBottom: 5
     },
 
 
@@ -230,11 +241,13 @@ const styles = StyleSheet.create({
         color: "#0E0E0E"
     },
     image: {
-        width: 65,
+        width: 75,
         height: PHOBIA_IMAGE_HEIGHT,
         position: "absolute",
-        right: 15,
-        bottom: 30
+        borderWidth: 1,
+        right: 10,
+        bottom: 20,
+        resizeMode: "contain"
     },
     button: {
         width: 90,
