@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, Image, TouchableOpacity, Dimensions, SafeAreaView } from "react-native";
+import { StyleSheet, Text, Image, TouchableOpacity, Dimensions, SafeAreaView } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 
 
@@ -24,28 +24,28 @@ const OnBoardingItem = ({ item }) => {
             );
         else if (object.id == "2")
             return (
-                <View style={[styles.container, { width }]}>
+                <SafeAreaView style={[styles.container, { width }]}>
                     <Image source={object.image2} style={styles.image2} />
-                    <Text>{object.description}</Text>
-                </View>
+                    <Text>{object.description2}</Text>
+                </SafeAreaView>
             );
         else if (object.id == '3')
             return (
-                <View style={[styles.container, { width }]}>
+                <SafeAreaView style={[styles.container, { width }]}>
                     <Text>{object.description}</Text>
                     <Image source={object.image3} style={styles.image3} />
-                </View>
+                </SafeAreaView>
             );
         else if (object.id == '4')
             return (
-                <View style={[styles.container, { width }]}>
+                <SafeAreaView style={[styles.container, { width }]}>
                     <Image source={object.image4} style={styles.image4} />
                     <Text>{object.description}</Text>
                     <TouchableOpacity style={styles.button}>
                         <Text>Get Started</Text>
                         <AntDesign name="arrowright" size={24} color="black" />
                     </TouchableOpacity>
-                </View>
+                </SafeAreaView>
             );
     }
 
@@ -99,8 +99,16 @@ const styles = StyleSheet.create({
 
     //ITEM 2 STYLES
     image2: {
-        width: width * 0.5
+        width: width,
+        resizeMode: "contain"
+    },
 
+    description2: {
+        marginHorizontal: 40,
+        textAlign: "center",
+        fontFamily: "TrendaRegular",
+        fontSize: 25,
+        color: "#14284D"
     },
 
 
