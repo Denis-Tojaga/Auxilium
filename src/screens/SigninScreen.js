@@ -31,7 +31,7 @@ const SigninScreen = ({ navigation }) => {
         signIn(email, password).then((result) => {
             if (result) {
                 clearAllFields();
-                navigate("Menu");
+                navigate("OnBoard");
             } else {
                 console.log("Sign in failed!");
             }

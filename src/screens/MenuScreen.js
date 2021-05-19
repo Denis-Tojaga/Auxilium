@@ -140,7 +140,6 @@ const MenuScreen = () => {
                         /* Phobia card */
                         return (
                             <Animated.View style={{ width: width * 0.85, height: height * 0.25, marginTop: 25, borderRadius: 25, transform: [{ scale }], opacity }}>
-
                                 <LinearGradient start={[0.5, 0.3]} end={[0.5, 1.1]} colors={[String(item.data.startGradient), "#FAFAFA"]} style={styles.gradient} >
                                     <Text style={styles.title}>{item.data.name}</Text>
                                     <Text style={styles.description}>{item.data.description}</Text>
@@ -152,7 +151,6 @@ const MenuScreen = () => {
                                         <Ionicons name="ios-play" style={styles.icon} />
                                     </TouchableOpacity>
                                 </LinearGradient>
-
                             </Animated.View>
                         );
                     }}
@@ -233,12 +231,12 @@ const styles = StyleSheet.create({
     title: {
         alignSelf: "flex-start",
         marginTop: 35,
-        fontSize: 32,
+        fontSize: 30,
         fontFamily: "TrendaSemibold",
         color: "#0E0E0E"
     },
     description: {
-        fontSize: 22,
+        fontSize: 20,
         fontFamily: "TrendaRegular",
         color: "#0E0E0E"
     },
@@ -246,8 +244,8 @@ const styles = StyleSheet.create({
         width: 75,
         height: PHOBIA_IMAGE_HEIGHT,
         position: "absolute",
-        right: 15,
-        bottom: 40,
+        right: width * 0.035,
+        bottom: height * 0.05,
         resizeMode: "stretch",
     },
     button: {
