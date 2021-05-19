@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, Image, TouchableOpacity, Dimensions, SafeAreaView } from "react-native";
+import { StyleSheet, Text, Image, TouchableOpacity, Dimensions, View, SafeAreaView } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 
 
@@ -16,36 +16,36 @@ const OnBoardingItem = ({ item }) => {
 
         if (object.id == "1")
             return (
-                <SafeAreaView style={[styles.container, { width }]}>
+                <View style={[styles.container, { width }]}>
                     <Image source={object.image2} style={styles.cloud}></Image>
                     <Text style={styles.description1}>{object.description}</Text>
                     <Image source={object.image1} style={styles.image1} />
-                </SafeAreaView>
+                </View>
             );
         else if (object.id == "2")
             return (
-                <SafeAreaView style={[styles.container, { width }]}>
+                <View style={[styles.container, { width }]}>
                     <Image source={object.image2} style={styles.image2} />
                     <Text style={styles.description2}>{object.description}</Text>
-                </SafeAreaView>
+                </View>
             );
         else if (object.id == '3')
             return (
-                <SafeAreaView style={[styles.container, { width }]}>
+                <View style={[styles.container, { width }]}>
                     <Text style={styles.description3}>{object.description}</Text>
                     <Image source={object.image3} style={styles.image3} />
-                </SafeAreaView>
+                </View>
             );
         else if (object.id == '4')
             return (
-                <SafeAreaView style={[styles.container, { width }]}>
+                <View style={[styles.container, { width }]}>
                     <Image source={object.image4} style={styles.image4} />
                     <Text style={styles.description4}>{object.description}</Text>
                     <TouchableOpacity style={styles.button}>
                         <Text>Get Started</Text>
                         <AntDesign name="arrowright" size={24} color="black" />
                     </TouchableOpacity>
-                </SafeAreaView>
+                </View>
             );
     }
 
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     //ITEM 1 STYLES
     cloud: {
         width: width * 0.95,
-        height: height * 0.4,
+        height: height * 0.38,
         alignSelf: "flex-end",
         resizeMode: "stretch",
         marginTop: 10
@@ -81,13 +81,13 @@ const styles = StyleSheet.create({
         width: width * 0.7,
         height: height * 0.45,
         alignSelf: "flex-start",
-        resizeMode: "cover",
-        marginBottom: 25,
-        marginLeft: 20
+        resizeMode: "contain",
+        marginLeft: 20,
+        marginBottom: 10
     },
     description1: {
         position: "absolute",
-        top: height * 0.045,
+        top: height * 0.05,
         left: width * 0.03,
         marginHorizontal: 50,
         textAlign: "center",
