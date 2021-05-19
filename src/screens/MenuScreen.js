@@ -61,7 +61,7 @@ const MenuScreen = () => {
             querySnapshot.forEach((document) => {
 
                 //helper
-                // storage.ref('FearSnakes.png').getDownloadURL()
+                // storage.ref('FearSpaces.png').getDownloadURL()
                 //     .then((url) => {
                 //         console.log(url);
                 //     })
@@ -246,13 +246,9 @@ const styles = StyleSheet.create({
         width: 75,
         height: PHOBIA_IMAGE_HEIGHT,
         position: "absolute",
-        borderWidth: 1,
         right: 15,
         bottom: 40,
         resizeMode: "stretch",
-        borderWidth: 1,
-        borderColor: "black"
-
     },
     button: {
         width: 90,
