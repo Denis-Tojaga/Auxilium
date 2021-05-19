@@ -10,6 +10,7 @@ const { width, height } = Dimensions.get("screen");
 
 const OnBoardScreen = () => {
 
+
     const scrollX = new Animated.Value(0);
 
 
@@ -17,7 +18,7 @@ const OnBoardScreen = () => {
     const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
 
-
+    //method for displaying all slides 
     const renderContent = () => {
         return (
             <Animated.View
@@ -51,12 +52,13 @@ const OnBoardScreen = () => {
         );
     }
 
-
+    //method for rendering dots and their animation
     const renderDots = () => {
 
         const dotPosition = Animated.divide(scrollX, width);
 
         return (
+            /*Dot animation reference */
             <View style={styles.dotContainer}>
                 {slides.map((item, index) => {
 
@@ -88,9 +90,9 @@ const OnBoardScreen = () => {
                     )
                 })}
             </View>
+            /*Dot animation reference */
         );
     }
-
 
 
     return (
@@ -109,6 +111,7 @@ const OnBoardScreen = () => {
 
 const styles = StyleSheet.create({
 
+    //main container
     container: {
         flex: 1,
         justifyContent: "center",
@@ -116,6 +119,7 @@ const styles = StyleSheet.create({
     },
 
 
+    //dot styles
     dotContainer: {
         flexDirection: "row",
         flex: 0.1,
@@ -123,7 +127,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginVertical: 20,
     },
-
     dot: {
         borderRadius: 50,
         backgroundColor: "black",
@@ -131,17 +134,17 @@ const styles = StyleSheet.create({
     },
 
 
+
+    //footer styles
     textContainer: {
         flex: 0.12,
         marginBottom: 20
     },
-
     text: {
         fontSize: 20,
         fontFamily: "TrendaRegular",
         color: "#14284D"
     }
-
 });
 
 
