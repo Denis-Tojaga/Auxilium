@@ -26,13 +26,13 @@ const OnBoardingItem = ({ item }) => {
             return (
                 <SafeAreaView style={[styles.container, { width }]}>
                     <Image source={object.image2} style={styles.image2} />
-                    <Text>{object.description2}</Text>
+                    <Text style={styles.description2}>{object.description}</Text>
                 </SafeAreaView>
             );
         else if (object.id == '3')
             return (
                 <SafeAreaView style={[styles.container, { width }]}>
-                    <Text>{object.description}</Text>
+                    <Text style={styles.description3}>{object.description}</Text>
                     <Image source={object.image3} style={styles.image3} />
                 </SafeAreaView>
             );
@@ -40,7 +40,7 @@ const OnBoardingItem = ({ item }) => {
             return (
                 <SafeAreaView style={[styles.container, { width }]}>
                     <Image source={object.image4} style={styles.image4} />
-                    <Text>{object.description}</Text>
+                    <Text style={styles.description4}>{object.description}</Text>
                     <TouchableOpacity style={styles.button}>
                         <Text>Get Started</Text>
                         <AntDesign name="arrowright" size={24} color="black" />
@@ -72,9 +72,10 @@ const styles = StyleSheet.create({
     //ITEM 1 STYLES
     cloud: {
         width: width * 0.95,
-        height: height * 0.35,
+        height: height * 0.4,
         alignSelf: "flex-end",
         resizeMode: "stretch",
+        marginTop: 10
     },
     image1: {
         width: width * 0.7,
@@ -84,17 +85,18 @@ const styles = StyleSheet.create({
         marginBottom: 25,
         marginLeft: 20
     },
-
     description1: {
         position: "absolute",
-        top: height * 0.08,
-        left: width * 0.06,
-        marginHorizontal: 40,
+        top: height * 0.045,
+        left: width * 0.03,
+        marginHorizontal: 50,
         textAlign: "center",
         fontFamily: "TrendaRegular",
         fontSize: 25,
         color: "#14284D"
     },
+
+
 
 
     //ITEM 2 STYLES
@@ -102,32 +104,50 @@ const styles = StyleSheet.create({
         width: width,
         resizeMode: "contain"
     },
-
     description2: {
-        marginHorizontal: 40,
+        marginHorizontal: 5,
         textAlign: "center",
         fontFamily: "TrendaRegular",
         fontSize: 25,
-        color: "#14284D"
+        color: "#14284D",
+        marginBottom: 10
     },
-
-
-
 
 
 
     //ITEM 3 STYLES
     image3: {
-
+        alignSelf: "flex-start",
+        width: width * 0.9,
+        height: height * 0.4
     },
 
+    description3: {
+        marginHorizontal: 10,
+        textAlign: "center",
+        fontFamily: "TrendaRegular",
+        fontSize: 20,
+        color: "#14284D",
+        marginTop: height * 0.05
+    },
 
 
 
 
     //ITEM 4 STYLES
     image4: {
+        width: width * 0.9,
+        height: height * 0.4,
+        resizeMode: "contain"
+    },
 
+    description4: {
+        marginHorizontal: 5,
+        textAlign: "center",
+        fontFamily: "TrendaRegular",
+        fontSize: 23,
+        color: "#14284D",
+        marginTop: 15
     }
 });
 

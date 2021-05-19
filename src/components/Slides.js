@@ -2,7 +2,7 @@ export default [
 
     {
         id: "1",
-        description: "Welcome, I am Auxilia.I will guide through the process of overcoming Your phobias.",
+        description: "Welcome, I am Auxilia.I will guide you through the process of overcoming Your phobias.",
         image1: require("../images/Aux_person.png"),
         image2: require("../images/Aux_cloud.png"),
         button: false
