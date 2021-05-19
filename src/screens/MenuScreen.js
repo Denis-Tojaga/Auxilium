@@ -19,7 +19,7 @@ const { width, height } = Dimensions.get("screen");
 
 
 
-const PHOBIA_IMAGE_HEIGHT = 125;
+const PHOBIA_IMAGE_HEIGHT = 105;
 const ITEM_SIZE = height * 0.25 + 50;
 
 
@@ -55,13 +55,13 @@ const MenuScreen = () => {
         var db = firebase.firestore();
 
         //helper
-        //var storage = firebase.storage();
+        var storage = firebase.storage();
 
         db.collection("phobias").get().then((querySnapshot) => {
             querySnapshot.forEach((document) => {
 
                 //helper
-                // storage.ref('FearSpiders.png').getDownloadURL()
+                // storage.ref('FearSnakes.png').getDownloadURL()
                 //     .then((url) => {
                 //         console.log(url);
                 //     })
@@ -141,7 +141,7 @@ const MenuScreen = () => {
                         return (
                             <Animated.View style={{ width: width * 0.85, height: height * 0.25, marginTop: 25, borderRadius: 25, transform: [{ scale }], opacity }}>
 
-                                <LinearGradient start={[0.5, 0.2]} end={[0.5, 1.1]} colors={[String(item.data.startGradient), "#FAFAFA"]} style={styles.gradient} >
+                                <LinearGradient start={[0.5, 0.3]} end={[0.5, 1.1]} colors={[String(item.data.startGradient), "#FAFAFA"]} style={styles.gradient} >
                                     <Text style={styles.title}>{item.data.name}</Text>
                                     <Text style={styles.description}>{item.data.description}</Text>
 
@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
         color: "#0E0E0E"
     },
     description: {
-        fontSize: 20,
+        fontSize: 22,
         fontFamily: "TrendaRegular",
         color: "#0E0E0E"
     },
@@ -247,9 +247,12 @@ const styles = StyleSheet.create({
         height: PHOBIA_IMAGE_HEIGHT,
         position: "absolute",
         borderWidth: 1,
-        right: 10,
-        bottom: 20,
-        resizeMode: "contain"
+        right: 15,
+        bottom: 40,
+        resizeMode: "stretch",
+        borderWidth: 1,
+        borderColor: "black"
+
     },
     button: {
         width: 90,
