@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, Image, TouchableOpacity, Dimensions, View, SafeAreaView } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
+import { navigate } from "../helpers/navigation";
 
 
 //taking the dimensions of a window
@@ -41,9 +42,9 @@ const OnBoardingItem = ({ item }) => {
                 <View style={[styles.container, { width }]}>
                     <Image source={object.image4} style={styles.image4} />
                     <Text style={styles.description4}>{object.description}</Text>
-                    <TouchableOpacity style={styles.button}>
-                        <Text>Get Started</Text>
-                        <AntDesign name="arrowright" size={24} color="black" />
+                    <TouchableOpacity style={styles.button} onPress={() => navigate("Menu")}>
+                        <Text style={styles.buttonText}>Get Started</Text>
+                        <AntDesign name="arrowright" size={24} color="white" style={{ marginLeft: 5 }} />
                     </TouchableOpacity>
                 </View>
             );
@@ -148,6 +149,27 @@ const styles = StyleSheet.create({
         fontSize: 23,
         color: "#14284D",
         marginTop: 15
+    },
+
+
+    button: {
+        width: width * 0.4,
+        height: height * 0.07,
+        backgroundColor: "#EC206A",
+        borderRadius: 20,
+        position: "absolute",
+        bottom: 0,
+        right: width / 3.5,
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
+    },
+
+
+    buttonText: {
+        color: "white",
+        fontFamily: "TrendaRegular",
+        fontSize: 17
     }
 });
 

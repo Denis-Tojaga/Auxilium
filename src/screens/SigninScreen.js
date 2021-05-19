@@ -24,14 +24,16 @@ const SigninScreen = ({ navigation }) => {
     //sign in on press
     const handlePress = () => {
 
-        if (!email || !password)
+        if (!email || !password) {
+            Alert.alert("Registration failed", "Please fill out all fields!")
             return;
+        }
 
         //if fields are successful we signIn with input credentials
         signIn(email, password).then((result) => {
             if (result) {
                 clearAllFields();
-                navigate("OnBoard");
+                navigate("Menu");
             } else {
                 console.log("Sign in failed!");
             }
