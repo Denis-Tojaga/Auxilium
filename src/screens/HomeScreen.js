@@ -13,27 +13,10 @@ const { width, height } = Dimensions.get("screen");
 const HomeScreen = ({ navigation }) => {
 
     const phobia = navigation.state.params.phobia;
-    const [user, setUser] = useState(null);
+    const user = navigation.state.params.user;
 
-    useEffect(() => {
-
-        async function getUserInfo() {
-
-            var userID = firebase.auth().currentUser.uid;
-            console.log(userID);
-            await firebase.firestore().collection("users").doc(userID).get().then((doc) => {
-                var userData = doc.data();
-                setUser(userData);
-            });
-        }
-
-        getUserInfo();
-        //async function to retrieve data of currently signed in user and clicked phobia
-    }, []);
-
-
-
-
+    console.log(user);
+    console.log(phobia);
 
     const changeProfilePicture = () => {
         console.log("Mijenjam profilnu korisnika!");
@@ -81,29 +64,6 @@ const HomeScreen = ({ navigation }) => {
     );
 
 };
-
-
-
-{/*card color #C4D8FF, bottomCard color #14284D */ }
-{/*1. Read a small text about spiders. */ }
-{/*Record yourself having a speach */ }
-
-{/*button color #1169A7*/ }
-
-
-
-
-
-
-
-
-
-
-{/*card color  #F8B320, bottomCard color #14284D */ }
-{/*button color #F8792D */ }
-
-{/*Watch a documentary about spiders. */ }
-{/*a-Reality hang out with your friendly spider. */ }
 
 
 

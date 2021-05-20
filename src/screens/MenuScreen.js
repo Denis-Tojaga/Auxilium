@@ -42,6 +42,7 @@ const MenuScreen = () => {
 
     //all data from phobias collection is stored here on first component render
     const [phobias, setPhobias] = useState([]);
+    const [user, setUser] = useState(null);
 
     //calls once on first component render
     useEffect(() => {
@@ -62,17 +63,28 @@ const MenuScreen = () => {
             });
             setPhobias(newArray);
         });
+
+
+        async function getUserInfo() {
+
+            var userID = firebase.auth().currentUser.uid;
+            await firebase.firestore().collection("users").doc(userID).get().then((doc) => {
+                var userData = doc.data();
+                setUser(userData);
+            });
+        }
+
+        getUserInfo();
+
     }, []);
 
 
 
     const getPhobia = (phobiaID) => {
         firebase.firestore().collection("phobias").doc(phobiaID).get().then((doc) => {
-            navigate("Home", { phobia: doc.data() })
+            navigate("Home", { phobia: doc.data(), user: user });
         });
     }
-
-
 
 
     return (
