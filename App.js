@@ -22,6 +22,7 @@ import AccountScreen from "./src/screens/AccountScreen";
 import ExpertScreen from "./src/screens/ExpertScreen";
 import ReviewScreen from "./src/screens/ReviewScreen";
 import ChangePasswordScreen from "./src/screens/ChangePasswordScreen";
+import OnBoardScreen from "./src/screens/OnBoardScreen";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 
 
@@ -80,6 +81,7 @@ const navigator = createSwitchNavigator({
   //ResolveAuth: ResolveAuthScreen,
 
   loginFlow: loginFlow,
+  OnBoard: OnBoardScreen,
   Menu: MenuScreen,
   bottomTabFlow: bottomTabFlow
 });

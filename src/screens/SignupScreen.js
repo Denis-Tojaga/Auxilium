@@ -71,7 +71,7 @@ const SignupScreen = ({ navigation }) => {
             if (result) {
                 console.log("Registration is successful!");
                 clearAllFields();
-                navigate("Menu");
+                navigate("OnBoard");
             } else {
                 console.log("Registration is not successful!");
             }
