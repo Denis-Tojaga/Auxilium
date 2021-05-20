@@ -77,14 +77,6 @@ const MenuScreen = () => {
 
 
 
-    const handlePress = () => {
-        //Navigating to home screen, so user can start with an appliation
-        navigate("bottomTabFlow");
-    }
-
-
-
-
     return (
         <LinearGradient start={[-0.6, -0.3]} end={[0.8, 0.5]} colors={["#408BC0", "#0F2F6A"]} style={styles.container1} >
 
@@ -146,7 +138,7 @@ const MenuScreen = () => {
 
                                     <Image style={styles.image} source={{ uri: item.data.url }} />
 
-                                    <TouchableOpacity style={styles.button} onPress={handlePress}>
+                                    <TouchableOpacity style={styles.button} onPress={() => navigate("bottomTabFlow", { id: item.id })}>
                                         <Text style={styles.buttonText}>Enroll</Text>
                                         <Ionicons name="ios-play" style={styles.icon} />
                                     </TouchableOpacity>
@@ -209,12 +201,6 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginTop: 20
     },
-
-
-
-
-
-
 
 
 
