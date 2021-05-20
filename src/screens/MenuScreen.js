@@ -35,7 +35,6 @@ const ITEM_SIZE = height * 0.25 + 50;
 
 
 
-
 const MenuScreen = () => {
 
     //animation managing
@@ -48,7 +47,6 @@ const MenuScreen = () => {
     useEffect(() => {
         var newArray = [];
         var db = firebase.firestore();
-
         //helper
         var storage = firebase.storage();
 
@@ -60,7 +58,6 @@ const MenuScreen = () => {
                 //     .then((url) => {
                 //         console.log(url);
                 //     })
-
                 newArray.push({ id: document.id, data: document.data() });
             });
             setPhobias(newArray);
@@ -68,6 +65,12 @@ const MenuScreen = () => {
     }, []);
 
 
+
+    const getPhobia = (phobiaID) => {
+        firebase.firestore().collection("phobias").doc(phobiaID).get().then((doc) => {
+            navigate("Home", { phobia: doc.data() })
+        });
+    }
 
 
 
@@ -123,7 +126,6 @@ const MenuScreen = () => {
                         })
                         /*  FlatList Animation Reference code */
 
-
                         /* Phobia card */
                         return (
                             <Animated.View style={{ width: width * 0.85, height: height * 0.25, marginTop: 25, borderRadius: 25, transform: [{ scale }], opacity }}>
@@ -133,7 +135,9 @@ const MenuScreen = () => {
 
                                     <Image style={styles.image} source={{ uri: item.data.url }} />
 
-                                    <TouchableOpacity style={styles.button} onPress={() => navigate("Home", { id: item.id })}>
+                                    <TouchableOpacity style={styles.button}
+                                        onPress={() => getPhobia(item.id)}
+                                    >
                                         <Text style={styles.buttonText}>Enroll</Text>
                                         <Ionicons name="ios-play" style={styles.icon} />
                                     </TouchableOpacity>

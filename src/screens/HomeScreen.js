@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Button, SafeAreaView, Image, FlatList, Dimensio
 import * as firebase from "firebase";
 import "firebase/firestore";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import TaskCard from "../components/TaskCard";
+import { navigate } from "../helpers/navigation";
 
 
 const { width, height } = Dimensions.get("screen");
@@ -10,37 +12,24 @@ const { width, height } = Dimensions.get("screen");
 
 const HomeScreen = ({ navigation }) => {
 
-    const [state, setState] = useState(null);
+    const phobia = navigation.state.params.phobia;
+    const [user, setUser] = useState(null);
 
-    var currentUserUID = firebase.auth().currentUser.uid;
-    const phobiaID = navigation.state.params.id;
-
-
-    //called when screen is first time rendered or some of the IDs change
     useEffect(() => {
 
+        async function getUserInfo() {
+
+            var userID = firebase.auth().currentUser.uid;
+            console.log(userID);
+            await firebase.firestore().collection("users").doc(userID).get().then((doc) => {
+                var userData = doc.data();
+                setUser(userData);
+            });
+        }
+
+        getUserInfo();
         //async function to retrieve data of currently signed in user and clicked phobia
-        async function getInfo() {
-            //getting a user doc
-            var userDoc = await firebase.firestore().collection("users").doc(currentUserUID).get();
-            //getting a phobia doc
-            var phobiaDoc = await firebase.firestore().collection("phobias").doc(phobiaID).get();
-
-            if (!userDoc.exists || !phobiaDoc.exists) {
-                Alert.alert("No user or phobia data found!");
-            } else {
-
-                console.log(userDoc.data());
-                console.log(phobiaDoc.data());
-                setState({ user: userDoc.data(), phobia: phobiaDoc.data() });
-            }
-        };
-
-
-        //call of async function
-        getInfo();
-    }, [currentUserUID, phobiaID]);
-
+    }, []);
 
 
 
@@ -53,54 +42,38 @@ const HomeScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView>
-            {/*Header section*/}
+
             <View style={styles.header}>
-                <Text style={styles.headerText}>Hello {state.user.fullName}</Text>
+                <Text style={styles.headerText}>Hello {user.fullName}</Text>
                 <TouchableOpacity style={styles.touchable} onPress={changeProfilePicture}>
-                    <Image style={styles.image} source={!state.user.pictureURL ? require("../images/noProfile.png") : { uri: String(state.user.pictureURL) }} />
+                    <Image style={styles.image} source={!user.pictureURL ? require("../images/noProfile.png") : { uri: String(user.pictureURL) }} />
                 </TouchableOpacity>
             </View>
 
 
-
-            {/*Daily tasks section*/}
             <View style={styles.dailyTasksContainer} >
-                <Text>Your daily tasks</Text>
+                <Text style={styles.title}>Your daily tasks</Text>
 
                 <FlatList
-                    data={state.phobia.dailyTasks}
+                    data={phobia.dailyTasks}
                     keyExtractor={(item) => `${item.id}`}
                     horizontal={true}
                     renderItem={({ item }) => {
-                        console.log(item);
-                        return <View style={styles.card}>
-                            <View style={styles.textContainer}>
-                                <Text style={styles.phobiaName}>{state.phobia.name}</Text>
-                                <Text>{item.description}</Text>
-                            </View>
-                            <Image style={styles.phobiaImage} />
-                        </View>
+
+                        return <TaskCard
+                            phobiaName={phobia.name}
+                            description={item.description}
+                            imageURL={phobia.url}
+                            type={item.type}
+                        />
                     }}
                 />
-                {/*card color #C4D8FF, bottomCard color #14284D */}
-
-                {/*1. Read a small text about spiders. */}
-                {/*Record yourself having a speach */}
-
-                {/*button color #1169A7*/}
-
             </View>
 
 
 
-            {/*Weekly tasks section*/}
             <View style={styles.weeklyTasksContainer} >
-
-                {/*card color  #F8B320, bottomCard color #14284D */}
-                {/*button color #F8792D */}
-
-                {/*Watch a documentary about spiders. */}
-                {/*a-Reality hang out with your friendly spider. */}
+                <Text style={styles.title}>Your weekly tasks</Text>
 
             </View>
 
@@ -108,6 +81,32 @@ const HomeScreen = ({ navigation }) => {
     );
 
 };
+
+
+
+{/*card color #C4D8FF, bottomCard color #14284D */ }
+{/*1. Read a small text about spiders. */ }
+{/*Record yourself having a speach */ }
+
+{/*button color #1169A7*/ }
+
+
+
+
+
+
+
+
+
+
+{/*card color  #F8B320, bottomCard color #14284D */ }
+{/*button color #F8792D */ }
+
+{/*Watch a documentary about spiders. */ }
+{/*a-Reality hang out with your friendly spider. */ }
+
+
+
 
 
 
@@ -150,42 +149,20 @@ const styles = StyleSheet.create({
 
 
     //daily tasks styles
+
+    title: {
+        fontFamily: "MoonBold",
+        fontSize: 20,
+        color: "#14284D",
+        marginBottom: 10
+    },
+
     dailyTasksContainer: {
-        height: 220,
+        height: height * 0.35,
         borderColor: "black",
         borderWidth: 1,
         marginHorizontal: 15
     },
-
-    card: {
-        width: width * 0.7,
-        height: height * 0.3,
-        backgroundColor: "blue",
-        marginRight: 30,
-        flexDirection: "row"
-    },
-
-    textContainer: {
-        borderColor: "black",
-        borderWidth: 1,
-    },
-
-    phobiaName: {
-        fontFamily: "TrendaSemibold",
-        fontSize: 22,
-    },
-
-    phobiaImage: {
-        borderWidth: 1,
-        borderColor: "black",
-        width: 120,
-        height: 160,
-        position: "absolute",
-        right: 5,
-        top: 25
-    },
-
-
 
 
 

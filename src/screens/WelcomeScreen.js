@@ -1,8 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image, LogBox } from "react-native";
 
 
 const WelcomeScreen = ({ navigation }) => {
+
+    LogBox.ignoreAllLogs();
 
     return (
         <View style={styles.container}>
