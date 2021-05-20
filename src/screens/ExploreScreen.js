@@ -27,7 +27,8 @@ ExploreScreen.navigationOptions = {
         flex: 1,
         textAlign: "center",
         fontSize: 18,
-        fontFamily: "MoonBold"
+        fontFamily: "TrendaLight"
+
     }
 }
 
