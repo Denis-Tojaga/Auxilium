@@ -6,42 +6,50 @@ import "firebase/firestore";
 
 const HomeScreen = ({ navigation }) => {
 
+    const [state, setState] = useState(null);
 
-    const [fullName, setFullName] = useState("");
+
 
     var currentUserUID = firebase.auth().currentUser.uid;
+    const phobiaID = navigation.state.params.id;
+
+
 
     useEffect(() => {
         //async function to retrieve data of currently signed in user
-        async function getUserInfo() {
+        async function getInfo() {
             //first we take the document from correct collection with currentUserUID string
-            var document = await firebase
+            var userDoc = await firebase
                 .firestore()
                 .collection("users")
                 .doc(currentUserUID)
                 .get();
 
-            if (!document.exists) {
-                Alert.alert("No user data found!");
+            var phobiaDoc = await firebase.firestore().collection("phobias").doc(phobiaID).get();
+
+            if (!userDoc.exists || !phobiaDoc.exists) {
+                Alert.alert("No user or phobia data found!");
             } else {
                 //then we extract data out of that document so we can access its attributes
-                var dataObject = document.data();
-                setFullName(dataObject.fullName);
+                // var user = userDoc.data();
+                // var phobia = phobiaDoc.data();
+                setState({ user: userDoc.data(), phobia: phobiaDoc.data() });
             }
         };
-        getUserInfo();
-    }, [currentUserUID]);
+
+        getInfo();
+    }, [currentUserUID, phobiaID]);
 
 
 
 
-
+    console.log(state);
 
     return (
         <SafeAreaView>
             <View style={styles.header}>
-                <Text style={styles.headerText}>HELLO {fullName}</Text>
-                <Image style={{ width: 80, height: 65, borderRadius: 25, backgroundColor: "black" }} />
+                <Text style={styles.headerText}>Hello {state.user.fullName}</Text>
+                <Image style={styles.image} />
                 {/* <Button title="Go to task list screen" onPress={() => navigation.navigate("TaskList")} /> */}
             </View>
 
@@ -79,8 +87,16 @@ const styles = StyleSheet.create({
 
     headerText: {
         fontSize: 30,
-        fontFamily: "TrendaRegular",
-        marginRight: 5
+        fontFamily: "TrendaSemibold",
+    },
+
+
+    image: {
+        width: 75,
+        height: 65,
+        borderRadius: 25,
+        backgroundColor: "black",
+        marginLeft: 35
     },
 
     dailyTasksContainer: {
@@ -88,7 +104,6 @@ const styles = StyleSheet.create({
         borderColor: "black",
         borderWidth: 1,
         marginHorizontal: 15
-
     },
 
     weeklyTasksContainer: {

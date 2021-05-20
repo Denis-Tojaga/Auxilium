@@ -30,11 +30,6 @@ const ITEM_SIZE = height * 0.25 + 50;
 
 
 
-//Fear of heights - startGradient "#408BC0", endGradient "#FAFAFA"
-//Fear of spiders - startGradient "#EC216A", endGradient "#FAFAFA"
-//Fear of confiend spaces - startGradient "#F25D04", endGradient "#FAFAFA"
-//Fear of flying - startGradient "#F8B320", endGradient "#FAFAFA"
-//Fear of snakes (Ophidiophobia) - startGradient "#40C044", endGradient "#FAFAFA"
 
 
 
@@ -138,7 +133,7 @@ const MenuScreen = () => {
 
                                     <Image style={styles.image} source={{ uri: item.data.url }} />
 
-                                    <TouchableOpacity style={styles.button} onPress={() => navigate("bottomTabFlow", { id: item.id })}>
+                                    <TouchableOpacity style={styles.button} onPress={() => navigate("Home", { id: item.id })}>
                                         <Text style={styles.buttonText}>Enroll</Text>
                                         <Ionicons name="ios-play" style={styles.icon} />
                                     </TouchableOpacity>
