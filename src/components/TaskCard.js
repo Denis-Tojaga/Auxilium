@@ -1,9 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, SafeAreaView, Image, FlatList, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Button, SafeAreaView, Image, FlatList, Dimensions, TouchableOpacity } from "react-native";
+import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get("screen");
 
-const TaskCard = ({ phobiaName, description, imageURL, type }) => {
+const TaskCard = ({ phobiaName, description, imageURL, type, nav }) => {
+
 
     return (
         <View style={styles.dailyTaskCard}>
@@ -12,7 +15,19 @@ const TaskCard = ({ phobiaName, description, imageURL, type }) => {
                 <Text style={styles.description}>{description}</Text>
             </View>
             <View style={styles.footer}>
-                <Text>{type}</Text>
+                <View style={styles.typeContainer}>
+                    <Text style={styles.footerText}> {type == "A-reality" ? type : "Textual"}</Text>
+                    <Entypo name="text" style={styles.icon} />
+                </View>
+
+                <View style={styles.typeContainer}>
+                    <Text style={styles.footerText}>Auditory</Text>
+                    <AntDesign name="sound" style={styles.icon} />
+                </View>
+
+                <TouchableOpacity style={styles.button} onPress={() => nav.navigate("TaskList")}>
+                    <AntDesign name="arrowright" size={24} color="white" />
+                </TouchableOpacity>
             </View>
             <Image style={styles.phobiaImage} source={{ uri: String(imageURL) }} />
         </View>
@@ -41,7 +56,7 @@ const styles = StyleSheet.create({
 
     phobiaName: {
         fontFamily: "TrendaSemibold",
-        fontSize: 25,
+        fontSize: 30,
         textAlign: "center",
         marginTop: 20
     },
@@ -49,19 +64,20 @@ const styles = StyleSheet.create({
     phobiaImage: {
         borderWidth: 1,
         borderColor: "black",
-        width: 100,
-        height: 140,
+        width: 80,
+        height: 120,
         position: "absolute",
         right: 0,
-        top: 20,
-        resizeMode: "contain"
+        top: 35,
+        resizeMode: "stretch"
     },
 
 
     description: {
         fontSize: 20,
         fontFamily: "TrendaLight",
-        textAlign: "center"
+        textAlign: "center",
+        marginTop: 15
     },
 
 
@@ -71,6 +87,38 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "20%",
         bottom: 0,
+        borderRadius: 10,
+        flexDirection: "row",
+        justifyContent: "flex-start",
+    },
+
+    footerText: {
+        color: "white",
+        fontSize: 18,
+        fontFamily: "TrendaLight"
+    },
+
+    typeContainer: {
+        flexDirection: "row",
+        borderWidth: 1,
+        borderColor: "red",
+        width: "38%",
+        paddingTop: 10
+    },
+
+    icon: {
+        marginLeft: 10,
+        color: "white",
+        fontSize: 25
+    },
+
+    button: {
+        width: 50,
+        height: 50,
+        marginLeft: 20,
+        backgroundColor: "blue",
+        justifyContent: "center",
+        alignItems: "center",
         borderRadius: 10
     }
 

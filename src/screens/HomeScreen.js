@@ -4,7 +4,6 @@ import * as firebase from "firebase";
 import "firebase/firestore";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import TaskCard from "../components/TaskCard";
-import { navigate } from "../helpers/navigation";
 
 
 const { width, height } = Dimensions.get("screen");
@@ -15,16 +14,13 @@ const HomeScreen = ({ navigation }) => {
     const phobia = navigation.state.params.phobia;
     const user = navigation.state.params.user;
 
-    console.log(user);
-    console.log(phobia);
-
     const changeProfilePicture = () => {
         console.log("Mijenjam profilnu korisnika!");
     };
 
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.container}>
 
             <View style={styles.header}>
                 <Text style={styles.headerText}>Hello {user.fullName}</Text>
@@ -34,7 +30,7 @@ const HomeScreen = ({ navigation }) => {
             </View>
 
 
-            <View style={styles.dailyTasksContainer} >
+            <View style={styles.tasksContainer} >
                 <Text style={styles.title}>Your daily tasks</Text>
 
                 <FlatList
@@ -48,6 +44,7 @@ const HomeScreen = ({ navigation }) => {
                             description={item.description}
                             imageURL={phobia.url}
                             type={item.type}
+                            nav={navigation}
                         />
                     }}
                 />
@@ -55,9 +52,23 @@ const HomeScreen = ({ navigation }) => {
 
 
 
-            <View style={styles.weeklyTasksContainer} >
+            <View style={styles.tasksContainer} >
                 <Text style={styles.title}>Your weekly tasks</Text>
+                <FlatList
+                    data={phobia.dailyTasks}
+                    keyExtractor={(item) => `${item.id}`}
+                    horizontal={true}
+                    renderItem={({ item }) => {
 
+                        return <TaskCard
+                            phobiaName={phobia.name}
+                            description={item.description}
+                            imageURL={phobia.url}
+                            type={item.type}
+                            nav={navigation}
+                        />
+                    }}
+                />
             </View>
 
         </SafeAreaView>
@@ -74,18 +85,20 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
+        borderColor: "black",
+        borderWidth: 1,
+        justifyContent: "center"
     },
 
 
     //header styles
     header: {
-        height: 100,
+        height: height * 0.1,
         flexDirection: "row",
-        borderColor: "black",
-        borderWidth: 1,
         justifyContent: "center",
         alignItems: "center",
-        marginHorizontal: 15
+        marginHorizontal: 10,
+        marginTop: 10
     },
     headerText: {
         fontSize: 30,
@@ -108,7 +121,15 @@ const styles = StyleSheet.create({
 
 
 
-    //daily tasks styles
+    //tasks styles
+
+    tasksContainer: {
+        height: height * 0.35,
+        marginLeft: 10,
+        justifyContent: "center",
+        marginTop: 10
+    },
+
 
     title: {
         fontFamily: "MoonBold",
@@ -117,37 +138,13 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
 
-    dailyTasksContainer: {
-        height: height * 0.35,
-        borderColor: "black",
-        borderWidth: 1,
-        marginHorizontal: 15
-    },
-
-
-
-    //weekly tasks styles
-    weeklyTasksContainer: {
-        height: 220,
-        borderColor: "black",
-        borderWidth: 1,
-        marginHorizontal: 15
-    }
-
-
 
 });
 
 
 
 HomeScreen.navigationOptions = {
-    title: "Home",
-    headerTitleStyle: {
-        flex: 1,
-        textAlign: "center",
-        fontSize: 18,
-        fontFamily: "TrendaLight"
-    }
+    headerShown: false
 }
 
 
