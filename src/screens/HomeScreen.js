@@ -4,6 +4,7 @@ import "firebase/firestore";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import TaskCard from "../components/TaskCard";
 import DailyTasks from "../components/DailyTasks";
+import WeeklyTasks from "../components/WeeklyTasks";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -66,10 +67,10 @@ const HomeScreen = ({ navigation }) => {
                     scrollEventThrottle={32}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
-                    data={DailyTasks}
+                    data={WeeklyTasks}
                     keyExtractor={(item) => `${item.id}`}
                     renderItem={({ item }) => {
-
+                        console.log(item);
                         return <TaskCard
                             phobiaName={phobia.name}
                             description={item.description}

@@ -2,11 +2,21 @@ import React from "react";
 import { StyleSheet, Text, View, Button, SafeAreaView, Image, FlatList, Dimensions, TouchableOpacity } from "react-native";
 import { Entypo } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get("screen");
 
 const TaskCard = ({ phobiaName, description, imageURL, type, nav }) => {
 
+
+    const renderIcon = () => {
+        if (type == 'a-reality')
+            return <Image style={{ width: 22, height: 22 }} source={require("../images/AR_icon.png")} />
+        else if (type == "textual")
+            return <Entypo name="text" style={styles.icon} />
+        else if (type == "video")
+            return <Feather name="video" style={styles.icon} />
+    }
 
     return (
         <View style={styles.dailyTaskCard}>
@@ -16,8 +26,8 @@ const TaskCard = ({ phobiaName, description, imageURL, type, nav }) => {
             </View>
             <View style={styles.footer}>
                 <View style={styles.typeContainer}>
-                    <Text style={styles.footerText}> {type == "A-reality" ? type : "Textual"}</Text>
-                    <Entypo name="text" style={styles.icon} />
+                    <Text style={styles.footerText}> {type}</Text>
+                    {renderIcon()}
                 </View>
 
                 <View style={styles.typeContainer}>
@@ -77,7 +87,7 @@ const styles = StyleSheet.create({
 
 
     description: {
-        fontSize: 20,
+        fontSize: 18,
         fontFamily: "TrendaLight",
         textAlign: "center",
         marginTop: 15
