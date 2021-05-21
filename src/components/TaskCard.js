@@ -49,9 +49,7 @@ const styles = StyleSheet.create({
 
     textContainer: {
         width: "62%",
-        height: "80%",
-        borderColor: "black",
-        borderWidth: 1,
+        height: "80%"
     },
 
     phobiaName: {
@@ -62,12 +60,10 @@ const styles = StyleSheet.create({
     },
 
     phobiaImage: {
-        borderWidth: 1,
-        borderColor: "black",
         width: 80,
         height: 120,
         position: "absolute",
-        right: 0,
+        right: 10,
         top: 35,
         resizeMode: "stretch"
     },
@@ -100,10 +96,9 @@ const styles = StyleSheet.create({
 
     typeContainer: {
         flexDirection: "row",
-        borderWidth: 1,
-        borderColor: "red",
         width: "38%",
-        paddingTop: 10
+        paddingTop: 10,
+        marginLeft: 5
     },
 
     icon: {
@@ -115,7 +110,7 @@ const styles = StyleSheet.create({
     button: {
         width: 50,
         height: 50,
-        marginLeft: 20,
+        marginLeft: 15,
         backgroundColor: "blue",
         justifyContent: "center",
         alignItems: "center",

@@ -22,6 +22,7 @@ const HomeScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.container}>
 
+            {/*Header section*/}
             <View style={styles.header}>
                 <Text style={styles.headerText}>Hello {user.fullName}</Text>
                 <TouchableOpacity style={styles.touchable} onPress={changeProfilePicture}>
@@ -30,13 +31,18 @@ const HomeScreen = ({ navigation }) => {
             </View>
 
 
+
+            {/*Daily tasks section*/}
             <View style={styles.tasksContainer} >
                 <Text style={styles.title}>Your daily tasks</Text>
 
                 <FlatList
+                    bounces={false}
+                    scrollEventThrottle={32}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
                     data={phobia.dailyTasks}
                     keyExtractor={(item) => `${item.id}`}
-                    horizontal={true}
                     renderItem={({ item }) => {
 
                         return <TaskCard
@@ -52,12 +58,17 @@ const HomeScreen = ({ navigation }) => {
 
 
 
+
+            {/*Weekly tasks section*/}
             <View style={styles.tasksContainer} >
                 <Text style={styles.title}>Your weekly tasks</Text>
                 <FlatList
+                    bounces={false}
+                    scrollEventThrottle={32}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
                     data={phobia.dailyTasks}
                     keyExtractor={(item) => `${item.id}`}
-                    horizontal={true}
                     renderItem={({ item }) => {
 
                         return <TaskCard
@@ -84,10 +95,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
 
     container: {
-        flex: 1,
-        borderColor: "black",
-        borderWidth: 1,
-        justifyContent: "center"
+        flex: 1
     },
 
 
@@ -95,19 +103,21 @@ const styles = StyleSheet.create({
     header: {
         height: height * 0.1,
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
         marginHorizontal: 10,
-        marginTop: 10
+        marginTop: 20,
+        paddingTop: 10
     },
     headerText: {
         fontSize: 30,
-        fontFamily: "TrendaSemibold",
-        color: "#14284D"
+        fontFamily: "TrendaRegular",
+        fontWeight: "600",
+        color: "black",
     },
     image: {
-        width: 70,
-        height: 65,
+        width: 65,
+        height: 60,
         borderRadius: 22,
         backgroundColor: "lightgray",
     },
@@ -127,15 +137,15 @@ const styles = StyleSheet.create({
         height: height * 0.35,
         marginLeft: 10,
         justifyContent: "center",
-        marginTop: 10
+        marginTop: 10,
     },
 
 
     title: {
         fontFamily: "MoonBold",
         fontSize: 20,
-        color: "#14284D",
-        marginBottom: 10
+        color: "black",
+        marginBottom: 10,
     },
 
 
