@@ -48,8 +48,7 @@ const MenuScreen = () => {
     useEffect(() => {
         var newArray = [];
         var db = firebase.firestore();
-        //helper
-        var storage = firebase.storage();
+        //var storage = firebase.storage();
 
         db.collection("phobias").get().then((querySnapshot) => {
             querySnapshot.forEach((document) => {
@@ -64,7 +63,6 @@ const MenuScreen = () => {
             setPhobias(newArray);
         });
 
-
         async function getUserInfo() {
 
             var userID = firebase.auth().currentUser.uid;
@@ -75,11 +73,12 @@ const MenuScreen = () => {
         }
 
         getUserInfo();
-
     }, []);
 
 
 
+
+    //method for fetching a phobia and navigating to home 
     const getPhobia = (phobiaID) => {
         firebase.firestore().collection("phobias").doc(phobiaID).get().then((doc) => {
             navigate("Home", { phobia: doc.data(), user: user });
@@ -100,7 +99,6 @@ const MenuScreen = () => {
                     will be addressing that topic.
                 </Text>
             </View>
-
 
             {/*LIST CONTAINER*/}
             <View style={styles.container2}>
@@ -147,7 +145,8 @@ const MenuScreen = () => {
 
                                     <Image style={styles.image} source={{ uri: item.data.url }} />
 
-                                    <TouchableOpacity style={styles.button}
+                                    <TouchableOpacity
+                                        style={styles.button}
                                         onPress={() => getPhobia(item.id)}
                                     >
                                         <Text style={styles.buttonText}>Enroll</Text>
@@ -159,6 +158,7 @@ const MenuScreen = () => {
                     }}
                 />
             </View>
+
         </LinearGradient>
     );
 

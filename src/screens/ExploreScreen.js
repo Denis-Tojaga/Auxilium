@@ -22,14 +22,7 @@ const styles = StyleSheet.create({
 
 
 ExploreScreen.navigationOptions = {
-    title: "Explore",
-    headerTitleStyle: {
-        flex: 1,
-        textAlign: "center",
-        fontSize: 18,
-        fontFamily: "TrendaLight"
-
-    }
+    headerShown: false
 }
 
 

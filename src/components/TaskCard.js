@@ -11,7 +11,7 @@ const TaskCard = ({ phobiaName, description, imageURL, type, nav }) => {
     return (
         <View style={styles.dailyTaskCard}>
             <View style={styles.textContainer}>
-                <Text style={styles.phobiaName}>{phobiaName}</Text>
+                <Text style={phobiaName.length <= 10 ? styles.phobiaName : styles.phobiaNameLonger}>{phobiaName}</Text>
                 <Text style={styles.description}>{description}</Text>
             </View>
             <View style={styles.footer}>
@@ -59,12 +59,19 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
 
+    phobiaNameLonger: {
+        fontFamily: "TrendaSemibold",
+        fontSize: 23,
+        textAlign: "center",
+        marginTop: 20
+    },
+
     phobiaImage: {
         width: 80,
-        height: 120,
+        height: 100,
         position: "absolute",
         right: 10,
-        top: 35,
+        top: 40,
         resizeMode: "stretch"
     },
 
@@ -90,7 +97,7 @@ const styles = StyleSheet.create({
 
     footerText: {
         color: "white",
-        fontSize: 18,
+        fontSize: 15,
         fontFamily: "TrendaLight"
     },
 
@@ -104,17 +111,18 @@ const styles = StyleSheet.create({
     icon: {
         marginLeft: 10,
         color: "white",
-        fontSize: 25
+        fontSize: 22
     },
 
     button: {
         width: 50,
         height: 50,
-        marginLeft: 15,
+        marginLeft: 10,
         backgroundColor: "blue",
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 10
+        borderRadius: 10,
+        backgroundColor: "#EC216A"
     }
 
 });

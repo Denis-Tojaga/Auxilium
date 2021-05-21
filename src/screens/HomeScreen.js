@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { StyleSheet, Text, View, Button, SafeAreaView, Image, FlatList, Dimensions } from "react-native";
-import * as firebase from "firebase";
 import "firebase/firestore";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import TaskCard from "../components/TaskCard";
-
+import DailyTasks from "../components/DailyTasks";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -41,10 +40,10 @@ const HomeScreen = ({ navigation }) => {
                     scrollEventThrottle={32}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
-                    data={phobia.dailyTasks}
+                    data={DailyTasks}
                     keyExtractor={(item) => `${item.id}`}
-                    renderItem={({ item }) => {
 
+                    renderItem={({ item }) => {
                         return <TaskCard
                             phobiaName={phobia.name}
                             description={item.description}
@@ -67,7 +66,7 @@ const HomeScreen = ({ navigation }) => {
                     scrollEventThrottle={32}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
-                    data={phobia.dailyTasks}
+                    data={DailyTasks}
                     keyExtractor={(item) => `${item.id}`}
                     renderItem={({ item }) => {
 
@@ -106,7 +105,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         marginHorizontal: 10,
-        marginTop: 20,
         paddingTop: 10
     },
     headerText: {
@@ -134,7 +132,7 @@ const styles = StyleSheet.create({
     //tasks styles
 
     tasksContainer: {
-        height: height * 0.35,
+        height: height * 0.4,
         marginLeft: 10,
         justifyContent: "center",
         marginTop: 10,
@@ -143,7 +141,7 @@ const styles = StyleSheet.create({
 
     title: {
         fontFamily: "MoonBold",
-        fontSize: 20,
+        fontSize: 17,
         color: "black",
         marginBottom: 10,
     },
