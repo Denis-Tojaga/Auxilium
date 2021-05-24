@@ -38,7 +38,9 @@ const SmallTaskCard = ({ type }) => {
     };
 
     return (
-        { HandlePositioning }
+        <View>
+
+        </View>
     );
 
 };
