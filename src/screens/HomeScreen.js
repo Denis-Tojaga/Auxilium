@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, SafeAreaView, Image, FlatList, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Image, FlatList, Dimensions } from "react-native";
 import "firebase/firestore";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import TaskCard from "../components/TaskCard";
@@ -12,7 +12,6 @@ const { width, height } = Dimensions.get("screen");
 const HomeScreen = ({ navigation }) => {
 
     const phobia = navigation.state.params.phobia;
-    console.log(phobia);
     const user = navigation.state.params.user;
 
     const changeProfilePicture = () => {

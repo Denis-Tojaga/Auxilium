@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from '@expo/vector-icons';
+import SmallTaskCard from "../components/SmallTaskCard";
 
 
 const { width, height } = Dimensions.get("screen");
@@ -27,6 +28,11 @@ const TaskListScreen = ({ navigation }) => {
                 <Text style={styles.title}>{infoTitle}</Text>
                 <Text style={styles.info}>{info}</Text>
             </View>
+
+            <SmallTaskCard type="left1" />
+            <SmallTaskCard type="right1" />
+            <SmallTaskCard type="left2" />
+            <SmallTaskCard type="right2" />
 
 
             {/* Main tasks container */}
@@ -54,6 +60,20 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
 
+    touchableIcon: {
+        position: "absolute",
+        top: 15,
+        left: 15,
+        marginTop: 15,
+    },
+
+    icon: {
+        color: "white",
+        fontFamily: "MoonLight",
+        fontSize: 38,
+    },
+
+
     title: {
         fontFamily: "TrendaSemibold",
         fontSize: 35,
@@ -67,22 +87,15 @@ const styles = StyleSheet.create({
         fontFamily: "TrendaRegular",
         textAlign: "center",
         color: "white",
-        opacity: 0.8
+        opacity: 0.8,
+        marginHorizontal: 10
     },
 
-    touchableIcon: {
-        position: "absolute",
-        top: 15,
-        left: 15,
-        marginTop: 15,
-    },
 
-    icon: {
-        color: "white",
-        fontFamily: "MoonLight",
-        fontSize: 38,
+    leftSideCard: {
+        marginLeft: 30,
+        marginHorizontal: 50
     }
-
 
 
 });
