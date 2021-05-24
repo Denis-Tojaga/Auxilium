@@ -54,7 +54,15 @@ const styles = StyleSheet.create({
         borderRadius: 18,
         backgroundColor: "#C4D8FF",
         marginRight: 30,
-        flexDirection: "row"
+        flexDirection: "row",
+        shadowColor: "black",
+        shadowOffset: {
+            width: 0,
+            height: 10
+        },
+        shadowOpacity: 0.4,
+        shadowRadius: 2,
+        elevation: 8
     },
 
     textContainer: {

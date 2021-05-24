@@ -20,7 +20,7 @@ const HomeScreen = ({ navigation }) => {
 
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
 
             {/*Header section*/}
             <View style={styles.header}>
@@ -38,7 +38,7 @@ const HomeScreen = ({ navigation }) => {
 
                 <FlatList
                     bounces={false}
-                    scrollEventThrottle={32}
+                    scrollEventThrottle={16}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     data={DailyTasks}
@@ -64,7 +64,7 @@ const HomeScreen = ({ navigation }) => {
                 <Text style={styles.title}>Your weekly tasks</Text>
                 <FlatList
                     bounces={false}
-                    scrollEventThrottle={32}
+                    scrollEventThrottle={16}
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                     data={WeeklyTasks}
@@ -82,7 +82,7 @@ const HomeScreen = ({ navigation }) => {
                 />
             </View>
 
-        </SafeAreaView>
+        </View>
     );
 
 };
@@ -95,7 +95,8 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
 
     container: {
-        flex: 1
+        flex: 1,
+        justifyContent: "center"
     },
 
 
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         marginHorizontal: 10,
-        paddingTop: 10
+        paddingTop: 10,
     },
     headerText: {
         fontSize: 30,
@@ -133,10 +134,10 @@ const styles = StyleSheet.create({
     //tasks styles
 
     tasksContainer: {
-        height: height * 0.4,
+        height: height * 0.35,
         marginLeft: 10,
         justifyContent: "center",
-        marginTop: 10,
+        marginTop: 15
     },
 
 

@@ -36,6 +36,12 @@ import AppLoading from "expo-app-loading";
 import apiKeys from "./src/config/keys";
 //importing firebase
 import * as firebase from "firebase";
+//importing icons library's
+import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+
 
 
 
@@ -47,17 +53,35 @@ const loginFlow = createStackNavigator({
   Signin: SigninScreen,
   Signup: SignupScreen
 });
+
+
 //flow that is controling the home screens
 const homeFlow = createStackNavigator({
   Home: HomeScreen,
   TaskList: TaskListScreen,
   TaskDetail: TaskDetailScreen
 });
+homeFlow.navigationOptions = {
+  title: "Home",
+  tabBarIcon: ({ tintColor }) => <AntDesign name="home" size={30} color={tintColor} />
+}
+
+
 //flow that is controling the explore screens
 const exploreFlow = createStackNavigator({
   Explore: ExploreScreen,
   Purchase: PurchaseScreen
 });
+
+exploreFlow.navigationOptions = {
+  title: "Exlpore",
+  tabBarIcon: ({ tintColor }) => <MaterialIcons name="explore" size={24} color={tintColor} />
+}
+
+
+
+
+
 //flow that is controling the account screens
 const accountFlow = createStackNavigator({
   Account: AccountScreen,
@@ -65,12 +89,25 @@ const accountFlow = createStackNavigator({
   Expert: ExpertScreen,
   ChangePassword: ChangePasswordScreen
 });
+accountFlow.navigationOptions = {
+  title: "Me",
+  tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name="account" size={24} color={tintColor} />
+}
+
+
+
+
+//three flows put together in one bottomTabFlow
 const bottomTabFlow = createBottomTabNavigator({
   exploreFlow: exploreFlow,
   homeFlow: homeFlow,
   accountFlow: accountFlow
 }, {
-  initialRouteName: "homeFlow"
+  initialRouteName: "homeFlow",
+  tabBarOptions: {
+    activeTintColor: "#EC216A",
+    inactiveTintColor: "#14284D"
+  }
 });
 
 
