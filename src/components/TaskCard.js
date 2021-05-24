@@ -3,10 +3,11 @@ import { StyleSheet, Text, View, Button, SafeAreaView, Image, FlatList, Dimensio
 import { Entypo } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get("screen");
 
-const TaskCard = ({ phobiaName, description, imageURL, type, nav }) => {
+const TaskCard = ({ phobiaName, description, imageURL, type, nav, infoTitle, info }) => {
 
 
     const renderIcon = () => {
@@ -16,6 +17,24 @@ const TaskCard = ({ phobiaName, description, imageURL, type, nav }) => {
             return <Entypo name="text" style={styles.icon} />
         else if (type == "video")
             return <Feather name="video" style={styles.icon} />
+        else if (type == "auditory")
+            return <AntDesign name="sound" style={styles.icon} />
+        else if (type == "v-reality")
+            return <MaterialCommunityIcons name="virtual-reality" style={styles.icon} />
+    }
+
+
+    const resolveType = () => {
+        if (type == 'a-reality')
+            return "a-reality"
+        else if (type == "textual")
+            return "Textual"
+        else if (type == "video")
+            return "Video"
+        else if (type == "auditory")
+            return "Auditory"
+        else if (type == "v-reality")
+            return "Virtual reality"
     }
 
     return (
@@ -26,16 +45,11 @@ const TaskCard = ({ phobiaName, description, imageURL, type, nav }) => {
             </View>
             <View style={styles.footer}>
                 <View style={styles.typeContainer}>
-                    <Text style={styles.footerText}> {type}</Text>
+                    <Text style={styles.footerText}> {resolveType(type)}</Text>
                     {renderIcon()}
                 </View>
 
-                <View style={styles.typeContainer}>
-                    <Text style={styles.footerText}>Auditory</Text>
-                    <AntDesign name="sound" style={styles.icon} />
-                </View>
-
-                <TouchableOpacity style={styles.button} onPress={() => nav.navigate("TaskList")}>
+                <TouchableOpacity style={styles.button} onPress={() => nav.navigate("TaskList", { infoTitle: infoTitle, info: info })}>
                     <AntDesign name="arrowright" size={24} color="white" />
                 </TouchableOpacity>
             </View>
@@ -115,21 +129,23 @@ const styles = StyleSheet.create({
 
     footerText: {
         color: "white",
-        fontSize: 15,
+        fontSize: 20,
         fontFamily: "TrendaLight"
     },
 
     typeContainer: {
         flexDirection: "row",
-        width: "38%",
+        width: "78%",
         paddingTop: 10,
-        marginLeft: 5
+        marginLeft: 5,
+        paddingLeft: 25,
+        justifyContent: "center"
     },
 
     icon: {
         marginLeft: 10,
         color: "white",
-        fontSize: 22
+        fontSize: 25
     },
 
     button: {

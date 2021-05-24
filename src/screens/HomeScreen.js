@@ -12,6 +12,7 @@ const { width, height } = Dimensions.get("screen");
 const HomeScreen = ({ navigation }) => {
 
     const phobia = navigation.state.params.phobia;
+    console.log(phobia);
     const user = navigation.state.params.user;
 
     const changeProfilePicture = () => {
@@ -51,6 +52,8 @@ const HomeScreen = ({ navigation }) => {
                             imageURL={phobia.url}
                             type={item.type}
                             nav={navigation}
+                            infoTitle={phobia.infoTitle}
+                            info={phobia.info}
                         />
                     }}
                 />
@@ -70,7 +73,6 @@ const HomeScreen = ({ navigation }) => {
                     data={WeeklyTasks}
                     keyExtractor={(item) => `${item.id}`}
                     renderItem={({ item }) => {
-                        console.log(item);
                         return <TaskCard
                             phobiaName={phobia.name}
                             description={item.description}
