@@ -20,7 +20,9 @@ export async function registration(email, password, fullName) {
         //.set(key:value pair) - sets an attribute and its value in the database
         database.collection("users").doc(currentUser.uid).set({
             email: currentUser.email,
-            fullName: fullName
+            fullName: fullName,
+            password: password,
+            profilePictureURL: null
         });
 
         return true;

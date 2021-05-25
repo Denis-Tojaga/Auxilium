@@ -68,7 +68,7 @@ const MenuScreen = () => {
             var userID = firebase.auth().currentUser.uid;
             await firebase.firestore().collection("users").doc(userID).get().then((doc) => {
                 var userData = doc.data();
-                setUser(userData);
+                setUser({ id: userID, userData: userData });
             });
         }
 
