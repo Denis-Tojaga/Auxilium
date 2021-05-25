@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, FlatList, Dimensions, Platform } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Image, FlatList, Dimensions } from "react-native";
 import "firebase/firestore";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import TaskCard from "../components/TaskCard";
 import DailyTasks from "../components/DailyTasks";
 import WeeklyTasks from "../components/WeeklyTasks";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import * as ImagePicker from 'expo-image-picker';
-import * as firebase from "firebase";
-import "firebase/firestore";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -18,68 +14,14 @@ const HomeScreen = ({ navigation }) => {
     const phobia = navigation.state.params.phobia;
     const user = navigation.state.params.user;
 
-    //with first render default value of currentUser state will be the user prop we recieved from menuScreen
-    const [currentUser, setCurrentUser] = useState(user);
-
-
-    //this will get called only the first time we load the screen 
-    useEffect(() => {
-
-        //method to ask a user for permission to use camera options
-        (async () => {
-            if (Platform.OS !== 'web') {
-                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-                if (status !== 'granted') {
-                    alert('Sorry, we need camera roll permissions to make this work!');
-                }
-            }
-        })();
-    }, []);
-
-
-
-
-    //method for user's profile image update
-    const pickImage = async () => {
-        //starting the ImageLibrary and seting some image options
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
-
-
-        //if we choose some image (we didn't selected cancel) it updates the current profileImageURL in database
-        //after that we fetch that user again with that updated data and set our state
-        if (!result.cancelled) {
-            const database = firebase.firestore();
-            database.collection("users").doc(user.id).update({
-                profileImageURL: result.uri
-            });
-
-            await firebase.firestore().collection("users").doc(currentUser.id).get().then((doc) => {
-                var userData = doc.data();
-                setCurrentUser({ id: user.id, userData: userData });
-            });
-        }
-    };
-
-
-
-
-
     return (
         <View style={styles.container}>
 
             {/*Header section*/}
             <View style={styles.header}>
-                <Text style={styles.headerText}>Hello {currentUser.userData.fullName}</Text>
-                <TouchableOpacity style={styles.touchable} onPress={pickImage}>
-                    <Image style={styles.image} source={!currentUser.userData.profileImageURL ? require("../images/noProfile.png") : { uri: String(currentUser.userData.profileImageURL) }} />
-                    <View style={styles.iconContainer}>
-                        <MaterialCommunityIcons name="pencil-plus" style={styles.icon} />
-                    </View>
+                <Text style={styles.headerText}>Hello {user.userData.fullName}</Text>
+                <TouchableOpacity style={styles.touchable}>
+                    <Image style={styles.image} source={!user.userData.profileImageURL ? require("../images/noProfile.png") : { uri: String(user.userData.profileImageURL) }} />
                 </TouchableOpacity>
             </View>
 
@@ -176,25 +118,6 @@ const styles = StyleSheet.create({
         height: 60,
         borderRadius: 22,
         backgroundColor: "lightgray",
-    },
-
-    iconContainer: {
-        position: "absolute",
-        top: height * 0.06,
-        right: 7,
-        borderRadius: 50,
-        height: 30,
-        width: 30,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#14284D",
-    },
-
-
-    icon: {
-        fontSize: 18,
-        color: "white",
-        marginLeft: 2
     },
 
 
