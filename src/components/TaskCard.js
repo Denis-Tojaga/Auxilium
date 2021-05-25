@@ -69,14 +69,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#C4D8FF",
         marginRight: 30,
         flexDirection: "row",
-        shadowColor: "black",
+        shadowColor: "#000",
         shadowOffset: {
-            width: 0,
-            height: 10
+            width: 2,
+            height: 5
         },
-        shadowOpacity: 0.4,
-        shadowRadius: 2,
-        elevation: 8
+        shadowOpacity: 0.9,
+        shadowRadius: 8,
+        elevation: 12
     },
 
     textContainer: {

@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 
     topContainer: {
         width: width,
-        height: height * .35,
+        height: height * .4,
         backgroundColor: "#14284D",
         borderBottomRightRadius: 55,
         justifyContent: "center",

@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, View, Text, Dimensions } from "react-native";
+import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get("screen");
 
@@ -7,41 +8,52 @@ const SmallTaskCard = ({ type }) => {
 
     console.log(type);
 
-    const HandlePositioning = () => {
-
-        switch (type) {
-            case "left1":
-                return (
-                    <View style={styles.containerLeft1}>
-                        <Text>This is something</Text>
-                    </View>
-                );
-            case "right1":
-                return (
-                    <View style={styles.containerRight1}>
-                        <Text>This is something</Text>
-                    </View>
-                );
-            case "left2":
-                return (
-                    <View style={styles.containerLeft2}>
-                        <Text>This is something</Text>
-                    </View>
-                );
-            case "right2":
-                return (
-                    <View style={styles.containerRight2}>
-                        <Text>This is something</Text>
-                    </View>
-                );
+    const handlePositioning = () => {
+        if (type == "left1") {
+            return (
+                <View style={styles.containerLeft1}>
+                    <Text style={styles.sessionText}>Session</Text>
+                    <Text style={styles.sessionNumber}>01</Text>
+                    <TouchableOpacity style={styles.button}>
+                        <Ionicons name="ios-play" size={25} color="white" />
+                    </TouchableOpacity>
+                </View>
+            );
+        } else if (type == "right1") {
+            return (
+                <View style={styles.containerRight1}>
+                    <Text style={styles.sessionText}>Session</Text>
+                    <Text style={styles.sessionNumber}>02</Text>
+                    <TouchableOpacity style={styles.button}>
+                        <Ionicons name="ios-play" size={25} color="white" />
+                    </TouchableOpacity>
+                </View>
+            );
+        } else if (type == "left2") {
+            return (
+                <View style={styles.containerLeft2}>
+                    <Text style={styles.sessionText}>Session</Text>
+                    <Text style={styles.sessionNumber}>03</Text>
+                    <TouchableOpacity style={styles.button}>
+                        <Ionicons name="ios-play" size={25} color="white" />
+                    </TouchableOpacity>
+                </View>
+            );
+        } else if (type == "right2") {
+            return (
+                <View style={styles.containerRight2}>
+                    <Text style={styles.sessionText}>Session</Text>
+                    <Text style={styles.sessionNumber}>04</Text>
+                    <TouchableOpacity style={styles.button}>
+                        <Ionicons name="ios-play" size={25} color="white" />
+                    </TouchableOpacity>
+                </View>
+            );
         }
     };
 
-    return (
-        <View>
 
-        </View>
-    );
+    return handlePositioning();
 
 };
 
@@ -51,13 +63,12 @@ const styles = StyleSheet.create({
     containerLeft1: {
         position: "absolute",
         left: width * .15,
-        bottom: height * .35,
+        bottom: height * .32,
         width: 120,
         height: 120,
-        borderColor: "black",
-        borderWidth: 1,
-        backgroundColor: "blue",
-        borderRadius: 20
+        backgroundColor: "#c4d8ff",
+        borderRadius: 20,
+        justifyContent: "center"
     },
 
     containerRight1: {
@@ -65,39 +76,62 @@ const styles = StyleSheet.create({
         bottom: height * .25,
         width: 120,
         height: 120,
-        borderColor: "black",
-        borderWidth: 1,
-        backgroundColor: "red",
+        backgroundColor: "#c4d8ff",
         marginLeft: width * 0.6,
         borderRadius: 20,
-        marginBottom: 10
+        marginBottom: 10,
+        justifyContent: "center"
     },
 
 
     containerLeft2: {
         position: "absolute",
         left: width * .15,
-        bottom: height * .35,
+        bottom: height * .1,
         width: 120,
         height: 120,
-        borderColor: "black",
-        borderWidth: 1,
-        backgroundColor: "blue",
-        borderRadius: 20
+        backgroundColor: "#c4d8ff",
+        borderRadius: 20,
+        justifyContent: "center"
     },
 
     containerRight2: {
         position: "absolute",
-        bottom: height * .25,
+        bottom: height * .01,
         width: 120,
         height: 120,
-        borderColor: "black",
-        borderWidth: 1,
-        backgroundColor: "red",
+        backgroundColor: "#c4d8ff",
         marginLeft: width * 0.6,
         borderRadius: 20,
-        marginBottom: 10
+        marginBottom: 15,
     },
+
+
+    sessionText: {
+        fontSize: 23,
+        fontFamily: "TrendaLight",
+        textAlign: "center",
+        marginTop: 15
+    },
+
+    sessionNumber: {
+        fontFamily: "TrendaSemibold",
+        fontSize: 30,
+        fontWeight: "800",
+        textAlign: "center",
+        marginBottom: 5
+    },
+
+    button: {
+        width: 50,
+        height: 50,
+        borderRadius: 50,
+        backgroundColor: "black",
+        justifyContent: "center",
+        alignItems: "center",
+        marginLeft: "30%",
+        backgroundColor: "#14284d"
+    }
 
 });
 

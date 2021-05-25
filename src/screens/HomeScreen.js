@@ -109,9 +109,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginHorizontal: 10,
         paddingTop: 10,
+        marginTop: 30,
+        marginBottom: 20
     },
     headerText: {
-        fontSize: 30,
+        fontSize: 25,
         fontFamily: "TrendaRegular",
         fontWeight: "600",
         color: "black",
@@ -135,10 +137,10 @@ const styles = StyleSheet.create({
     //tasks styles
 
     tasksContainer: {
-        height: height * 0.35,
+        height: height * 0.38,
         marginLeft: 10,
         justifyContent: "center",
-        marginTop: 15
+        marginBottom: 10
     },
 
 
