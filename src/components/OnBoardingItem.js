@@ -9,9 +9,6 @@ const { width, height } = Dimensions.get("screen");
 
 const OnBoardingItem = ({ item }) => {
 
-
-
-
     //method that will render an object with its proper style
     const renderHelper = (object) => {
 

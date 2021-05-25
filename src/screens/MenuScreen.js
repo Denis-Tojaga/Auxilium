@@ -30,12 +30,6 @@ const ITEM_SIZE = height * 0.25 + 50;
 
 
 
-//Fear of heights - startGradient "#408BC0", endGradient "#FAFAFA"
-//Fear of spiders - startGradient "#EC216A", endGradient "#FAFAFA"
-//Fear of confiend spaces - startGradient "#F25D04", endGradient "#FAFAFA"
-//Fear of flying - startGradient "#F8B320", endGradient "#FAFAFA"
-//Fear of snakes (Ophidiophobia) - startGradient "#40C044", endGradient "#FAFAFA"
-
 
 
 
@@ -48,14 +42,13 @@ const MenuScreen = () => {
 
     //all data from phobias collection is stored here on first component render
     const [phobias, setPhobias] = useState([]);
+    const [user, setUser] = useState(null);
 
     //calls once on first component render
     useEffect(() => {
         var newArray = [];
         var db = firebase.firestore();
-
-        //helper
-        var storage = firebase.storage();
+        //var storage = firebase.storage();
 
         db.collection("phobias").get().then((querySnapshot) => {
             querySnapshot.forEach((document) => {
@@ -65,24 +58,32 @@ const MenuScreen = () => {
                 //     .then((url) => {
                 //         console.log(url);
                 //     })
-
                 newArray.push({ id: document.id, data: document.data() });
             });
             setPhobias(newArray);
         });
+
+        async function getUserInfo() {
+
+            var userID = firebase.auth().currentUser.uid;
+            await firebase.firestore().collection("users").doc(userID).get().then((doc) => {
+                var userData = doc.data();
+                setUser({ id: userID, userData: userData });
+            });
+        }
+
+        getUserInfo();
     }, []);
 
 
 
 
-
-
-    const handlePress = () => {
-        //Navigating to home screen, so user can start with an appliation
-        navigate("bottomTabFlow");
+    //method for fetching a phobia and navigating to home 
+    const getPhobia = (phobiaID) => {
+        firebase.firestore().collection("phobias").doc(phobiaID).get().then((doc) => {
+            navigate("Home", { phobia: doc.data(), user: user });
+        });
     }
-
-
 
 
     return (
@@ -98,7 +99,6 @@ const MenuScreen = () => {
                     will be addressing that topic.
                 </Text>
             </View>
-
 
             {/*LIST CONTAINER*/}
             <View style={styles.container2}>
@@ -136,7 +136,6 @@ const MenuScreen = () => {
                         })
                         /*  FlatList Animation Reference code */
 
-
                         /* Phobia card */
                         return (
                             <Animated.View style={{ width: width * 0.85, height: height * 0.25, marginTop: 25, borderRadius: 25, transform: [{ scale }], opacity }}>
@@ -146,7 +145,10 @@ const MenuScreen = () => {
 
                                     <Image style={styles.image} source={{ uri: item.data.url }} />
 
-                                    <TouchableOpacity style={styles.button} onPress={handlePress}>
+                                    <TouchableOpacity
+                                        style={styles.button}
+                                        onPress={() => getPhobia(item.id)}
+                                    >
                                         <Text style={styles.buttonText}>Enroll</Text>
                                         <Ionicons name="ios-play" style={styles.icon} />
                                     </TouchableOpacity>
@@ -156,6 +158,7 @@ const MenuScreen = () => {
                     }}
                 />
             </View>
+
         </LinearGradient>
     );
 
@@ -209,12 +212,6 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginTop: 20
     },
-
-
-
-
-
-
 
 
 

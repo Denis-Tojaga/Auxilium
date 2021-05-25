@@ -10,13 +10,10 @@ const { width, height } = Dimensions.get("screen");
 
 const OnBoardScreen = () => {
 
-
     const scrollX = new Animated.Value(0);
-
 
     //next slide must be visible 50% in order to change viewable Index
     const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
-
 
     //method for displaying all slides 
     const renderContent = () => {
@@ -94,7 +91,6 @@ const OnBoardScreen = () => {
         );
     }
 
-
     return (
         <SafeAreaView style={styles.container}>
             {renderContent()}
@@ -105,7 +101,6 @@ const OnBoardScreen = () => {
         </SafeAreaView>
 
     );
-
 };
 
 
@@ -117,7 +112,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
     },
-
 
     //dot styles
     dotContainer: {
