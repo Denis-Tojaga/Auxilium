@@ -18,10 +18,14 @@ const HomeScreen = ({ navigation }) => {
     const phobia = navigation.state.params.phobia;
     const user = navigation.state.params.user;
 
+    //with first render default value of currentUser state will be the user prop we recieved from menuScreen
     const [currentUser, setCurrentUser] = useState(user);
 
 
+    //this will get called only the first time we load the screen 
     useEffect(() => {
+
+        //method to ask a user for permission to use camera options
         (async () => {
             if (Platform.OS !== 'web') {
                 const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -30,14 +34,14 @@ const HomeScreen = ({ navigation }) => {
                 }
             }
         })();
-
-        setCurrentUser(user);
     }, []);
 
 
 
 
+    //method for user's profile image update
     const pickImage = async () => {
+        //starting the ImageLibrary and seting some image options
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
@@ -45,19 +49,24 @@ const HomeScreen = ({ navigation }) => {
             quality: 1,
         });
 
+
+        //if we choose some image (we didn't selected cancel) it updates the current profileImageURL in database
+        //after that we fetch that user again with that updated data and set our state
         if (!result.cancelled) {
             const database = firebase.firestore();
             database.collection("users").doc(user.id).update({
                 profileImageURL: result.uri
             });
 
-            console.log("slika uspjesno setovana");
-            await firebase.firestore().collection("users").doc(user.id).get().then((doc) => {
+            await firebase.firestore().collection("users").doc(currentUser.id).get().then((doc) => {
                 var userData = doc.data();
                 setCurrentUser({ id: user.id, userData: userData });
             });
         }
     };
+
+
+
 
 
     return (
