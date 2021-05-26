@@ -8,6 +8,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from '@expo/vector-icons';
 import AccountListItem from "../components/AccountListItem";
+import { MaterialIcons } from '@expo/vector-icons';
 
 
 const { width, height } = Dimensions.get("screen");
@@ -67,6 +68,11 @@ const AccountScreen = ({ navigation }) => {
             database.collection("users").doc(user.id).update({
                 profileImageURL: result.uri
             });
+
+            database.collection("users").doc(user.id).get().then((doc) => {
+                var data = doc.data();
+                setUser({ id: user.id, userData: data });
+            });
         }
     };
 
@@ -79,18 +85,19 @@ const AccountScreen = ({ navigation }) => {
         <View style={styles.container}>
             <LinearGradient start={[-0.6, -0.3]} end={[0.8, 0.5]} colors={["#408BC0", "#0F2F6A"]} style={styles.gradient} >
 
-                {user ? <Image style={styles.image} source={!user.userData.profileImageURL ? require("../images/noProfile.png") : require("../images/noProfile.png")} /> : null}
+                {user ? <Image style={styles.image} source={!user.userData.profileImageURL ? require("../images/noProfile.png") : { uri: user.userData.profileImageURL }} /> : null}
                 <TouchableOpacity style={styles.editButton} onPress={pickImage}>
                     <Ionicons name="ios-pencil" style={styles.icon} />
                 </TouchableOpacity>
                 {user ? <Text style={styles.info}>{user.userData.fullName}</Text> : null}
                 <View style={styles.bottomContainer}>
-                    <AccountListItem color="red" text="Expert talks" />
-                    <AccountListItem color="green" text="View reviews" />
-                    <AccountListItem color="blue" text="Change password" />
+                    <AccountListItem color="#f4efd0" icon="chat" text="Expert talks" />
+                    <AccountListItem color="#faeeeb" icon="star" text="View reviews" />
+                    <AccountListItem color="#d9ddfb" icon="lock" text="Change password" />
 
-                    <TouchableOpacity style={styles.buttonSignout}>
-                        <Text>Sign out</Text>
+                    <TouchableOpacity style={styles.buttonSignout} onPress={logout}>
+                        <MaterialIcons name="logout" size={22} color="red" />
+                        <Text style={styles.buttonText}>Sign out</Text>
                     </TouchableOpacity>
 
                 </View>
@@ -120,24 +127,19 @@ const styles = StyleSheet.create({
         fontSize: 25,
         textAlign: "center",
         width: 100,
-        borderWidth: 1,
-        borderColor: "black",
-        color: "black",
         fontFamily: "TrendaSemibold",
     },
 
     image: {
         width: 110,
         height: 110,
-        borderColor: "black",
-        borderWidth: 1,
         borderRadius: 20
     },
 
     editButton: {
         position: "absolute",
-        top: height * .17,
-        right: width * .35,
+        top: height * .2,
+        right: width * .33,
         borderRadius: 50,
         height: 40,
         width: 40,
@@ -158,7 +160,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 45,
         borderTopRightRadius: 45,
         width: width,
-        height: height * .5,
+        height: height * .55,
         position: "absolute",
         bottom: 0,
         justifyContent: "center",
@@ -170,11 +172,17 @@ const styles = StyleSheet.create({
         height: 45,
         borderRadius: 10,
         alignSelf: "flex-start",
-        marginLeft: 45,
-        marginTop: 10,
+        marginLeft: width * .55,
         backgroundColor: "#091a3a",
         justifyContent: "center",
         alignItems: "center",
+        flexDirection: "row"
+    },
+
+    buttonText: {
+        color: "white",
+        fontSize: 17,
+        marginLeft: 5
     }
 });
 
