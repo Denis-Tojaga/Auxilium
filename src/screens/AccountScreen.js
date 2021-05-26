@@ -85,9 +85,13 @@ const AccountScreen = ({ navigation }) => {
                 </TouchableOpacity>
                 {user ? <Text style={styles.info}>{user.userData.fullName}</Text> : null}
                 <View style={styles.bottomContainer}>
-                    <AccountListItem text="Expert talks" />
-                    <AccountListItem text="View reviews" />
-                    <AccountListItem text="Change password" />
+                    <AccountListItem color="red" text="Expert talks" />
+                    <AccountListItem color="green" text="View reviews" />
+                    <AccountListItem color="blue" text="Change password" />
+
+                    <TouchableOpacity style={styles.buttonSignout}>
+                        <Text>Sign out</Text>
+                    </TouchableOpacity>
 
                 </View>
             </LinearGradient>
@@ -156,7 +160,21 @@ const styles = StyleSheet.create({
         width: width,
         height: height * .5,
         position: "absolute",
-        bottom: 0
+        bottom: 0,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+
+    buttonSignout: {
+        width: 120,
+        height: 45,
+        borderRadius: 10,
+        alignSelf: "flex-start",
+        marginLeft: 45,
+        marginTop: 10,
+        backgroundColor: "#091a3a",
+        justifyContent: "center",
+        alignItems: "center",
     }
 });
 
