@@ -246,18 +246,20 @@ const styles = StyleSheet.create({
         resizeMode: "stretch",
     },
     button: {
-        width: 90,
-        height: 35,
+        width: 100,
+        height: 40,
         backgroundColor: "#14284D",
-        borderRadius: 45,
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 10,
+        position: "absolute",
+        bottom: 0,
+        borderTopRightRadius: 25,
+        borderBottomLeftRadius: 25
     },
     buttonText: {
         fontFamily: "MoonBold",
-        fontSize: 11,
+        fontSize: 13,
         color: "#FFFF"
     },
     icon: {

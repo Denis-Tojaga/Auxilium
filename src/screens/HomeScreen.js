@@ -35,7 +35,6 @@ const HomeScreen = ({ navigation }) => {
         //any other time screen got focus we call this didFocus listener to catch the newest user data
         const listener = navigation.addListener("didFocus", () => {
             getUserData();
-            console.log("usao u listener");
         });
 
         return () => {

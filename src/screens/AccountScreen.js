@@ -26,8 +26,6 @@ const AccountScreen = ({ navigation }) => {
             navigate("loginFlow");
     }
 
-
-
     //this will get called only the first time we load the screen 
     useEffect(() => {
 
@@ -48,8 +46,6 @@ const AccountScreen = ({ navigation }) => {
         });
 
     }, []);
-
-
 
 
     //method for user's profile image update
@@ -75,8 +71,6 @@ const AccountScreen = ({ navigation }) => {
             });
         }
     };
-
-
 
 
 
