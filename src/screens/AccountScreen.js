@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Button, Image, Platform, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Button, Image, Platform, Dimensions, TouchableOpacity } from "react-native";
 import * as firebase from "firebase";
 import "firebase/firestore";
 import { loggingOut } from "../api/firebaseMethods";
 import { navigate } from "../helpers/navigation";
 import * as ImagePicker from 'expo-image-picker';
+import { LinearGradient } from "expo-linear-gradient";
+import { Ionicons } from '@expo/vector-icons';
+import AccountListItem from "../components/AccountListItem";
+
 
 const { width, height } = Dimensions.get("screen");
 
@@ -58,31 +62,35 @@ const AccountScreen = ({ navigation }) => {
         });
 
         //if we choose some image (we didn't selected cancel) it updates the current profileImageURL in database
-        // if (!result.cancelled) {
-        //     const database = firebase.firestore();
-        //     database.collection("users").doc(user.id).update({
-        //         profileImageURL: result.uri
-        //     });
-        // }
+        if (!result.cancelled) {
+            const database = firebase.firestore();
+            database.collection("users").doc(user.id).update({
+                profileImageURL: result.uri
+            });
+        }
     };
 
 
 
 
     //editing profile picture button
-    //     <View style={styles.iconContainer}>
-    //     <MaterialCommunityIcons name="pencil-plus" style={styles.icon} />
-    // </View>
-
 
     return (
-        <View>
-            {user ? <Text style={{ fontSize: 20 }}>{user.userData.fullName}</Text> : null}
-            {user ? <Image style={{ width: 100, height: 100 }} source={!user.userData.profileImageURL ? require("../images/noProfile.png") : { uri: user.userData.profileImageURL }} /> : null}
-            <Button title="Go to expert talks screen!" onPress={() => navigation.navigate("Expert")} />
-            <Button title="Go to review screen!" onPress={() => navigation.navigate("Review")} />
-            <Button title="Go to changepassword screen!" onPress={() => navigation.navigate("ChangePassword")} />
-            <Button title="Sign out!" onPress={logout} />
+        <View style={styles.container}>
+            <LinearGradient start={[-0.6, -0.3]} end={[0.8, 0.5]} colors={["#408BC0", "#0F2F6A"]} style={styles.gradient} >
+
+                {user ? <Image style={styles.image} source={!user.userData.profileImageURL ? require("../images/noProfile.png") : require("../images/noProfile.png")} /> : null}
+                <TouchableOpacity style={styles.editButton} onPress={pickImage}>
+                    <Ionicons name="ios-pencil" style={styles.icon} />
+                </TouchableOpacity>
+                {user ? <Text style={styles.info}>{user.userData.fullName}</Text> : null}
+                <View style={styles.bottomContainer}>
+                    <AccountListItem text="Expert talks" />
+                    <AccountListItem text="View reviews" />
+                    <AccountListItem text="Change password" />
+
+                </View>
+            </LinearGradient>
         </View>
     );
 };
@@ -90,24 +98,66 @@ const AccountScreen = ({ navigation }) => {
 
 
 const styles = StyleSheet.create({
-    iconContainer: {
+
+    container: {
+        flex: 1,
+    },
+
+    gradient: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+
+    info: {
+        marginBottom: height * .5,
+        marginTop: 10,
+        color: "white",
+        fontSize: 25,
+        textAlign: "center",
+        width: 100,
+        borderWidth: 1,
+        borderColor: "black",
+        color: "black",
+        fontFamily: "TrendaSemibold",
+    },
+
+    image: {
+        width: 110,
+        height: 110,
+        borderColor: "black",
+        borderWidth: 1,
+        borderRadius: 20
+    },
+
+    editButton: {
         position: "absolute",
-        top: height * 0.06,
-        right: 7,
+        top: height * .17,
+        right: width * .35,
         borderRadius: 50,
-        height: 30,
-        width: 30,
+        height: 40,
+        width: 40,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#14284D",
+        backgroundColor: "black",
     },
 
 
     icon: {
-        fontSize: 18,
+        fontSize: 20,
         color: "white",
         marginLeft: 2
     },
+
+    bottomContainer: {
+        backgroundColor: "white",
+        borderTopLeftRadius: 45,
+        borderTopRightRadius: 45,
+        width: width,
+        height: height * .5,
+        position: "absolute",
+        bottom: 0
+    }
 });
 
 
