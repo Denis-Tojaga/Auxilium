@@ -1,11 +1,9 @@
 import React, { useRef } from "react";
 import {
     StyleSheet, Text, Dimensions, View, FlatList, Animated,
-    TouchableOpacity,
 } from "react-native";
 import SubscriptionPackages from "../components/SubscriptionPackages";
 import { LinearGradient } from "expo-linear-gradient";
-import SubscriptionCard from "../components/SubscriptionCard";
 
 
 
@@ -47,7 +45,7 @@ const ExploreScreen = () => {
                             -1,
                             0,
                             ITEM_SIZE * index,
-                            ITEM_SIZE * (index + 0.9)
+                            ITEM_SIZE * (index + 1)
                         ]
 
                         const scale = scrollX.interpolate({
