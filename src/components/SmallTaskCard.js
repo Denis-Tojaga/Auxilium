@@ -7,8 +7,6 @@ const { width, height } = Dimensions.get("screen");
 
 const SmallTaskCard = ({ type, callback }) => {
 
-    console.log(callback);
-
     //method that will display views in correct order and style
     const handlePositioning = () => {
         if (type == "left1") {
