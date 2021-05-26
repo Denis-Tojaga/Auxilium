@@ -79,7 +79,6 @@ const AccountScreen = ({ navigation }) => {
 
 
 
-    //editing profile picture button
 
     return (
         <View style={styles.container}>
@@ -91,9 +90,21 @@ const AccountScreen = ({ navigation }) => {
                 </TouchableOpacity>
                 {user ? <Text style={styles.info}>{user.userData.fullName}</Text> : null}
                 <View style={styles.bottomContainer}>
-                    <AccountListItem color="#f4efd0" icon="chat" text="Expert talks" />
-                    <AccountListItem color="#faeeeb" icon="star" text="View reviews" />
-                    <AccountListItem color="#d9ddfb" icon="lock" text="Change password" />
+
+                    {/*First card*/}
+                    <TouchableOpacity onPress={() => navigation.navigate("Expert")}>
+                        <AccountListItem color="#f4efd0" icon="chat" text="Expert talks" />
+                    </TouchableOpacity>
+
+                    {/*Second card*/}
+                    <TouchableOpacity onPress={() => navigation.navigate("Review")}>
+                        <AccountListItem color="#faeeeb" icon="star" text="View reviews" />
+                    </TouchableOpacity>
+
+                    {/*Third card*/}
+                    <TouchableOpacity onPress={() => navigation.navigate("ChangePassword")}>
+                        <AccountListItem color="#d9ddfb" icon="lock" text="Change password" />
+                    </TouchableOpacity>
 
                     <TouchableOpacity style={styles.buttonSignout} onPress={logout}>
                         <MaterialIcons name="logout" size={22} color="red" />
