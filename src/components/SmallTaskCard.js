@@ -1,10 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
+import { navigate } from "../helpers/navigation";
 
 const { width, height } = Dimensions.get("screen");
 
-const SmallTaskCard = ({ type }) => {
+const SmallTaskCard = ({ type, callback }) => {
+
+    console.log(callback);
 
     //method that will display views in correct order and style
     const handlePositioning = () => {
@@ -13,7 +16,7 @@ const SmallTaskCard = ({ type }) => {
                 <View style={styles.containerLeft1}>
                     <Text style={styles.sessionText}>Session</Text>
                     <Text style={styles.sessionNumber}>01</Text>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={callback}>
                         <Ionicons name="ios-play" size={25} color="white" />
                     </TouchableOpacity>
                 </View>
@@ -23,7 +26,7 @@ const SmallTaskCard = ({ type }) => {
                 <View style={styles.containerRight1}>
                     <Text style={styles.sessionText}>Session</Text>
                     <Text style={styles.sessionNumber}>02</Text>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={callback}>
                         <Ionicons name="ios-play" size={25} color="white" />
                     </TouchableOpacity>
                 </View>
@@ -33,7 +36,7 @@ const SmallTaskCard = ({ type }) => {
                 <View style={styles.containerLeft2}>
                     <Text style={styles.sessionText}>Session</Text>
                     <Text style={styles.sessionNumber}>03</Text>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigate("TaskDetail")}>
                         <Ionicons name="ios-play" size={25} color="white" />
                     </TouchableOpacity>
                 </View>
@@ -43,7 +46,7 @@ const SmallTaskCard = ({ type }) => {
                 <View style={styles.containerRight2}>
                     <Text style={styles.sessionText}>Session</Text>
                     <Text style={styles.sessionNumber}>04</Text>
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={styles.button} onPress={() => navigate("TaskDetail")}>
                         <Ionicons name="ios-play" size={25} color="white" />
                     </TouchableOpacity>
                 </View>
@@ -65,7 +68,14 @@ const styles = StyleSheet.create({
         height: 120,
         backgroundColor: "#c4d8ff",
         borderRadius: 20,
-        justifyContent: "center"
+        justifyContent: "center",
+        shadowColor: "black",
+        shadowOffset: {
+            width: 0,
+            height: 7
+        },
+        shadowOpacity: .6,
+        shadowRadius: 5,
     },
 
     containerRight1: {
@@ -77,7 +87,14 @@ const styles = StyleSheet.create({
         marginLeft: width * 0.6,
         borderRadius: 20,
         marginBottom: 10,
-        justifyContent: "center"
+        justifyContent: "center",
+        shadowColor: "black",
+        shadowOffset: {
+            width: 0,
+            height: 7
+        },
+        shadowOpacity: .6,
+        shadowRadius: 5,
     },
 
 
@@ -89,7 +106,14 @@ const styles = StyleSheet.create({
         height: 120,
         backgroundColor: "#c4d8ff",
         borderRadius: 20,
-        justifyContent: "center"
+        justifyContent: "center",
+        shadowColor: "black",
+        shadowOffset: {
+            width: 0,
+            height: 7
+        },
+        shadowOpacity: .6,
+        shadowRadius: 5,
     },
 
     containerRight2: {
@@ -101,6 +125,13 @@ const styles = StyleSheet.create({
         marginLeft: width * 0.6,
         borderRadius: 20,
         marginBottom: 15,
+        shadowColor: "black",
+        shadowOffset: {
+            width: 0,
+            height: 7
+        },
+        shadowOpacity: .6,
+        shadowRadius: 5,
     },
 
 

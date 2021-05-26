@@ -4,8 +4,13 @@ import { StyleSheet, Text, View } from "react-native";
 
 const TaskDetailScreen = () => {
 
+
+    //AR stuff goes here 
+
     return (
-        <Text>This is TaskDetailScreen screen</Text>
+        <View>
+            <Text>This is TaskDetailScreen screen</Text>
+        </View>
     );
 
 };

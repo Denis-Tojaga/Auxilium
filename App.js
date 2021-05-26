@@ -38,8 +38,8 @@ import apiKeys from "./src/config/keys";
 import * as firebase from "firebase";
 //importing icons library's
 import { AntDesign } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 
 
@@ -74,8 +74,8 @@ const exploreFlow = createStackNavigator({
 });
 
 exploreFlow.navigationOptions = {
-  title: "Exlpore",
-  tabBarIcon: ({ tintColor }) => <MaterialIcons name="explore" size={24} color={tintColor} />
+  title: "Subscription",
+  tabBarIcon: ({ tintColor }) => <Feather name="shopping-cart" size={28} color={tintColor} />
 }
 
 

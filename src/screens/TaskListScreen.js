@@ -29,10 +29,10 @@ const TaskListScreen = ({ navigation }) => {
                 <Text style={styles.info}>{info}</Text>
             </View>
 
-            <SmallTaskCard type="left1" />
-            <SmallTaskCard type="right1" />
-            <SmallTaskCard type="left2" />
-            <SmallTaskCard type="right2" />
+            <SmallTaskCard type="left1" callback={() => navigation.navigate("TaskDetail")} />
+            <SmallTaskCard type="right1" callback={() => navigation.navigate("TaskDetail")} />
+            <SmallTaskCard type="left2" callback={() => navigation.navigate("TaskDetail")} />
+            <SmallTaskCard type="right2" callback={() => navigation.navigate("TaskDetail")} />
 
 
             {/* Main tasks container */}
