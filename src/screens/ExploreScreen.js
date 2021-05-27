@@ -96,11 +96,11 @@ const ExploreScreen = ({ navigation }) => {
 
                                     <View style={{ marginTop: 40 }}>
                                         {item.options.map((item, key) => (
-                                            <View style={styles.optionContainer}>
+                                            <View key={key} style={styles.optionContainer}>
                                                 <View style={item.valid ? styles.valid : styles.notValid}>
-                                                    <AntDesign name="check" size={22} color="black" />
+                                                    <AntDesign name="check" size={22} color="white" />
                                                 </View>
-                                                <Text key={key} style={styles.optionText}>{item.title}</Text>
+                                                <Text style={styles.optionText}>{item.title}</Text>
                                             </View>
                                         ))}
                                     </View>
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     buttonText: {
         fontFamily: "TrendaSemibold",
         marginRight: 2,
-        fontSize: 20
+        fontSize: 20,
     },
 
 
@@ -191,10 +191,11 @@ const styles = StyleSheet.create({
 
 
     optionText: {
-        fontSize: 16,
+        fontSize: 18,
         fontFamily: "TrendaLight",
         color: "#14284D",
-        marginLeft: 10
+        width: 120,
+        textAlign: "center"
     },
 
     valid: {
@@ -213,14 +214,14 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         justifyContent: "center",
         alignItems: "center",
-        opacity: .6
+        opacity: .6,
     },
 
     optionContainer: {
         marginVertical: 5,
         flexDirection: "row",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
     }
 
 
