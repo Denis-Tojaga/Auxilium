@@ -5,7 +5,11 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const { width, height } = Dimensions.get("screen");
 
-const PurchaseScreen = () => {
+const PurchaseScreen = ({ navigation }) => {
+
+    const item = navigation.getParam("object");
+
+    console.log(item);
 
     return (
         <Text style={styles.title}>Subscription packages</Text>
