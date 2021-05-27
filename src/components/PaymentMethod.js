@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     card: {
         width: 280,
         height: 60,
-        borderBottomColor: "black",
+        borderBottomColor: "lightgray",
         borderBottomWidth: 1,
         alignItems: "center",
         flexDirection: "row",

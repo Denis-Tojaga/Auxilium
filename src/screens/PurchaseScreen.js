@@ -43,7 +43,7 @@ const PurchaseScreen = ({ navigation }) => {
 
             <View style={styles.bottomContainer}>
                 <View style={styles.buttonBuy}>
-                    <Text>Buy</Text>
+                    <Text style={{ fontSize: 22, fontFamily: "TrendaRegular" }}>Buy</Text>
                     <AntDesign name="arrowright" size={26} color="black" />
                 </View>
 
@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
 
     middleContainer: {
         position: "absolute",
-        bottom: height * .1,
+        bottom: height * .09,
         width: width,
         height: height * .5,
         borderColor: "black",
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 100,
         borderTopRightRadius: 100,
         width: width,
-        height: height * .17,
+        height: height * .16,
         bottom: 0,
         backgroundColor: "#0F2F6A",
         flexDirection: "row",
