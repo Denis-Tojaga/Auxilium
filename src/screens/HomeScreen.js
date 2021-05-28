@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, FlatList, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Image, FlatList, Dimensions, Alert } from "react-native";
 import "firebase/firestore";
 import * as firebase from "firebase";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -13,7 +13,9 @@ const { width, height } = Dimensions.get("screen");
 const HomeScreen = ({ navigation }) => {
 
 
-    console.log(navigation);
+
+    const message = navigation.state.params.message;
+
 
     const phobia = navigation.state.params.phobia;
 
@@ -39,10 +41,13 @@ const HomeScreen = ({ navigation }) => {
             getUserData();
         });
 
+        if (message)
+            Alert.alert("Congratulations", message);
+
         return () => {
             listener.remove();
         };
-    }, []);
+    }, [message]);
 
 
     return (

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import { navigate } from "../helpers/navigation";
+
 
 
 const { width, height } = Dimensions.get("screen");
@@ -8,6 +9,14 @@ const { width, height } = Dimensions.get("screen");
 const ConfirmPurchaseScreen = ({ navigation }) => {
 
     const packageName = navigation.getParam("package");
+
+
+    //navigation funtion
+    const handlePress = () => {
+        navigate("Explore");
+        navigate("Home", { message: `${packageName} has been unlocked.` });
+    }
+
 
     return (
         <View style={styles.container}>
@@ -19,7 +28,7 @@ const ConfirmPurchaseScreen = ({ navigation }) => {
                 <Text style={styles.infoP}>You have successfully purchased the "{packageName}" package. Tap bellow to unlock it.</Text>
             </View>
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity style={styles.buttonUnlock} onPress={() => navigate("Home", { message: `${packageName} has been unlocked!` })} >
+                <TouchableOpacity style={styles.buttonUnlock} onPress={handlePress} >
                     <Text style={{ fontSize: 19, fontFamily: "TrendaSemibold", color: "white" }}>Unlock {packageName} here</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonSkip} onPress={() => navigate("Explore")}>

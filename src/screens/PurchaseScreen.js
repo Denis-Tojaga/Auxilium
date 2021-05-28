@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import PaymentMethod from "../components/PaymentMethod";
 import CreditCards from "../components/CreditCards";
+import { useEffect } from "react/cjs/react.development";
 
 
 
@@ -13,6 +14,12 @@ const { width, height } = Dimensions.get("screen");
 const PurchaseScreen = ({ navigation }) => {
 
     const item = navigation.getParam("object");
+
+
+    //navigation function
+    const handlePress = () => {
+        navigation.navigate("Confirm", { package: item.type });
+    }
 
 
     return (
@@ -49,7 +56,7 @@ const PurchaseScreen = ({ navigation }) => {
                                 <View style={{
                                     borderRadius: 30, backgroundColor: item.background, alignItems: "center",
                                     justifyContent: "center", width: width * .6, height: "90%",
-                                    marginHorizontal: 15, shadowColor: "black", shadowOffset: { width: 5, height: 6 },
+                                    marginHorizontal: 18, shadowColor: "black", shadowOffset: { width: 5, height: 6 },
                                     shadowOpacity: .7, shadowRadius: 5, elevation: 9
                                 }}>
                                     <Image style={styles.creditCardImage} source={item.image} />
@@ -75,7 +82,7 @@ const PurchaseScreen = ({ navigation }) => {
 
             {/*Bottom container which shows the price and buy option */}
             <View style={styles.bottomContainer}>
-                <TouchableOpacity style={styles.buttonBuy} onPress={() => navigation.navigate("Confirm", { package: item.type })}>
+                <TouchableOpacity style={styles.buttonBuy} onPress={handlePress}>
                     <Text style={{ fontSize: 22, fontFamily: "TrendaRegular" }}>Buy</Text>
                     <AntDesign name="arrowright" size={26} color="black" />
                 </TouchableOpacity>

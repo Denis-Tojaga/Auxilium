@@ -20,25 +20,6 @@ const ExploreScreen = ({ navigation }) => {
 
     const scrollX = useRef(new Animated.Value(0)).current;
 
-
-
-
-
-    const renderOption = (title, valid) => {
-        return <View style={{ borderColor: "black", borderWidth: 1 }}>
-            <View style={{ width: 50, height: 50, backgroundColor: "#EC216A", borderRadius: 50, justifyContent: "center", alignItems: "center" }}>
-                <AntDesign name="check" size={24} color="black" />
-            </View>
-            <Text>{title}</Text>
-        </View>
-    };
-
-
-
-
-
-
-
     return (
         <LinearGradient start={[-0.6, -0.3]} end={[0.8, 0.5]} colors={["#408BC0", "#0F2F6A"]} style={styles.container} >
             <Text style={styles.title}>Subscription packages</Text>
@@ -104,7 +85,6 @@ const ExploreScreen = ({ navigation }) => {
                                             </View>
                                         ))}
                                     </View>
-
 
                                     <TouchableOpacity style={styles.button} onPress={() => { navigation.navigate("Purchase", { object: item }) }}>
                                         <Text style={styles.buttonText}>Select now</Text>
