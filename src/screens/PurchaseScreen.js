@@ -41,7 +41,12 @@ const PurchaseScreen = ({ navigation }) => {
                         keyExtractor={(item) => item.id}
                         renderItem={({ item }) => {
                             return (
-                                <View style={{ borderRadius: 30, backgroundColor: item.background, alignItems: "center", justifyContent: "center", width: width * .6, height: "100%", marginRight: 25, borderColor: "black", borderWidth: 1 }}>
+                                <View style={{
+                                    borderRadius: 30, backgroundColor: item.background, alignItems: "center",
+                                    justifyContent: "center", width: width * .6, height: "100%",
+                                    marginRight: 25, shadowColor: "black", shadowOffset: { width: 4, height: 6 },
+                                    shadowOpacity: .6, shadowRadius: 9, elevation: 12
+                                }}>
                                     <Image style={styles.creditCardImage} source={item.image} />
                                     <Text style={{ fontSize: 28, fontFamily: "TrendaRegular", color: "black" }}>{item.title}</Text>
                                 </View>
@@ -109,8 +114,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         width: width,
         height: height * .25,
-        borderWidth: 1,
-        borderColor: "black",
         top: height * .15,
         zIndex: 1
     },
@@ -122,8 +125,6 @@ const styles = StyleSheet.create({
         bottom: height * .09,
         width: width,
         height: height * .5,
-        borderColor: "black",
-        borderWidth: 4,
         backgroundColor: "white",
         alignItems: "center",
         justifyContent: "center",
@@ -132,8 +133,8 @@ const styles = StyleSheet.create({
 
     bottomContainer: {
         position: "absolute",
-        borderTopLeftRadius: 100,
-        borderTopRightRadius: 100,
+        borderTopLeftRadius: 55,
+        borderTopRightRadius: 55,
         width: width,
         height: height * .16,
         bottom: 0,
@@ -165,8 +166,6 @@ const styles = StyleSheet.create({
         width: "70%",
         height: "100%",
         marginLeft: 20,
-        borderColor: "black",
-        borderWidth: 1
     },
 
 
