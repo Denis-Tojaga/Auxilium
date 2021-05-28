@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import { navigate } from "../helpers/navigation";
 

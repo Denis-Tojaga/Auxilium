@@ -5,7 +5,6 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import PaymentMethod from "../components/PaymentMethod";
 import CreditCards from "../components/CreditCards";
-import { useEffect } from "react/cjs/react.development";
 
 
 
