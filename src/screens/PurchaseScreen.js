@@ -1,9 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, Dimensions, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, Dimensions, View, TouchableOpacity, FlatList, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import PaymentMethod from "../components/PaymentMethod";
+import CreditCards from "../components/CreditCards";
 
 
 
@@ -25,11 +26,28 @@ const PurchaseScreen = ({ navigation }) => {
 
             <View style={styles.floatingContainer}>
                 <View style={styles.addNewButton}>
-                    <Text style={{ fontSize: 40 }}>+</Text>
+                    <Text style={{ fontSize: 40, fontFamily: "TrendaRegular" }}>+</Text>
                 </View>
 
                 <View style={styles.flatListContainer}>
-
+                    <FlatList
+                        snapToAlignment={"15%"}
+                        bounces={false}
+                        pagingEnabled={true}
+                        scrollEventThrottle={20}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                        data={CreditCards}
+                        keyExtractor={(item) => item.id}
+                        renderItem={({ item }) => {
+                            return (
+                                <View style={{ borderRadius: 30, backgroundColor: item.background, alignItems: "center", justifyContent: "center", width: width * .6, height: "100%", marginRight: 25, borderColor: "black", borderWidth: 1 }}>
+                                    <Image style={styles.creditCardImage} source={item.image} />
+                                    <Text style={{ fontSize: 28, fontFamily: "TrendaRegular", color: "black" }}>{item.title}</Text>
+                                </View>
+                            );
+                        }}
+                    />
                 </View>
 
             </View>
@@ -146,7 +164,7 @@ const styles = StyleSheet.create({
     flatListContainer: {
         width: "70%",
         height: "100%",
-        marginLeft: 30,
+        marginLeft: 20,
         borderColor: "black",
         borderWidth: 1
     },
@@ -164,10 +182,16 @@ const styles = StyleSheet.create({
         left: 60
     },
 
-
     details: {
         position: "absolute",
         right: 30
+    },
+
+
+    creditCardImage: {
+        width: "70%",
+        height: "60%",
+        resizeMode: "contain",
     }
 
 });
