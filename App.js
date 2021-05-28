@@ -23,6 +23,7 @@ import ExpertScreen from "./src/screens/ExpertScreen";
 import ReviewScreen from "./src/screens/ReviewScreen";
 import ChangePasswordScreen from "./src/screens/ChangePasswordScreen";
 import OnBoardScreen from "./src/screens/OnBoardScreen";
+import ConfirmPurchaseScreen from "./src/screens/ConfirmPurchasingScreen";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 
 
@@ -70,7 +71,8 @@ homeFlow.navigationOptions = {
 //flow that is controling the explore screens
 const exploreFlow = createStackNavigator({
   Explore: ExploreScreen,
-  Purchase: PurchaseScreen
+  Purchase: PurchaseScreen,
+  Confirm: ConfirmPurchaseScreen
 });
 
 exploreFlow.navigationOptions = {

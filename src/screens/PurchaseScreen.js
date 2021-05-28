@@ -17,6 +17,9 @@ const PurchaseScreen = ({ navigation }) => {
 
     return (
         <LinearGradient start={[-0.6, -0.3]} end={[0.8, 0.5]} colors={["#408BC0", "#0F2F6A"]} style={styles.container} >
+
+            {/*Header container */}
+
             <View style={styles.header}>
                 <TouchableOpacity onPress={() => navigation.goBack()} >
                     <Ionicons name="arrow-back-sharp" style={styles.icon} />
@@ -24,6 +27,8 @@ const PurchaseScreen = ({ navigation }) => {
                 <Text style={styles.headerText}>Payment methods</Text>
             </View>
 
+
+            {/*Floating container that holds add new card button and all available cards */}
             <View style={styles.floatingContainer}>
                 <View style={styles.addNewButton}>
                     <Text style={{ fontSize: 40, fontFamily: "TrendaRegular" }}>+</Text>
@@ -43,9 +48,9 @@ const PurchaseScreen = ({ navigation }) => {
                             return (
                                 <View style={{
                                     borderRadius: 30, backgroundColor: item.background, alignItems: "center",
-                                    justifyContent: "center", width: width * .6, height: "100%",
-                                    marginRight: 25, shadowColor: "black", shadowOffset: { width: 4, height: 6 },
-                                    shadowOpacity: .6, shadowRadius: 9, elevation: 12
+                                    justifyContent: "center", width: width * .6, height: "90%",
+                                    marginHorizontal: 15, shadowColor: "black", shadowOffset: { width: 5, height: 6 },
+                                    shadowOpacity: .7, shadowRadius: 5, elevation: 9
                                 }}>
                                     <Image style={styles.creditCardImage} source={item.image} />
                                     <Text style={{ fontSize: 28, fontFamily: "TrendaRegular", color: "black" }}>{item.title}</Text>
@@ -57,6 +62,9 @@ const PurchaseScreen = ({ navigation }) => {
 
             </View>
 
+
+
+            {/*Middle container holding all payment methods */}
             <View style={styles.middleContainer}>
                 <Text style={{ fontFamily: "TrendaLight", fontSize: 18, color: "black", opacity: .8, marginRight: width * .2 }}>Other payment methods</Text>
                 <PaymentMethod image="card" />
@@ -64,11 +72,13 @@ const PurchaseScreen = ({ navigation }) => {
                 <PaymentMethod image="paypal" />
             </View>
 
+
+            {/*Bottom container which shows the price and buy option */}
             <View style={styles.bottomContainer}>
-                <View style={styles.buttonBuy}>
+                <TouchableOpacity style={styles.buttonBuy} onPress={() => navigation.navigate("Confirm", { package: item.type })}>
                     <Text style={{ fontSize: 22, fontFamily: "TrendaRegular" }}>Buy</Text>
                     <AntDesign name="arrowright" size={26} color="black" />
-                </View>
+                </TouchableOpacity>
 
                 <View style={styles.details}>
                     <Text style={{ fontSize: 21, color: "white", fontFamily: "TrendaRegular" }}>{item.price}</Text>
@@ -86,6 +96,7 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
+        backgroundColor: "#FAFAFA"
     },
 
     header: {
@@ -113,10 +124,9 @@ const styles = StyleSheet.create({
         position: "absolute",
         flexDirection: "row",
         width: width,
-        height: height * .25,
+        height: height * .28,
         top: height * .15,
         zIndex: 1,
-        padding: 5
     },
 
 
@@ -148,24 +158,24 @@ const styles = StyleSheet.create({
     addNewButton: {
         backgroundColor: "white",
         width: 60,
-        height: "100%",
+        height: "85%",
         justifyContent: "center",
         alignItems: "center",
         marginLeft: width * .1,
         shadowColor: "black",
         shadowOffset: {
-            width: 3,
+            width: 4,
             height: 5
         },
-        shadowOpacity: .7,
+        shadowOpacity: .8,
         shadowRadius: 7,
-        borderRadius: 12,
+        borderRadius: 9,
     },
 
 
     flatListContainer: {
         width: "70%",
-        height: "100%",
+        height: "95%",
         marginLeft: 20,
     },
 
