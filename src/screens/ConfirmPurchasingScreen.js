@@ -13,7 +13,6 @@ const ConfirmPurchaseScreen = ({ navigation }) => {
 
     //navigation funtion
     const handlePress = () => {
-        navigate("Explore");
         navigate("Home", { message: `${packageName} has been unlocked.` });
     }
 
