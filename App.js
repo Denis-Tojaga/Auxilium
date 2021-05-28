@@ -73,6 +73,8 @@ const exploreFlow = createStackNavigator({
   Explore: ExploreScreen,
   Purchase: PurchaseScreen,
   Confirm: ConfirmPurchaseScreen
+}, {
+  initialRouteName: "Explore"
 });
 
 exploreFlow.navigationOptions = {

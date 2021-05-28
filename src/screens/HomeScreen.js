@@ -12,6 +12,9 @@ const { width, height } = Dimensions.get("screen");
 
 const HomeScreen = ({ navigation }) => {
 
+
+    console.log(navigation);
+
     const phobia = navigation.state.params.phobia;
 
     const [user, setUser] = useState();
@@ -31,7 +34,6 @@ const HomeScreen = ({ navigation }) => {
 
         //first time screen gets rendered we get the user's data
         getUserData();
-
         //any other time screen got focus we call this didFocus listener to catch the newest user data
         const listener = navigation.addListener("didFocus", () => {
             getUserData();

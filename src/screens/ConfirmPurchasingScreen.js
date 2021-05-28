@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
+import { navigate } from "../helpers/navigation";
 
 
 const { width, height } = Dimensions.get("screen");
@@ -18,10 +19,10 @@ const ConfirmPurchaseScreen = ({ navigation }) => {
                 <Text style={styles.infoP}>You have successfully purchased the "{packageName}" package. Tap bellow to unlock it.</Text>
             </View>
             <View style={styles.buttonsContainer}>
-                <TouchableOpacity style={styles.buttonUnlock}>
+                <TouchableOpacity style={styles.buttonUnlock} onPress={() => navigate("Home", { message: `${packageName} has been unlocked!` })} >
                     <Text style={{ fontSize: 19, fontFamily: "TrendaSemibold", color: "white" }}>Unlock {packageName} here</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonSkip}>
+                <TouchableOpacity style={styles.buttonSkip} onPress={() => navigate("Explore")}>
                     <Text style={{ fontSize: 19, fontFamily: "TrendaSemibold", color: "#1F3C72" }}>Skip for now</Text>
                 </TouchableOpacity>
             </View>
@@ -40,8 +41,6 @@ const styles = StyleSheet.create({
     imageContainer: {
         width: width,
         height: height * .5,
-        borderWidth: 1,
-        borderColor: "black"
     },
 
     info: {
@@ -66,8 +65,6 @@ const styles = StyleSheet.create({
     buttonsContainer: {
         width: width,
         height: height * .22,
-        borderColor: "black",
-        borderWidth: 1,
         marginBottom: 20,
         alignItems: "center"
     },
