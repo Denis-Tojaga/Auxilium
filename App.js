@@ -45,9 +45,6 @@ import { Feather } from '@expo/vector-icons';
 
 
 
-
-
-
 //flow that is controling the login screens
 const loginFlow = createStackNavigator({
   Welome: WelcomeScreen,

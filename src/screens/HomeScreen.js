@@ -109,6 +109,8 @@ const HomeScreen = ({ navigation }) => {
                             imageURL={phobia.url}
                             type={item.type}
                             nav={navigation}
+                            infoTitle={phobia.infoTitle}
+                            info={phobia.info}
                         />
                     }}
                 />
