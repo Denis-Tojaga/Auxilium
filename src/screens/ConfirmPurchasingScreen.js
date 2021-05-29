@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import { navigate } from "../helpers/navigation";
-import { StackActions } from '@react-navigation/native';
 
 
 
@@ -11,14 +10,11 @@ const ConfirmPurchaseScreen = ({ navigation }) => {
 
     const packageName = navigation.getParam("package");
 
-    const popAction = StackActions.pop(1);
-
     //navigation funtion
     const handlePress = () => {
         navigate("Home", { message: `${packageName} has been unlocked.` });
-        navigation.dispatch(StackActions.popToTop());
-    }
 
+    }
 
     return (
         <View style={styles.container}>

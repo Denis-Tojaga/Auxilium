@@ -15,9 +15,11 @@
     "@use-expo/font": "^2.0.0",
     "expo": "~41.0.1",
     "expo-app-loading": "^1.0.3",
+    "expo-graphics": "^2.0.0",
     "expo-image-picker": "~10.1.4",
     "expo-linear-gradient": "~9.1.0",
     "expo-status-bar": "~1.0.4",
+    "expo-three": "^5.7.0",
     "firebase": "8.2.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -30,7 +32,8 @@
     "react-native-web": "~0.13.12",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4",
-    "react-navigation-tabs": "^2.11.1"
+    "react-navigation-tabs": "^2.11.1",
+    "three": "^0.129.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
