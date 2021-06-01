@@ -8,6 +8,7 @@ import { Alert } from "react-native";
 export async function registration(email, password, fullName) {
 
     try {
+
         await firebase.auth().createUserWithEmailAndPassword(email, password);
 
         //takes the current user from the database
@@ -18,6 +19,7 @@ export async function registration(email, password, fullName) {
         //.collection("users") - makes a new collection called users
         //.doc(currentUser.uid) - goes inside of a document with correct user identifier
         //.set(key:value pair) - sets an attribute and its value in the database
+
         database.collection("users").doc(currentUser.uid).set({
             email: currentUser.email,
             fullName: fullName,
