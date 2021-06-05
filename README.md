@@ -27,12 +27,12 @@ Auxilium(lat. help) is a mobile application which primary goal is to help people
 - Adobe XD
 
 
-Android
+## Android
 
 <br />
 
 
-iOS
+## iOS
 
 <br />
 
