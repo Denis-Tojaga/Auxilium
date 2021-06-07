@@ -1,5 +1,5 @@
 # Auxilium
-### This project won the 2nd place on FIT coding challenge
+### This project won the 2nd place award on FIT coding challenge 2021
 
 ## App description
 
