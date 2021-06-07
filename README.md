@@ -33,5 +33,7 @@ Auxilium(lat. help) is a mobile application which primary goal is to help people
 
 <br />
 
+<img src="src/AppImages/slika1.png" width="250" height="450">
+
 
 
