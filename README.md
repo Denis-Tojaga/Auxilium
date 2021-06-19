@@ -31,7 +31,7 @@ Auxilium(lat. help) is a mobile application which primary goal is to help people
 
 ## Created and developed 
 - Denis Tojaga
-- Abdulmedzid Pehlić
+- [Abdulmedzid Pehlić](https://github.com/abdulmedzid)
 
 
 ## App Images
